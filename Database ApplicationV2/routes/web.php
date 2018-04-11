@@ -24,4 +24,14 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/login', function ()
+{
+  return view('login');
+});
+
+Route::get('/admin', function()
+{
+  return view('AdminLogin');
+});
+
 Route::post('/contact/submit', 'MessagesController@submit');
