@@ -20,8 +20,8 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/contact', function () {
-    return view('contact');
+Route::get('/support', function () {
+    return view('support');
 });
 
 Route::get('/login', function ()
@@ -29,9 +29,15 @@ Route::get('/login', function ()
   return view('login');
 });
 
+// This is where an admin can log in
 Route::get('/admin', function()
 {
-  return view('AdminLogin');
+  return view('adminlogin');
+});
+
+Route::get('/admin/addmovie', function()
+{
+  return view('addmovie');
 });
 
 Route::post('/contact/submit', 'MessagesController@submit');

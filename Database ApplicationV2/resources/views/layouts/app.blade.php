@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>MyAnimeList</title>
+    <title>MyMovieList</title>
     <link rel="stylesheet" href="/css/app.css">
   </head>
   <body>
@@ -25,7 +24,7 @@
     </div>
 
     <footer id="footer" class="text-center">
-      <p>Copyright 2017 &copy; MyMovieList</p>
+      <p>Copyright 2018 &copy; MyMovieList</p>
     </footer>
   </body>
 </html>

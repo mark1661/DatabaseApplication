@@ -13,11 +13,16 @@
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a href="/support">Support</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <div class="nav navbar-nav navbar-right">
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search..." name="searchTextBox">
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
         <li><a href="/login">Login</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
+      </div>
   </div>
 </nav>

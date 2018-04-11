@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Contact</h1>
+<h1>Support</h1>
+<p>Got any issues? Report them here and our adminstrators can help you!</p>
+<hr>
   {!! Form::open(['url' => 'contact/submit']) !!}
   <div class="form-group">
     {{Form::label('name', 'Name')}}
@@ -16,7 +18,7 @@
     {{Form::textarea('message', '', ['class' => 'form-control', 'placeholder' => 'Enter Message'])}}
   </div>
   <div>
-    {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+    {{Form::submit('Submit Support Ticket', ['class' => 'btn btn-primary'])}}
   </div>
   {!! Form::close() !!}
 @endsection
