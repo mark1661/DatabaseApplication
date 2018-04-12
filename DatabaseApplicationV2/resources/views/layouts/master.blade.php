@@ -7,7 +7,6 @@
   </head>
   <body>
     @include('layouts.navbar')
-    @include('layouts.navbarHeader')
     <main role="main">
       <div class="container">
         @if(Request::is('/'))

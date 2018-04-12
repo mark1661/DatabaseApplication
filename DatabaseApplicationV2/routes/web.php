@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 
 Route::get('/about', function () {
-    return view('about');
+    return view('./about');
 });
 
 Route::get('/support', function () {
@@ -29,15 +29,6 @@ Route::get('/login', function ()
   return view('login');
 });
 
-// This is where an admin can log in
-Route::get('/admin', function()
-{
-  return view('adminlogin');
-});
-
-Route::get('/admin/addmovieview', function()
-{
-  return view('addmovieview');
-});
+Route::get('/admin/movie', 'AdminController@create');
 
 Route::post('/contact/submit', 'MessagesController@submit');
