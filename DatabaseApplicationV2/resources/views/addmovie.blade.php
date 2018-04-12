@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>Add Movie</h1>
-<p>Add a new movie to the site!</p>
+<p>Add a new movie to the site! (Only  Admins)</p>
 <hr>
 <div class="form-group">
   {!! Form::open(['url' => 'admin/submitMovie', 'files' => true]) !!}
@@ -28,7 +28,6 @@
   </div>
   <div class="form-group">
     {{Form::label('movieproducer', 'Movie Producer')}}
-
   </div>
   {!! Form::close() !!}
 </div>
