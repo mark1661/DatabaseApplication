@@ -35,9 +35,9 @@ Route::get('/admin', function()
   return view('adminlogin');
 });
 
-Route::get('/admin/addmovie', function()
+Route::get('/admin/addmovieview', function()
 {
-  return view('addmovie');
+  return view('addmovieview');
 });
 
 Route::post('/contact/submit', 'MessagesController@submit');
