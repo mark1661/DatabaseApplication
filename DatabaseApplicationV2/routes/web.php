@@ -32,3 +32,7 @@ Route::get('/login', function ()
 Route::get('/admin/movie', 'AdminController@create');
 
 Route::post('/contact/submit', 'MessagesController@submit');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
