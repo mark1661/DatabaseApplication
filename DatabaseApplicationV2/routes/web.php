@@ -29,8 +29,6 @@ Route::get('/login', function ()
   return view('login');
 });
 
-Route::get('/getMessages', 'MessagesController@getMessages');
-
 // This is where an admin can log in
 Route::get('/admin', function()
 {
@@ -42,6 +40,7 @@ Route::get('/admin/addmovie', function()
   return view('addmovie');
 });
 
+<<<<<<< HEAD
 Route::post('/support/submit', 'MessagesController@submit');
 
 Auth::routes();
@@ -49,3 +48,6 @@ Auth::routes();
 Route::post('/logout', 'Auth\LoginController@logout');
 
 Route::get('/', 'HomeController@index')->name('home');
+=======
+Route::post('/contact/submit', 'MessagesController@submit');
+>>>>>>> parent of 19817e7a...  i hate my life
