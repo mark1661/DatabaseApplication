@@ -41,6 +41,7 @@ Route::get('/admin/addmovie', function()
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Route::post('/support/submit', 'MessagesController@submit');
 
 Auth::routes();
@@ -48,6 +49,9 @@ Auth::routes();
 Route::post('/logout', 'Auth\LoginController@logout');
 
 Route::get('/', 'HomeController@index')->name('home');
+=======
+Route::post('/contact/submit', 'MessagesController@submit');
+>>>>>>> parent of 19817e7a...  i hate my life
 =======
 Route::post('/contact/submit', 'MessagesController@submit');
 >>>>>>> parent of 19817e7a...  i hate my life

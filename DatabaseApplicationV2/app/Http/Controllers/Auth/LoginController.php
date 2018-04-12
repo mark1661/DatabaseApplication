@@ -37,6 +37,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public function username(){
       return 'username';
@@ -59,6 +60,8 @@ class LoginController extends Controller
           'password' => $request->password,
       ];
   }
+=======
+>>>>>>> parent of 19817e7a...  i hate my life
 =======
 >>>>>>> parent of 19817e7a...  i hate my life
 }
