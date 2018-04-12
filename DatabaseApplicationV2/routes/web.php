@@ -46,4 +46,6 @@ Route::post('/support/submit', 'MessagesController@submit');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/logout', 'Auth\LoginController@logout');
+
+Route::get('/', 'HomeController@index')->name('home');

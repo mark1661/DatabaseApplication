@@ -23,7 +23,12 @@
           </div>
           <button type="submit" class="btn btn-default">Search</button>
         </form>
+        @if (Auth::Check())
+        <li> <a>Username: {{Auth::user()->username}}></a></li>
+        <li><a href="/logout">Log Out</a></li>
+        @else
         <li><a href="/login">Login</a></li>
+        @endif
       </div>
   </div>
 </nav>

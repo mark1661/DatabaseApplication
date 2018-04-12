@@ -30,6 +30,10 @@ class UsersController extends Controller
         return redirect('/');
       }
 
+      public function getUserName(){
+        $username = Auth::username();
+      }
+
 
       public function getUsers(){
         $users = User::all();
