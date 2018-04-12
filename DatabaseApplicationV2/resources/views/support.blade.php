@@ -4,7 +4,7 @@
 <h1>Support</h1>
 <p>Got any issues? Report them here and our adminstrators can help you!</p>
 <hr>
-  {!! Form::open(['url' => 'contact/submit']) !!}
+  {!! Form::open(['url' => 'support/submit']) !!}
   <div class="form-group">
     {{Form::label('name', 'Name')}}
     {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter Name'])}}

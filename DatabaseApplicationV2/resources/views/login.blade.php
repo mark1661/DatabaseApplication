@@ -6,10 +6,10 @@
     <h3 class="panel-title">Please log in with your username and password</h3>
   </div>
   <hr>
-  {!! Form::open(['url' => 'login/submit']) !!}
+  {!! Form::open(['url' => 'login/authenticate']) !!}
   <div class="form-group">
     {{Form::label('username', 'Username:')}}
-    {{Form::text('username', '', ['class' => 'form-control', 'placeholder' => 'Enter Username'])}}
+    {{Form::text('username', '', ['class' => 'form-control', 'placeholder' => 'Enter Email/Username'])}}
   </div>
   <div class="form-group">
     {{Form::label('password', 'Password:')}}

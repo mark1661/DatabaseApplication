@@ -29,6 +29,8 @@ Route::get('/login', function ()
   return view('login');
 });
 
+Route::get('/getMessages', 'MessagesController@getMessages');
+
 // This is where an admin can log in
 Route::get('/admin', function()
 {
@@ -40,4 +42,8 @@ Route::get('/admin/addmovie', function()
   return view('addmovie');
 });
 
-Route::post('/contact/submit', 'MessagesController@submit');
+Route::post('/support/submit', 'MessagesController@submit');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

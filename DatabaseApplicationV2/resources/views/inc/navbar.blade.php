@@ -14,6 +14,7 @@
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/support">Support</a></li>
+        <li><a href="/register">Register</a></li>
       </ul>
       <div class="nav navbar-nav navbar-right">
         <form class="navbar-form navbar-right" role="search">
