@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class user_profile_comment extends Model
 {
-    //not done yet
+  protected $fillable = array('user_id', 'comment_string');
+
+  public function album(){
+    return $this->belongsTo('App\User')
+  }
 }
