@@ -6,8 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateMessagesTable extends Migration
 {
-    const CREATED_AT = 'creation_date';
-    const UPDATED_AT = 'last_edit_date';
     /**
      * Run the migrations.
      *
