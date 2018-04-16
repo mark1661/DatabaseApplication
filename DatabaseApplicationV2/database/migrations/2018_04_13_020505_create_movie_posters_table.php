@@ -15,7 +15,7 @@ class CreateMoviePostersTable extends Migration
     {
         Schema::create('movie_posters', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('poster_id');
+            $table->integer('movie_id');
             $table->string('file_name', 55);
             $table->string('path', 155);
             $table->timestamps();

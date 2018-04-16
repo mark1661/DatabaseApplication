@@ -1,6 +1,6 @@
 @extends('layouts/master')
 @section('content')
-<form method="POST" action="/movies/store">
+<form method="POST" action="/movies/store" enctype="multipart/form-data">
   {{ csrf_field() }}
   <div class="form-group">
     <label for="name">Name:</label>
@@ -29,6 +29,13 @@
   <div class="form-group">
     <label for="overview">Overview</label>
     <textarea class="form-control" id="overview" rows="3" name="overview"></textarea>
+  </div>
+  <div class="form-group">
+    <input type="file" class="form-control-file" name="image">
+    <!-- <div class="custom-file">
+      <label class="custom-file-label" for="customFile"></label>
+      <input type="file" class="custom-file-input" id="customFile" name="image">
+    </div> -->
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
