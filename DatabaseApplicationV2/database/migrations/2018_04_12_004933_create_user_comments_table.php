@@ -6,6 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateUserCommentsTable extends Migration
 {
+
+    const CREATED_AT = 'creation_date';
+    const UPDATED_AT = 'last_edit_date';
     /**
      * Run the migrations.
      *
@@ -17,7 +20,9 @@ class CreateUserCommentsTable extends Migration
           $table->increments('comment_id');
           $table->string('user_id');
           $table->string('movie_id');
-          $table->mediumText('comment');
+          $table->string('date')
+          $table->string('comment_string');
+          $table->timestamps();
         });
     }
 
