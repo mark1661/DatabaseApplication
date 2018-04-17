@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMessagesTable extends Migration
+class CreateUserCommentsTable extends Migration
 {
+
     const CREATED_AT = 'creation_date';
     const UPDATED_AT = 'last_edit_date';
     /**
@@ -15,12 +16,13 @@ class CreateMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email');
-            $table->mediumText('message');
-            $table->timestamps();
+        Schema::create('user_comments', function (Blueprint $table) {
+          $table->increments('comment_id');
+          $table->string('user_id');
+          $table->string('movie_id');
+          $table->string('date')
+          $table->string('comment_string');
+          $table->timestamps();
         });
     }
 
@@ -31,6 +33,6 @@ class CreateMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('user_comments');
     }
 }
