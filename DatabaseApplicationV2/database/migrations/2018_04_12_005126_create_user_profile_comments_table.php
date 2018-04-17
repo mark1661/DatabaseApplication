@@ -6,8 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateUserProfileCommentsTable extends Migration
 {
-  const CREATED_AT = 'creation_date';
-  const UPDATED_AT = 'last_edit_date';
     /**
      * Run the migrations.
      *
@@ -18,8 +16,7 @@ class CreateUserProfileCommentsTable extends Migration
         Schema::create('user_profile_comments', function (Blueprint $table) {
           $table->increments('user_profile_comment_id');
           $table->integer('user_id');
-          $table->string('comment_string');
-          $table->timestamps();
+          $table->integer('comment_id');
         });
     }
 

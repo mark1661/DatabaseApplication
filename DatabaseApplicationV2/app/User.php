@@ -9,17 +9,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+<<<<<<< HEAD
+    protected $primarykey = 'user_id';
+=======
     protected $primaryKey = 'user_id';
-
-    public function comments()
-    {
-    return $this->hasMany('App\user_comment');
-    }
-
-    public function comments()
-    {
-    return $this->hasMany('App\user_profile_comment');
-    }
+>>>>>>> parent of 1912c44a... Edited Migration Tables
 
     /**
      * The attributes that are mass assignable.
