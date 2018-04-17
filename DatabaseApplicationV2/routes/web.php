@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +19,8 @@ Route::get('/home', function () {
     return view('home');
 });
 
-=======
-Route::get('/', 'HomeController@index');
->>>>>>> LinyiBranch
+//linyi
+//Route::get('/', 'HomeController@index');
 
 Route::get('/about', function () {
     return view('./about');
@@ -32,15 +30,11 @@ Route::get('/support', function () {
     return view('support');
 });
 
-<<<<<<< HEAD
-=======
-Route::get('/login', 'LoginController@login');
->>>>>>> LinyiBranch
+
 
 Route::post('/contact/submit', 'MessagesController@submit');
 Route::get('/admin/movie', 'AdminController@create');
 
-<<<<<<< HEAD
 //Route::get('/logout', 'LoginController@logout');
 
 Route::get('/logout', function(){
@@ -62,7 +56,6 @@ Route::post('/contact/submit', 'MessagesController@submit');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-=======
 //Routes for movies
 Route::get('/movies','MovieController@index');
 
@@ -74,4 +67,3 @@ Route::post('/movies/edit/{id}','MovieController@edit');
 
 Route::get('/movies/delete/{id}','MovieController@deleteConfirmation');
 Route::post('/movies/delete/{id}','MovieController@delete');
->>>>>>> LinyiBranch
