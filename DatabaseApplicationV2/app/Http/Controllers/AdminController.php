@@ -11,9 +11,4 @@ class AdminController extends Controller
     {
       return view("addmovie");
     }
-
-    public function createactor()
-    {
-      return view("addactor");
-    }
 }
