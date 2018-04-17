@@ -32,20 +32,20 @@
                               <li class="list-group-item bg-light"><b>Gender: </b><p style="display:inline" id="usergender">Gender goes here</p></li>
                               <li class="list-group-item bg-light"><b>Profile Privacy: </b><p style="display:inline" id="useraddress">Profile Privacy goes here</p></li>
                             </ul>
+                            <br/>
                           </div>
                       </div>
                     </div>
                       <div class="form-group row">
                         <div class="col-md-12">
                           <div class="form-group"  style="border-bottom:1px solid black">
-                              <h2>Options</h2>
+                              <h2>Options (only viewable to the user)</h2>
                           </div>
-                          <p><a href="/user/ToBeRemoved--PutIdHere/edituserprofile">Edit Profile</a></p>
-                          <p></p>
+                          <p><a href="/user/ToBeRemoved--PutIdHere/edituserprofile" class="btn btn-primary">Edit Profile</a></p>
+                          <p><a href="/user/ToBeRemoved--PutIdHere/deleteuserprofile" class="btn btn-danger">Delete Profile</a></p>
+                          <p><a href="/user/ToBeRemoved--PutIdHere/viewfriends" class="btn btn-success">View Friends</a></p>
                         </div>
                       </div>
-                     <div class="col-md-6">
-                     </div>
                 </div>
             </div>
 @endsection

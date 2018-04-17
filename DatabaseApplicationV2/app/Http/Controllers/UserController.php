@@ -16,4 +16,14 @@ class UserController extends Controller
     {
       return view("viewuserprofile");
     }
+
+    public function Delete()
+    {
+      return view("deleteuserprofile");
+    }
+
+    public function ViewFriends()
+    {
+      return view("viewfriends");
+    }
 }

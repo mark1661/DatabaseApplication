@@ -16,4 +16,9 @@ class AdminController extends Controller
     {
       return view("addactor");
     }
+
+    public function Login()
+    {
+      return view("adminlogin");
+    }
 }
