@@ -11,8 +11,6 @@ class AdminController extends Controller
     {
       return view("addmovie");
     }
-<<<<<<< HEAD
-=======
 
     public function createactor()
     {
@@ -23,5 +21,4 @@ class AdminController extends Controller
     {
       return view("adminlogin");
     }
->>>>>>> master
 }
