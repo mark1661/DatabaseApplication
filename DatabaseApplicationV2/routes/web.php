@@ -29,8 +29,10 @@ Route::get('/support', function () {
 });
 
 
+
 Route::get('/admin/movie', 'AdminController@create');
 
+<<<<<<< HEAD
 //Route::get('/logout', 'LoginController@logout');
 
 Route::get('/logout', function(){
@@ -39,6 +41,13 @@ Route::get('/logout', function(){
     return view('home');
       //->with('message', array('type' => 'success', 'text' => 'You have successfully logged out'));
 });
+=======
+Route::get('/admin/actor', 'AdminController@createactor');
+
+
+Route::get('/user/{id}/edituserprofile', 'UserController@Edit');
+Route::get('/user/{id}/viewuserprofile', 'UserController@View');
+>>>>>>> master
 
 Route::post('/contact/submit', 'MessagesController@submit');
 
