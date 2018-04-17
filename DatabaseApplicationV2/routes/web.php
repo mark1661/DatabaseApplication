@@ -45,13 +45,17 @@ Route::get('/logout', function(){
 });
 Route::get('/admin/actor', 'AdminController@createactor');
 Route::get('/admin/login','AdminController@Login');
+//not working replace if necessary
+//change this to se
 Route::get('/user/{id}/edituserprofile', 'UserController@Edit');
 Route::get('/user/{id}/viewuserprofile', 'UserController@View');
 Route::get('/user/{id}/deleteuserprofile', 'UserController@Delete');
 Route::get('/user/{id}/viewfriends', 'UserController@ViewFriends');
 Route::get('/user/{id}/deletefriend', 'UserController@DeleteFriend');
 
-Route::post('/contact/submit', 'MessagesController@submit');
+Route::post('/submit', 'TicketController@submit');
+
+//Route::post('/contact/submit', 'MessagesController@submit');
 
 Auth::routes();
 

@@ -14,6 +14,7 @@
     <div class="container">
       <div class="row">
         @include('Movies.movie')
+        @include('layouts.ticket_submit')
       </div>
     </div>
   </div>
