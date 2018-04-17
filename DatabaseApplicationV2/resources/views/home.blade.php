@@ -35,5 +35,4 @@
 
 @section('sidebar')
 @parent
-<p>poop</p>
 @endsection

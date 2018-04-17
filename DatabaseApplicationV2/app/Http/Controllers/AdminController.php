@@ -11,4 +11,17 @@ class AdminController extends Controller
     {
       return view("addmovie");
     }
+<<<<<<< HEAD
+=======
+
+    public function createactor()
+    {
+      return view("addactor");
+    }
+
+    public function Login()
+    {
+      return view("adminlogin");
+    }
+>>>>>>> master
 }

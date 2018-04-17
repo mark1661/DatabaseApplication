@@ -39,6 +39,13 @@ Route::get('/logout', function(){
     return view('home');
       //->with('message', array('type' => 'success', 'text' => 'You have successfully logged out'));
 });
+Route::get('/admin/actor', 'AdminController@createactor');
+Route::get('/admin/login','AdminController@Login');
+Route::get('/user/{id}/edituserprofile', 'UserController@Edit');
+Route::get('/user/{id}/viewuserprofile', 'UserController@View');
+Route::get('/user/{id}/deleteuserprofile', 'UserController@Delete');
+Route::get('/user/{id}/viewfriends', 'UserController@ViewFriends');
+Route::get('/user/{id}/deletefriend', 'UserController@DeleteFriend');
 
 Route::post('/contact/submit', 'MessagesController@submit');
 
