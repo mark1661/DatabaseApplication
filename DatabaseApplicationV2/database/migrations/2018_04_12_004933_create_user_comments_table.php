@@ -20,7 +20,7 @@ class CreateUserCommentsTable extends Migration
           $table->increments('comment_id');
           $table->string('user_id');
           $table->string('movie_id');
-          $table->string('date')
+          $table->string('date');
           $table->string('comment_string');
           $table->timestamps();
         });
