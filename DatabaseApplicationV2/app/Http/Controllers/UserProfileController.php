@@ -11,15 +11,16 @@ class UserProfileController extends Controller
 {
 
 
-  public function userShow($id){
+  public function getUser($id){
     $userprofile= User_profile::find($id);
-    //make or edit the appropriate view in here
-    //also add the route for it
-    return view('/viewuserprofile', compact('userprofile'));
+    //$user = User::find($id);
+    $name =  User::find($id)['username'];
+    //works
+    return view('/UserProfile/viewuserprofile', compact('userprofile', 'name'));
   }
 
 
-  public function Edit()
+  public function edit()
   {
     return view("edituserprofile");
   }
@@ -37,4 +38,5 @@ class UserProfileController extends Controller
   public function ViewFriends()
   {
     return view("viewfriends");
+  }
 }

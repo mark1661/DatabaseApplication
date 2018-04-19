@@ -11,20 +11,19 @@ class CreateUserProfilesTable extends Migration
      *
      * @return void
      */
-
      protected $primaryKey = 'user_profile_id';
     public function up()
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->increments('user_profile_id');
-            $table->integer('profile_pic_id');
+            $table->integer('profile_pic_id')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('gender')->nullable();
             $table->string('address')->nullable();
             $table->string('marital_status')->nullable();
             $table->string('age')->nullable();
-            $table->string('profile_privacy');
+            $table->string('profile_privacy')->nullable();
         });
     }
 

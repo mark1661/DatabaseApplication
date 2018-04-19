@@ -13,7 +13,7 @@
             </li>
           </ul>
           <ul class="navbar-nav">
-            @if(Auth::check() == false){
+            @if(Auth::check() == false)
               <li class="nav-item">
                 <a class="nav-link" href="./login">Login</a>
               </li>
@@ -24,6 +24,12 @@
             @else
             <li class="nav-item">
               <a class="nav-link">{{Auth::user()->username }}</a>
+            </li>
+            <li class="nav-item">
+              <!--
+              note, methods still with within quotations"
+              -->
+              <a class="nav-link" href="/viewuserprofile/{{Auth::user()->user_id}}">Profile</a>
             </li>
               <li class="nav-item">
                 <a class="nav-link" href="/logout">Logout</a>

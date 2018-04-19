@@ -13,24 +13,17 @@
                       </div>
                       <div class="col-md-9 col-xs-12 col-sm-6 col-lg-9">
                           <div class="" style="border-bottom:1px solid black">
-                            <h2 id="username">username goes here</h2>
+                            <h2 id="username">{{$name}}</h2>
                           </div>
                             <hr>
-                          <div class="col-md-8">
-                          <ul class=" details">
-                            <li><p id="userfirstname"><span class="glyphicon glyphicon-earphone one"></span>First Name goes here</p></li>
-                            <li><p id="userlastname"><span class="glyphicon glyphicon-envelope one"></span>Last Name goes here</p></li>
-                            <li><p id="usermaritalstatus"><span class="glyphicon glyphicon-map-marker one"></span>Marital Status goes here</p></li>
-                            <li><p id="useremail"><span class="glyphicon glyphicon-credit-card one"></span>Email goes here</p></li>
-                          </ul>
-                          </div>
                           <div class="col-md-12">
                             <ul class="list-group list-group-flush">
                               <li class="list-group-item bg-info text-white">Other Information</li>
-                              <li class="list-group-item bg-light"><b>Birthday: </b><p style="display:inline" id="userdateofbirth">Date of birth goes here</p></li>
-                              <li class="list-group-item bg-light"><b>Address: </b><p style="display:inline" id="useraddress">Address goes here</p></li>
-                              <li class="list-group-item bg-light"><b>Gender: </b><p style="display:inline" id="usergender">Gender goes here</p></li>
-                              <li class="list-group-item bg-light"><b>Profile Privacy: </b><p style="display:inline" id="useraddress">Profile Privacy goes here</p></li>
+                              <li class="list-group-item bg-light"><b>First Name: </b><p style="display:inline" id="userdateofbirth">{{$userprofile->first_name}}</p></li>
+                              <li class="list-group-item bg-light"><b>last Name: </b><p style="display:inline" id="useraddress">{{$userprofile->last_name}}</p></li>
+                              <li class="list-group-item bg-light"><b>Gender: </b><p style="display:inline" id="usergender">{{$userprofile->gender}}</p></li>
+                              <li class="list-group-item bg-light"><b>Age: </b><p style="display:inline" id="useraddress">{{$userprofile->age}}</p></li>
+                              <li class="list-group-item bg-light"><b>Profile Privacy: </b><p style="display:inline" id="useraddress">{{$userprofile->profile_privacy}}</p></li>
                             </ul>
                             <br/>
                           </div>
@@ -38,6 +31,7 @@
                     </div>
                       <div class="form-group row">
                         <div class="col-md-12">
+                          @if(Auth::check())
                           <div class="form-group"  style="border-bottom:1px solid black">
                               <h2>Options (only viewable to the user)</h2>
                           </div>
@@ -45,6 +39,7 @@
                           <p><a href="/user/ToBeRemoved--PutIdHere/deleteuserprofile" class="btn btn-danger">Delete Profile</a></p>
                           <p><a href="/user/ToBeRemoved--PutIdHere/viewfriends" class="btn btn-success">View Friends</a></p>
                         </div>
+                        @endif
                       </div>
                 </div>
             </div>

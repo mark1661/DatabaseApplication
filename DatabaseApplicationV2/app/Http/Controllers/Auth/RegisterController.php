@@ -72,7 +72,13 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        User_profile::create(['user_id' => $user->id]);
+        //create a new user profile when user is created
+        $profile = User_profile::create([
+          'user_profile_id' => $user['user_id'],
+          'profile_privacy' => 'public',
+        ]);
+
+        //User_profile::create(['user_id' => $user->id]);
 
         return $user;
 
