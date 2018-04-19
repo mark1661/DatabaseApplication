@@ -1,6 +1,9 @@
 @extends('layouts/master')
 @section('content')
+<h1>Edit Movie</h1>
+<hr/>
 <form method="POST" action="/movies/edit/{{$movie->id}}">
+  <!--  -->
   {{ csrf_field() }}
   <div class="form-group">
     <label for="name">Name:</label>
