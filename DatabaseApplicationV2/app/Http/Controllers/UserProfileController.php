@@ -23,16 +23,13 @@ class UserProfileController extends Controller
   public function edit($id)
   {
     $userprofile= User_profile::find($id);
-    $movie->name=request('name');
-    $movie->overview=request('overview');
-    $movie->poster=request('poster');
-    $movie->actor_id=request('actor');
-    $movie->clip_id=request('clip');
-    $movie->release_date=request('release_date');
-    $movie->genre=request('genre');
-    $movie->save();
-    return redirect('/movies');
-    return view("edituserprofile");
+    $userprofile->first_name=request('userfirstname');
+    $userprofile->last_name=request('userlastname');
+    $userprofile->gender=request('usergender');
+    //$userprofile->actor_id=request('actorpicture');
+    $userprofile->profile_privacy=request('userprofileprivacy');
+    $userprofile->save();
+    return redirect("/UserProfile/viewuserprofile");
   }
 
   public function View()

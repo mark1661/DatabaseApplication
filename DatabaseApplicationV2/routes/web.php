@@ -47,7 +47,7 @@ Route::get('/admin/actor', 'AdminController@createactor');
 Route::get('/admin/login','AdminController@Login');
 //not working replace if necessary
 //change this to se
-Route::get('/edituserprofile{id}', 'UserProfileController@edit');
+Route::post('/edituserprofile/{id}', 'UserProfileController@edit');
 Route::get('/viewuserprofile/{id}', 'UserProfileController@getUser');
 Route::get('/user/{id}/deleteuserprofile', 'UserController@Delete');
 Route::get('/user/{id}/viewfriends', 'UserController@ViewFriends');

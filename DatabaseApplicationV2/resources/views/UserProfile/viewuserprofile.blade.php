@@ -35,7 +35,7 @@
                           <div class="form-group"  style="border-bottom:1px solid black">
                               <h2>Options (only viewable to the user)</h2>
                           </div>
-                          <p><a href="/user/ToBeRemoved--PutIdHere/edituserprofile" class="btn btn-primary">Edit Profile</a></p>
+                          <p><a href="/edituserprofile/{{Auth::user()->user_id}}" class="btn btn-primary">Edit Profile</a></p>
                           <p><a href="/user/ToBeRemoved--PutIdHere/deleteuserprofile" class="btn btn-danger">Delete Profile</a></p>
                           <p><a href="/user/ToBeRemoved--PutIdHere/viewfriends" class="btn btn-success">View Friends</a></p>
                         </div>
