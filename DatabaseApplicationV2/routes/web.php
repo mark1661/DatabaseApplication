@@ -47,14 +47,15 @@ Route::get('/admin/actor', 'AdminController@createactor');
 Route::get('/admin/login','AdminController@Login');
 
 Route::get('/viewuserprofile/{id}', 'UserProfileController@getUser');
+//shouldn't show on user profile, should be deleted when user is deleted anyhoo
 Route::get('/user/{id}/deleteuserprofile', 'UserController@Delete');
+
 Route::get('/user/{id}/viewfriends', 'UserController@ViewFriends');
 Route::get('/user/{id}/deletefriend', 'UserController@DeleteFriend');
 
 Route::post('/submit', 'TicketController@submit');
 
-//not working replace if necessary
-//change this to se
+//edit user profile
 Route::get('/edituserprofile/{id}', 'UserProfileController@showeditUserProfile');
 Route::post('/submit/{id}', 'UserProfileController@edit');
 

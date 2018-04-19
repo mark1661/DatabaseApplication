@@ -14,6 +14,10 @@ class User_profile extends Model
       return $this->belongsTo('App\User');
     }
 
+    public function relationProfilePic(){
+      return $this->hasOne('App\user_profile_picture');
+    }
+
 
     /**
      * The attributes that are mass assignable.

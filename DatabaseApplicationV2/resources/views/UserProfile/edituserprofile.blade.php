@@ -28,7 +28,7 @@
   <div class="form-group">
     {{Form::label('userprofilepicture', 'Add a new Profile Picture: ')}}
     <br>
-    {{Form::file('actorpicture', ['accept' => '.jpg, .png'])}}
+    {{Form::file('image', ['accept' => '.jpg, .png'])}}
   </div>
   <!--
   <div class="form-group">

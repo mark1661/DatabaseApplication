@@ -6,7 +6,11 @@
                   <div class="row">
                       <div class="col-md-3 col-xs-12 col-sm-6 col-lg-3">
                         <div class="thumbnail text-center photo_view_postion_b" >
+                          @if(empty($userprofile->file_path))
                           <img src="http://selectoinc.com/images/image_not_available.png" alt="stack photo" class="img" height="150" width="120">
+                          @else
+                          <img src='{{ Storage::url($userprofile->file_path) }}' alt="profile pic" class="img" height="150" width="150">
+                          @endif
                         </div>
                       </div>
                       <div class="col-md-9 col-xs-12 col-sm-6 col-lg-9">
@@ -34,7 +38,9 @@
                               <h2>Options (only viewable to the user)</h2>
                           </div>
                           <p><a href="/edituserprofile/{{Auth::user()->user_id}}" class="btn btn-primary">Edit Profile</a></p>
+                          <!--
                           <p><a href="/user/ToBeRemoved--PutIdHere/deleteuserprofile" class="btn btn-danger">Delete Profile</a></p>
+                        -->
                           <p><a href="/user/ToBeRemoved--PutIdHere/viewfriends" class="btn btn-success">View Friends</a></p>
                         </div>
                         @endif

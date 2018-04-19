@@ -38,6 +38,15 @@ class UserProfileController extends Controller
     $userprofile->location=request('location');
     $userprofile->age=request('userage');
     $userprofile->profile_privacy=request('userprofileprivacy');
+
+    if (request()->hasFile('image')) {
+      $path=request()->file('image')->store('public/images');
+      $file_name =request()->file('image')->hashName();
+      $userprofile->file_path=$path;
+      $userprofile->file_name=$file_name;
+      $userprofile->save();
+    }
+
     $userprofile->save();
     return redirect('/')->with('success', 'Edited Profile!');
   }
