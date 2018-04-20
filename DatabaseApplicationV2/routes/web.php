@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
-
 //linyi
 //Route::get('/', 'HomeController@index');
 
@@ -30,11 +26,10 @@ Route::get('/support', function () {
     return view('support');
 });
 
-
-
 Route::post('/contact/submit', 'MessagesController@submit');
-Route::get('/admin/movie', 'AdminController@create');
-
+Route::get('/admin/addmovie', 'AdminController@addmovie');
+Route::get('/admin/index','AdminController@index');
+Route::get('admin/supportindex', 'AdminController@supportindex');
 //Route::get('/logout', 'LoginController@logout');
 
 Route::get('/logout', function(){
@@ -55,13 +50,13 @@ Route::post('/contact/submit', 'MessagesController@submit');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 //Routes for movies
 Route::get('/movies','MovieController@index');
 
 Route::get('/movies/create','MovieController@create');
 Route::post('/movies/store','MovieController@store');
 
+Route::get('/movies/detail/{id}','MovieController@detail');
 Route::get('/movies/show/{id}','MovieController@show');
 Route::post('/movies/edit/{id}','MovieController@edit');
 

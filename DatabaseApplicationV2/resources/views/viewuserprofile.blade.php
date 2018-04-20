@@ -1,8 +1,6 @@
 @extends('layouts.master')
 @section('content')
 <h1>View Profile</h1>
-
-
             <div class="container">
                 <div class="jumbotron">
                   <div class="row">

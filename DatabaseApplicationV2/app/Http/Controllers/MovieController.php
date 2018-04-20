@@ -49,9 +49,15 @@ class MovieController extends Controller
     return redirect('/movies');
     }
 
+    public function detail($id)
+    {
+      $movie = Movie::find($id);
+      return view('movies/detail', compact('movie'));
+    }
+
     public function show($id){
       $movie= Movie::find($id);
-      return view('movies/show', compact('movie'));
+      return view('movies/edit', compact('movie'));
     }
 
     public function edit($id){
