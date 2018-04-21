@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="/js/topmovies.js" type="text/javascript"></script>
     <meta charset="utf-8">
     <title>MyMovieList</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/topmovies.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>
-  <body>
+  <body onload="GetViaAjax()">
     @include('layouts.navbar')
     <main role="main">
       <div class="container">
