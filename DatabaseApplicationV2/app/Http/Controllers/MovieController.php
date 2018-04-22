@@ -70,7 +70,6 @@ class MovieController extends Controller
         $movie_post->file_name=$file_name;
         $movie_post->movie_id=$id;
         $movie_post->save();
-        echo 'File uploaded';
       }
       $movie->name=request('name');
       $movie->overview=request('overview');
