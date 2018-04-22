@@ -31,6 +31,16 @@
                               <li class="list-group-item bg-light"><b>Profile Privacy: </b><p style="display:inline" id="useraddress">Profile Privacy goes here</p></li>
                             </ul>
                             <br/>
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item bg-secondary text-white">Options</li>
+                              <li class="list-group-item"><a href="/" class="btn btn-primary">View Movie List</a></li>
+                              <li class="list-group-item"><a href="/" class="btn btn-primary">View Favorite Movie Clips</a></li>
+                              <li class="list-group-item"><a href="/" class="btn btn-primary">View User Likes</a></li>
+                              <li class="list-group-item"><a href="/" class="btn btn-primary">View Favorite Movie Clips</a></li>
+                              <li class="list-group-item"><a href="/" class="btn btn-primary">View User Reviews</a></li>
+                            </ul>
+                          </div>
+                          <div>
                           </div>
                       </div>
                     </div>
