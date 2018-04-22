@@ -68,6 +68,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Routes for movies
 Route::get('/movies','MovieController@index');
 
+//For admin purposes to view/delete users
+Route::get('/users','UserController@index');
+Route::get('/users/delete/{id}','UserController@deleteConfirmation');
+Route::post('/delete/{id}','UserController@delete');
+
 Route::get('/movies/create','MovieController@create');
 Route::post('/movies/store','MovieController@store');
 

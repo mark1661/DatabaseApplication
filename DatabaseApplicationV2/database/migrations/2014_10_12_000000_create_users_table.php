@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('status')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
         });
     }
 
