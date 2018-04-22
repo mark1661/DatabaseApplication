@@ -1,9 +1,6 @@
 @extends('layouts/master')
 @section('content')
-<h1>Edit Movie</h1>
-<hr/>
-<form method="POST" action="/movies/edit/{{$movie->id}}">
-  <!--  -->
+<form method="POST" action="/movies/edit/{{$movie->id}}" enctype="multipart/form-data">
   {{ csrf_field() }}
   <div class="form-group">
     <label for="name">Name:</label>
@@ -32,6 +29,18 @@
   <div class="form-group">
     <label for="overview">Overview</label>
     <textarea class="form-control" id="overview" rows="3" name="overview"></textarea>
+  </div>
+  <div class="form-group">
+    <label>Posters:</label>
+    @if($movie->movie_poster)
+      <ul>
+        <li><img class="card-img-top" width="100" height="100"src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></li>
+      </ul>
+    @endif
+  </div>
+  <div class="form-group">
+    <label for="upload">Upload More Posters:</label>
+    <input type="file" class="form-control-file" name="image" id="upload">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
