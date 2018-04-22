@@ -1,15 +1,20 @@
 @extends('layouts.master')
 @section('content')
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">Album example</h1>
-      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-      <p>
-        <a href="#" class="btn btn-primary my-2">Main call to action</a>
-        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-      </p>
+  <section class="jumbotron text-center" id="jumbotronBackGround" style="min-height: 700px">
+    <div class="container" style="width: 800px">
+      <h1 class="jumbotron-heading" style="color: white; margin-right: 100px">Top Movies of 2017-2018</h1>
+      <hr/>
+      <div id="divForPreviousButton" style="margin-right: 20px; float: left; width: 250px">
+        <a class="btn btn-danger" onclick="previousTopMovie();">Previous</a>
+      </div>
+      <div id="showResults" style="float: left; margin-left: -35px" width="200px" height="300px">
+      </div>
+      <div id="divForNextButton" style="float: left; width: 200px">
+        <a class="btn btn-success" onclick="nextTopMovie();">Next</a>
+      </div>
     </div>
   </section>
+  <!--
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
@@ -18,11 +23,7 @@
       </div>
     </div>
   </div>
-
-
-
-
-
+  -->
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

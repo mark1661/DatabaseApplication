@@ -287,6 +287,7 @@ class ComposerStaticInit7f579c5efdfb98d4a47fa9b08113c5eb
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Home' => __DIR__ . '/../..' . '/app/Home.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -333,6 +334,7 @@ class ComposerStaticInit7f579c5efdfb98d4a47fa9b08113c5eb
         'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
         'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
         'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
+        'CreateHomeTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_19_181046_create_home_table.php.php',
         'CreateMessagesTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_07_033446_create_messages_table.php',
         'CreateMovieClipsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_22_213151_create_movie_clips_table.php',
         'CreateMoviePostersTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_13_020505_create_movie_posters_table.php',

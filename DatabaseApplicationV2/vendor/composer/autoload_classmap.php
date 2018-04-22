@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Home' => $baseDir . '/app/Home.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
@@ -54,6 +55,7 @@ return array(
     'Collective\\Html\\HtmlBuilder' => $vendorDir . '/laravelcollective/html/src/HtmlBuilder.php',
     'Collective\\Html\\HtmlFacade' => $vendorDir . '/laravelcollective/html/src/HtmlFacade.php',
     'Collective\\Html\\HtmlServiceProvider' => $vendorDir . '/laravelcollective/html/src/HtmlServiceProvider.php',
+    'CreateHomeTable' => $baseDir . '/database/migrations/2018_04_19_181046_create_home_table.php.php',
     'CreateMessagesTable' => $baseDir . '/database/migrations/2018_04_07_033446_create_messages_table.php',
     'CreateMovieClipsTable' => $baseDir . '/database/migrations/2018_04_22_213151_create_movie_clips_table.php',
     'CreateMoviePostersTable' => $baseDir . '/database/migrations/2018_04_13_020505_create_movie_posters_table.php',
