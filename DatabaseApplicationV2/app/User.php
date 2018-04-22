@@ -21,6 +21,11 @@ class User extends Authenticatable
     return $this->hasMany('App\user_profile_comment');
     }
 
+    public function user_reviews()
+    {
+    return $this->hasMany('App\UserReview');
+    }
+
     public function profile(){
       return $this->hasOne('App\User_profile');
     }
