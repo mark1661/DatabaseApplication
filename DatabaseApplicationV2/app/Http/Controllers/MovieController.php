@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+
 use App\Movie;
 use App\Movie_poster;
 use Illuminate\Support\Facades\Input as Input;
@@ -20,9 +22,9 @@ class MovieController extends Controller
     }
 // php artisan storage:link
     public function store(){
-      $this->validate(request(), [
-      'image' => 'required|file'
-       ]);
+      // $this->validate(request(), [
+      // 'image' => 'required|file'
+      //  ]);
       $movie_post=new Movie_poster;
       $movie=new Movie;
 
@@ -44,19 +46,34 @@ class MovieController extends Controller
         $movie->poster=$movie_post->id;
       }
     $movie->save();
-      // return redirect('/movies');
+    return redirect('/movies');
+    }
+
+    public function detail($id)
+    {
+      $movie = Movie::find($id);
+      return view('movies/detail', compact('movie'));
     }
 
     public function show($id){
       $movie= Movie::find($id);
-      return view('movies/show', compact('movie'));
+      return view('movies/edit', compact('movie'));
     }
 
     public function edit($id){
       $movie= Movie::find($id);
+      if (request()->hasFile('image')) {
+        $movie_post=new Movie_poster;
+        $path=request()->file('image')->store('public/images');
+        $file_name=request()->file('image')->hashName();
+        $movie_post->path=$path;
+        $movie_post->file_name=$file_name;
+        $movie_post->movie_id=$id;
+        $movie_post->save();
+        echo 'File uploaded';
+      }
       $movie->name=request('name');
       $movie->overview=request('overview');
-      $movie->poster=request('poster');
       $movie->actor_id=request('actor');
       $movie->clip_id=request('clip');
       $movie->release_date=request('release_date');
@@ -64,15 +81,20 @@ class MovieController extends Controller
       $movie->save();
       return redirect('/movies');
     }
-
-    public function delete($id){
-      $movie= Movie::find($id);
-      $movie->delete();
-      return redirect('/movies');
-    }
-
     public function deleteConfirmation($id){
       $movie= Movie::find($id);
       return view('/movies/delete', compact('movie'));
     }
+
+    public function delete($id){
+      $movie= Movie::find($id);
+      $posters=Movie_poster::where('movie_id', $id)->get();
+      foreach($posters as $poster){
+        Storage::delete('public/images/' . $poster->file_name);
+      }
+      $deletedPosters=Movie_poster::where('movie_id',$id)->delete();
+      $movie->delete();
+      return redirect('/movies');
+    }
+
 }
