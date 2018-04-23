@@ -26,6 +26,6 @@ class CreateHomeTable.php extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('table_home);
     }
 }
