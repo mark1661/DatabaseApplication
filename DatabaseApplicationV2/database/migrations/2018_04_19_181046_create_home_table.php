@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHomeTable.php extends Migration
+class CreateHomeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateHomeTable.php extends Migration
      */
     public function up()
     {
-        Schema::create('table_home' function(Blueprint $home)
+        Schema::create('table_home', function(Blueprint $home)
         {
           $home->text('response');
         });
@@ -26,6 +26,6 @@ class CreateHomeTable.php extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_home);
+        Schema::dropIfExists('table_home');
     }
 }
