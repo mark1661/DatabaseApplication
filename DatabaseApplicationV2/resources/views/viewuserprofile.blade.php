@@ -21,7 +21,7 @@
                             <li><p id="usermaritalstatus"><span class="glyphicon glyphicon-map-marker one"></span>Marital Status goes here</p></li>
                             <li><p id="useremail"><span class="glyphicon glyphicon-credit-card one"></span>Email goes here</p></li>
                           </ul>
-                          </div>
+                          </div> 
                           <div class="col-md-12">
                             <ul class="list-group list-group-flush">
                               <li class="list-group-item bg-info text-white">Other Information</li>
