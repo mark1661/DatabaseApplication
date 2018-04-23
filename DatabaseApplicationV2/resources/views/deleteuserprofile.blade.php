@@ -6,7 +6,16 @@
   <h2 class="list-group-item active bg-secondary">Profile Contents</h2>
   <hr/>
   <ul>
-    <li></li>
+    <li id="username">Username goes here</li>
+    <br>
+    <li id="useremail">Email goes here </li>
+    <br>
+    <li>
+      <p id="userLastName" style="display: inline">Last Name goes here,</p>
+      <p id="userFirstName" style="display: inline">First Name goes here</p>
+    </li>
+    <br>
+    <li id="userDateOfBirth">Date of Birth</li>
   </ul>
 </div>
 <div class="jumbotron">
