@@ -42,6 +42,7 @@
     {{Form::label('moviestudio', 'Movie Studio: ')}}
     {{Form::text('moviestudio', '', ['class' => 'form-control'])}}
   </div>
+  <>
   {!! Form::close() !!}
 </div>
 @endsection
