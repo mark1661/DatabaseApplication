@@ -17,11 +17,11 @@
       @endif</td>
       <td>{{$movie->name}}</td>
       <td>{{$movie->release_date}}</td>
-      <td><a href="movies/detail/{{$movie->id}}" class="btn btn-primary">View</a></td>
+      <td><a href="/movies/detail/{{$movie->id}}" class="btn btn-primary">View</a></td>
       @if(Auth::check() == true)
         @if(Auth::user()->status == 'ADMIN')
-        <td><a href="movies/show/{{$movie->id}}" class="btn btn-info">Edit</a></td>
-        <td><a href="movies/delete/{{$movie->id}}" class="btn btn-danger">Delete</a></td>
+        <td><a href="/movies/show/{{$movie->id}}" class="btn btn-info">Edit</a></td>
+        <td><a href="/movies/delete/{{$movie->id}}" class="btn btn-danger">Delete</a></td>
         @endif
       @endif
     </tr>

@@ -28,8 +28,11 @@
               <td style="background-color: white" id="Movie_clip">
                 <ul>
                   @foreach($movie->movie_clips as $movie_clip)
-                    <li>{{ $movie_clip->file_name }}</li>
-                    <li><a href="#">Set it to trailer</a> <a href="#">Delete</a> </li>
+                    <li>{{ $movie_clip->file_name }}
+                    Belongs to: {{ $movie_clip->user->username }}
+                    <a href="/movies/setTrailer/{{$movie_clip->id}}">Set it to trailer</a>
+                    <a href="/movies/clip/{{$movie_clip->id}}">Delete</a>
+                  </li>
                   @endforeach
                 </ul>
               </td>
