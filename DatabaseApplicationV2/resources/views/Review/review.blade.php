@@ -1,20 +1,13 @@
 @extends('layouts.master')
+@section('content')
 <h1>Review</h1>
-<hr>
-  {!! Form::open(['url' => 'contact/submit']) !!}
+  {!! Form::open(['url' => 'newreview/' .$movie->id]) !!}
   <div class="form-group">
-    {{Form::label('name', 'Name')}}
-    {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter Name'])}}
-  </div>
-  <div class="form-group">
-    {{Form::label('email', 'E-Mail Address')}}
-    {{Form::text('email', '', ['class' => 'form-control', 'placeholder' => 'Enter email'])}}
-  </div>
-  <div class="form-group">
-    {{Form::label('message', 'Message')}}
-    {{Form::textarea('message', '', ['class' => 'form-control', 'placeholder' => 'Enter Message'])}}
+    {{Form::label('review', 'Review')}}
+    {{Form::textarea('review_content', '', ['class' => 'form-control', 'placeholder' => 'Type away...'])}}
   </div>
   <div>
-    {{Form::submit('Submit Support Ticket', ['class' => 'btn btn-primary'])}}
+    {{Form::submit('Create!', ['class' => 'btn btn-success'])}}
   </div>
   {!! Form::close() !!}
+  @endsection

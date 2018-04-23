@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Movie;
 use App\Movie_poster;
+use App\UserReview;
+use App\User;
 use Illuminate\Support\Facades\Input as Input;
 
 class MovieController extends Controller
@@ -20,6 +22,7 @@ class MovieController extends Controller
     public function create(){
       return view('movies/create');
     }
+
 // php artisan storage:link
     public function store(){
       // $this->validate(request(), [
@@ -52,7 +55,8 @@ class MovieController extends Controller
     public function detail($id)
     {
       $movie = Movie::find($id);
-      return view('movies/detail', compact('movie'));
+      $reviews = UserReview::where('movie_id', $id)->get();
+      return view('movies/detail', compact('movie'), compact('reviews'));
     }
 
     public function show($id){

@@ -54,6 +54,10 @@ Route::post('/submit', 'TicketController@submit');
 Route::get('/edituserprofile/{id}', 'UserProfileController@showeditUserProfile');
 Route::post('/submit/{id}', 'UserProfileController@edit');
 
+//review
+Route::get('/createReview/{id}', 'ReviewController@create');
+Route::post('/newreview/{id}', 'ReviewController@submit');
+
 
 //Route::post('/contact/submit', 'MessagesController@submit');
 

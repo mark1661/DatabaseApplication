@@ -13,6 +13,12 @@ class UserController extends Controller
     return view('Users/index', compact('users'));
   }
 
+  public static function getUserName($id){
+    $user = User::find($id);
+    $username = $user->username;
+    return $username;
+  }
+
   public function delete($id){
     $user= User::find($id);
     $user->delete();

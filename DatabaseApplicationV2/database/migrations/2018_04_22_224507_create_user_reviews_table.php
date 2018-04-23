@@ -15,8 +15,9 @@ class CreateUserReviewsTable extends Migration
     {
         Schema::create('user_reviews', function (Blueprint $table) {
             $table->increments('review_id');
+            $table->integer('user_id');
             $table->integer('movie_id');
-            $table->date('release_date')->nullable();
+            $table->date('date')->nullable();
             $table->string('review_content')->nullable();
         });
     }
