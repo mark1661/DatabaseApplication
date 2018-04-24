@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\User_profile;
+use App\Relationship;
+use Illuminate\Support\Facades\Auth;
 
 class UserProfileController extends Controller
 {
@@ -19,7 +21,6 @@ class UserProfileController extends Controller
     return view('/UserProfile/viewuserprofile', compact('userprofile', 'name'));
   }
 
-
   public function showeditUserProfile($id){
     $userprofile= User_profile::find($id);
     //$user = User::find($id);
@@ -28,6 +29,19 @@ class UserProfileController extends Controller
     return view('/UserProfile/edituserprofile', compact('userprofile'));
   }
 
+  public function addFriend($id){
+    $user_id = Auth::id();
+    $relationship = new Relationship;
+    $relationship->relating_user_id = $user_id;
+    $relationship->related_user_id = $id;
+    $relationship->status = 'FRIEND';
+    $relationship->save();
+    return redirect('/')->with('success', 'Added Friend!');
+  }
+
+  public function viewFriends(){
+    
+  }
 
   public function edit($id)
   {

@@ -30,4 +30,6 @@ class UserController extends Controller
     return view('/Users/delete', compact('user'));
   }
 
+
+
 }

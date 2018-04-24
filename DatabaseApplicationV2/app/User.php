@@ -30,6 +30,10 @@ class User extends Authenticatable
       return $this->hasOne('App\User_profile');
     }
 
+    public function relationshipLink(){
+      return $this->hasMany('App\relationship');
+    }
+
 
     /**
      * The attributes that are mass assignable.

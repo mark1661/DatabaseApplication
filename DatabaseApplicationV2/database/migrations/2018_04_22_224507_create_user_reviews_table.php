@@ -18,7 +18,7 @@ class CreateUserReviewsTable extends Migration
             $table->integer('user_id');
             $table->integer('movie_id');
             $table->date('date')->nullable();
-            $table->string('review_content')->nullable();
+            $table->longText('review_content')->nullable();
         });
     }
 
