@@ -22,6 +22,11 @@ class User extends Authenticatable
     return $this->hasMany('App\user_profile_comment');
     }
 
+    public function support()
+    {
+      return $this->hasOne('App\support', 'user_id');
+    }
+
     public function clips(){
       return $this->hasMany(Movie_clip::class);
     }
