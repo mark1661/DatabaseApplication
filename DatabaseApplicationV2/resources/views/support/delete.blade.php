@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<h1>View Support Ticket Details</h1>
+<h1>Delete Ticket</h1>
 <hr/>
 <div class="jumbotron">
   <p><b>Ticket Submitted by:</b> {{\App\Http\Controllers\UserController::getUsername($ticket->user_id)}}</p>
@@ -12,9 +12,12 @@
   <textarea readonly rows="15" cols="70" style="resize: none">
     {{$ticket->message}}
   </textarea>
-  <p><b>Status: </b>{{$ticket->status}}</p>
 </div>
 <div class="jumbotron">
-  <a href="/support/index" class="btn btn-primary">< Go Back To Ticket List</a>
+  <h4>Are you sure?</h4>
+  <hr/>
+  <p><a style="margin-right: 25px" href="/support/deleteToPost/{{$ticket->id}}" class="btn btn-success">Yes</a>
+     <a class="btn btn-danger" href="/support/index">No</a>
+  </p>
 </div>
 @endsection

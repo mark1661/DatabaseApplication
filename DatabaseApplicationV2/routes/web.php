@@ -31,6 +31,8 @@ Route::get('/support/index', 'SupportController@index');
 Route::get('/support/show/{id}', 'SupportController@show');
 Route::get('/support/edit/{id}', 'SupportController@edit');
 Route::get('/support/delete/{id}', 'SupportController@delete');
+Route::post('/support/update/{id}','SupportController@update');
+Route::get('/support/deleteToPost/{id}', 'SupportController@deleteToPost');
 
 Route::get('/admin/addmovie', 'AdminController@addmovie');
 Route::get('/admin/index','AdminController@index');

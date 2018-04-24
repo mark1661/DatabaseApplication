@@ -56,8 +56,6 @@ class SupportController extends Controller
     public function store()
     {
       $ticket = new support;
-
-
     }
 
     /**
@@ -78,9 +76,10 @@ class SupportController extends Controller
      * @param  \App\support  $support
      * @return \Illuminate\Http\Response
      */
-    public function edit(support $support)
+    public function edit($id)
     {
-
+      $ticket = support::find($id);
+      return view('support/edit', compact('ticket'));
     }
 
     /**
@@ -90,9 +89,12 @@ class SupportController extends Controller
      * @param  \App\support  $support
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, support $support)
+    public function update($id)
     {
-        //
+        $ticket = support::find($id);
+        $ticket->status = request('status');
+        $ticket->save();
+        return redirect()->action('SupportController@index');
     }
 
     /**
@@ -101,8 +103,23 @@ class SupportController extends Controller
      * @param  \App\support  $support
      * @return \Illuminate\Http\Response
      */
-    public function destroy(support $support)
+    public function delete($id)
     {
-        //
+        $ticket = support::find($id);
+        return view('support/delete', compact('ticket'));
+    }
+
+
+    public function destroy($id)
+    {
+      $ticket = support::find($id);
+      echo $ticket;
+    }
+
+    public function deleteToPost($id)
+    {
+      $ticket = support::find($id);
+      $ticket->delete();
+      return redirect('support/index');
     }
 }
