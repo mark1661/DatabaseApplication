@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Movie_clip;
+use App\User_like;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,9 @@ class User extends Authenticatable
     {
     return $this->hasMany('App\user_comment');
     }
-
+    public function likes(){
+      return $this->hasMany(User_like::class);
+    }
     public function commentsProfile()
     {
     return $this->hasMany('App\user_profile_comment');
