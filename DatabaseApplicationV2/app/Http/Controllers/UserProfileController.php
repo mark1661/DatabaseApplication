@@ -8,6 +8,7 @@ use App\User;
 use App\User_profile;
 use App\Relationship;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input as Input;
 
 class UserProfileController extends Controller
 {
@@ -29,18 +30,14 @@ class UserProfileController extends Controller
     return view('/UserProfile/edituserprofile', compact('userprofile'));
   }
 
-  public function addFriend($id){
-    $user_id = Auth::id();
+  public function addFriend(){
+    $current_user_id = Auth::id();
     $relationship = new Relationship;
-    $relationship->relating_user_id = $user_id;
-    $relationship->related_user_id = $id;
+    $relationship->relating_user_id = $current_user_id;
+    $relationship->related_user_id = $_POST['other_user_id'];
     $relationship->status = 'FRIEND';
     $relationship->save();
     return redirect('/')->with('success', 'Added Friend!');
-  }
-
-  public function viewFriends(){
-    
   }
 
   public function edit($id)

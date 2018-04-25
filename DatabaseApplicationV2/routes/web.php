@@ -59,7 +59,7 @@ Route::get('/createReview/{id}', 'ReviewController@create');
 Route::post('/newreview/{id}', 'ReviewController@submit');
 
 
-Route::post('/addfriend/{id}','UserProfileController@addFriend');
+Route::post('/addFriend','UserProfileController@addFriend');
 //Route::post('/contact/submit', 'MessagesController@submit');
 
 Auth::routes();
