@@ -75,9 +75,18 @@ Route::post('/delete/{id}','UserController@delete');
 Route::get('/movies/create','MovieController@create');
 Route::post('/movies/store','MovieController@store');
 
-Route::get('/movies/detail/{id}','MovieController@detail');
+Route::get('/movies/detail/{id}','MovieController@detail')->  name('movie_detail');
+Route::post('/movies/detail/{id}','MovieClipController@store');
+
 Route::get('/movies/show/{id}','MovieController@show');
 Route::post('/movies/edit/{id}','MovieController@edit');
 
 Route::get('/movies/delete/{id}','MovieController@deleteConfirmation');
 Route::post('/movies/delete/{id}','MovieController@delete');
+
+Route::get('/movies/clip/{id}','MovieClipController@show');
+Route::post('/movies/clip/{id}','MovieClipController@delete');
+
+Route::get('/movies/setTrailer/{id}','MovieClipController@setToTrailer');
+
+Route::post('/like','UserLikeController@like');

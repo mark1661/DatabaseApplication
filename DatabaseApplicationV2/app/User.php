@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Movie_clip;
+use App\User_like;
 
 class User extends Authenticatable
 {
@@ -16,7 +18,10 @@ class User extends Authenticatable
     return $this->hasMany('App\user_comment');
     }
 
-    public function profile_comments()
+    public function likes(){
+      return $this->hasMany(User_like::class);
+    }
+    public function commentsProfile()
     {
     return $this->hasMany('App\user_profile_comment');
     }
@@ -34,7 +39,9 @@ class User extends Authenticatable
       return $this->hasMany('App\relationship');
     }
 
-
+    public function clips(){
+      return $this->hasMany(Movie_clip::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

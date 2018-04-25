@@ -1,7 +1,30 @@
 @extends('layouts.master')
 @section('content')
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <h1>{{$movie->name}}</h1>
 <hr/>
+<button id="like" class="btn btn-primary">Like</button>
+<script type="text/javascript">
+$('#like').click(function(){
+  $.ajaxSetup({
+    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+  });
+  $.ajax({
+    url:'/like', //the page containing php script
+    type: "POST", //request type
+    data: {movie_id: "{{$movie->id}}", user_id: "{{Auth::user()->user_id}}"},
+    success:function(result){
+      $("#like").attr("disabled", true);
+      alert(result);
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+        console.log(JSON.stringify(jqXHR));
+        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+    }
+  });
+});
+</script>
 <br/>
 <div class="jumbotron">
   <a href="/createReview/{{$movie->id}}">Add a new review!</a>
@@ -22,6 +45,24 @@
       <tr>
         <td style="background-color: navy; color: white">Movie Genre: </td>
         <td style="background-color: white" id="moviegenre">{{$movie->genre}}</td>
+        @if(Auth::check()==true)
+          @if(Auth::user()->status == 'ADMIN')
+            <tr>
+              <td style="background-color: navy; color: white">Movie Clips: </td>
+              <td style="background-color: white" id="Movie_clip">
+                <ul>
+                  @foreach($movie->movie_clips as $movie_clip)
+                    <li>{{ $movie_clip->file_name }}
+                    Belongs to: {{ $movie_clip->user->username }}
+                    <a href="/movies/setTrailer/{{$movie_clip->id}}">Set it to trailer</a>
+                    <a href="/movies/clip/{{$movie_clip->id}}">Delete</a>
+                  </li>
+                  @endforeach
+                </ul>
+              </td>
+            </tr>
+          @endif
+        @endif
       </tr>
     </tbody>
   </table>
@@ -34,6 +75,14 @@
   </div>
   @endforeach
   @endisset
+  <form method="POST" action="/movies/detail/{{$movie->id}}" enctype="multipart/form-data">
+    {{ csrf_field() }}
+    <div class="form-group">
+      <label for="upload">Upload movie clips:</label>
+      <input type="file" class="form-control-file" name="clip" id="upload">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
   <hr/>
   <a class="btn btn-primary" href="/movies">< Back</a>
 </div>
