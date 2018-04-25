@@ -5,23 +5,32 @@
 <h1>{{$movie->name}}</h1>
 <hr/>
 @if(Auth::check()==true)
-  @if(count($movie->likes)==0)
-  <button id="like" class="btn btn-primary">Like</button>
+  @if($movie->likes->isEmpty())
+    <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
   @else
-  <button id="unlike" class="btn btn-primary">Unlike</button>
+    @foreach($movie->likes as $like)
+    @if(($like->user_id)!=Auth::user()->user_id)
+      <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
+      @break
+    @else
+      <button id="unlike" class="btn btn-primary">Unlike</button>
+    @endif
+
+    @endforeach
   @endif
 @endif
 <script type="text/javascript">
-$('#like').click(function(){
+$(document).on('click','#like',function(){
   $.ajaxSetup({
     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
   });
   $.ajax({
     url:'/like', //the page containing php script
     type: "POST", //request type
-    async: true,
     data: {movie_id: "{{$movie->id}}", user_id: "{{Auth::user()->user_id}}"},
     success:function(result){
+      $('#like').html('Unlike');
+      $('#like').attr('id','unlike');
       alert(result);
     },
     error: function(jqXHR, textStatus, errorThrown) {
@@ -30,7 +39,7 @@ $('#like').click(function(){
     }
   });
 });
-$('#unlike').click(function(){
+$(document).on('click','#unlike', function(){
   $.ajaxSetup({
     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
   });
@@ -39,6 +48,8 @@ $('#unlike').click(function(){
     type: "POST", //request type
     data: {movie_id: "{{$movie->id}}", user_id: "{{Auth::user()->user_id}}"},
     success:function(result){
+      $('#unlike').html('Like '+ {{count($movie->likes)}});
+      $('#unlike').attr('id','like');
       alert(result);
     },
     error: function(jqXHR, textStatus, errorThrown) {
