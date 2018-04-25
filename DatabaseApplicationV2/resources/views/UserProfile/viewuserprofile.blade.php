@@ -39,14 +39,17 @@
                           <div class="form-group"  style="border-bottom:1px solid black">
                               <h2>Options (only viewable to the user)</h2>
                           </div>
+                          @if($userprofile->user_profile_id === Auth::user()->user_id)
                           <p><a href="/edituserprofile/{{Auth::user()->user_id}}" class="btn btn-primary">Edit Profile</a></p>
                           <!--
                           <p><a href="/user/ToBeRemoved--PutIdHere/deleteuserprofile" class="btn btn-danger">Delete Profile</a></p>
                         -->
                           <p><a href="/user/ToBeRemoved--PutIdHere/viewfriends" class="btn btn-success">View Friends</a></p>
+                          @endif
                           <!-- crap, check with lin for the post method of this button -->
                           @if($userprofile->user_profile_id !== Auth::user()->user_id)
                           <!--<p><a href="/addfriend/{{$userprofile->user_profile_id}}" class="btn btn-success"> -->
+                          if({{\App\Http\Controllers\RelationshipController::getRelationship($userprofile->user_profile_id) !== 'FRIEND'}})
                             <button id="addFriend" class="btn btn-primary">Add as Friend</button>
                             <script type="text/javascript">
                             $('#addFriend').click(function(){
@@ -59,7 +62,8 @@
                                 data: {other_user_id: "{{$userprofile->user_profile_id}}"},
                                 success:function(result){
                                   $("#addFriend").attr("disabled", true);
-                                  alert(result);
+                                  window.location.href = "/success/{{$userprofile->user_profile_id}}";
+                                  //alert(result);
                                 },
                                 error: function(jqXHR, textStatus, errorThrown) {
                                     console.log(JSON.stringify(jqXHR));

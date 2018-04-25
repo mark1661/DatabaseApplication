@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Input as Input;
 class UserProfileController extends Controller
 {
 
+  public function successRedirect($id){
+    return redirect()->action(
+      'UserProfileController@getUser', ['id' => $id]
+    )->with('success', 'Added Friend!');
+    //return redirect('/viewuserprofile/')->with('success', 'Added Friend!');
+  }
 
   public function getUser($id){
     $userprofile= User_profile::find($id);
