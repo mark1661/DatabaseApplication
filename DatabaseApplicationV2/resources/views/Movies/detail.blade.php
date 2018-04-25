@@ -4,13 +4,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <h1>{{$movie->name}}</h1>
 <hr/>
-@if(Auth::check()==true)
-  @if(count($movie->likes)==0)
-  <button id="like" class="btn btn-primary">Like</button>
-  @else
-  <button id="unlike" class="btn btn-primary">Unlike</button>
-  @endif
-@endif
+<button id="like" class="btn btn-primary">Like</button>
 <script type="text/javascript">
 $('#like').click(function(){
   $.ajaxSetup({
@@ -19,29 +13,12 @@ $('#like').click(function(){
   $.ajax({
     url:'/like', //the page containing php script
     type: "POST", //request type
-    async: true,
     data: {movie_id: "{{$movie->id}}", user_id: "{{Auth::user()->user_id}}"},
     success:function(result){
+      $("#like").attr("disabled", true);
       alert(result);
     },
-    error: function(jqXHR, textStatus, errorThrown) {
-        console.log(JSON.stringify(jqXHR));
-        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-    }
-  });
-});
-$('#unlike').click(function(){
-  $.ajaxSetup({
-    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-  });
-  $.ajax({
-    url:'/unlike', //the page containing php script
-    type: "POST", //request type
-    data: {movie_id: "{{$movie->id}}", user_id: "{{Auth::user()->user_id}}"},
-    success:function(result){
-      alert(result);
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
+    error: function(jqXHR, textStatus, errorThrown) { 
         console.log(JSON.stringify(jqXHR));
         console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
     }

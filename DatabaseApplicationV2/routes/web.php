@@ -71,4 +71,3 @@ Route::post('/movies/clip/{id}','MovieClipController@delete');
 Route::get('/movies/setTrailer/{id}','MovieClipController@setToTrailer');
 
 Route::post('/like','UserLikeController@like');
-Route::post('/unlike','UserLikeController@unlike');

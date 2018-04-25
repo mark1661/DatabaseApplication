@@ -21,10 +21,9 @@ class UserLikeController extends Controller
   }
 
   public function unlike(){
-    $movie_id = $_POST['movie_id'];
-    $user_id = $_POST['user_id'];
-    $user_like=User_like::where([['movie_id',$movie_id],['user_id',$user_id]])->first();
-    echo "Unliked";
-    $user_like->delete();
+    // $movie_id = $_POST['movie_id'];
+    // $user_id = $_POST['user_id'];
+    // $user_like=User_like::where([['movie_id',$movie_id],['user_id',$user_id]])->first();
+    // $user_like.delete();
   }
 }
