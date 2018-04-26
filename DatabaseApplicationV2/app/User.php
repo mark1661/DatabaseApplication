@@ -21,6 +21,7 @@ class User extends Authenticatable
     public function likes(){
       return $this->hasMany(User_like::class);
     }
+
     public function commentsProfile()
     {
     return $this->hasMany('App\user_profile_comment');
@@ -35,8 +36,8 @@ class User extends Authenticatable
       return $this->hasOne('App\User_profile');
     }
 
-    public function relationshipLink(){
-      return $this->hasMany('App\relationship');
+    public function user_relationship(){
+      return $this->hasMany('App\Relationship');
     }
 
     public function clips(){

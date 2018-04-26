@@ -22,10 +22,31 @@ class RelationshipController extends Controller
         ['related_user_id', '=', $user->user_id],
         ['status', '=', 'FRIEND'],
     ])->first();
-    
-    $statusF = $relationship->status;
+
+    if (empty($relationship->status)) {
+      $statusF = null;
+    }
+    else {
+      $statusF = $relationship->status;
+    }
 
     return $statusF;
   }
-    //
+
+
+  public function addFriend(){
+    $current_user_id = Auth::id();
+    $relationship = new Relationship;
+    $relationship->relating_user_id = $current_user_id;
+    $relationship->related_user_id = $_POST['other_user_id'];
+    $relationship->status = 'FRIEND';
+    $relationship->save();
+  }
+
+  public function deleteFriend(){
+    $other_user_id = $_POST['other_user_id'];
+    $user_id = $_POST['user_id'];
+    $relationship=Relationship::where([['relating_user_id',$user_id],['related_user_id',$other_user_id]])->first();
+    $relationship->delete();
+  }
 }

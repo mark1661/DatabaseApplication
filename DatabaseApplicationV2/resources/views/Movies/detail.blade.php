@@ -15,7 +15,6 @@
     @else
       <button id="unlike" class="btn btn-primary">Unlike</button>
     @endif
-
     @endforeach
   @endif
 @endif

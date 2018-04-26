@@ -20,6 +20,13 @@ class UserProfileController extends Controller
     //return redirect('/viewuserprofile/')->with('success', 'Added Friend!');
   }
 
+  public function successDeleteRedirect($id){
+    return redirect()->action(
+      'UserProfileController@getUser', ['id' => $id]
+    )->with('success', 'Deleted Friend!');
+    //return redirect('/viewuserprofile/')->with('success', 'Added Friend!');
+  }
+
   public function getUser($id){
     $userprofile= User_profile::find($id);
     //$user = User::find($id);
@@ -36,15 +43,7 @@ class UserProfileController extends Controller
     return view('/UserProfile/edituserprofile', compact('userprofile'));
   }
 
-  public function addFriend(){
-    $current_user_id = Auth::id();
-    $relationship = new Relationship;
-    $relationship->relating_user_id = $current_user_id;
-    $relationship->related_user_id = $_POST['other_user_id'];
-    $relationship->status = 'FRIEND';
-    $relationship->save();
-    return redirect('/')->with('success', 'Added Friend!');
-  }
+
 
   public function edit($id)
   {

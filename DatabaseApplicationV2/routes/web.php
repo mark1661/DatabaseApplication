@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/success/{id}', 'UserProfileController@successRedirect');
+Route::get('/successDelete/{id}', 'UserProfileController@successDeleteRedirect');
 
 
 //linyi
@@ -62,7 +63,8 @@ Route::get('/createReview/{id}', 'ReviewController@create');
 Route::post('/newreview/{id}', 'ReviewController@submit');
 
 
-Route::post('/addFriend','UserProfileController@addFriend');
+Route::post('/addFriend','RelationshipController@addFriend');
+Route::post('/unfriend','RelationshipController@deleteFriend');
 //Route::post('/contact/submit', 'MessagesController@submit');
 
 Auth::routes();

@@ -17,6 +17,7 @@ class CreateRelationshipsTable extends Migration
             $table->increments('relationship_id');
             $table->integer('relating_user_id');
             $table->integer('related_user_id');
+            $table->unique(['relating_user_id', 'related_user_id']);
             $table->string('status')->nullable();
         });
     }

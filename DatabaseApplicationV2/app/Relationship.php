@@ -10,4 +10,11 @@ class relationship extends Model
   //surrogate key
   protected $primaryKey = 'relationship_id';
     //
+
+    public function relationship_user(){
+      return $this->belongsTo('App\User');
+    }
+    public function relationship_user_profile(){
+      return $this->belongsTo('App\User_profile');
+    }
 }

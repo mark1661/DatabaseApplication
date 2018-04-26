@@ -12,6 +12,6 @@ class User_like extends Model
       return $this->belongsTo(User::class);
     }
     public function movies(){
-      return $this->belongsTo(Moivie::class);
+      return $this->belongsTo(Movie::class);
     }
 }
