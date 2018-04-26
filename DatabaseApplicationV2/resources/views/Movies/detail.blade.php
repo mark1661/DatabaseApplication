@@ -4,9 +4,23 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <h1>{{$movie->name}}</h1>
 <hr/>
-<button id="like" class="btn btn-primary">Like</button>
+@if(Auth::check()==true)
+  @if($movie->likes->isEmpty())
+    <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
+  @else
+    @foreach($movie->likes as $like)
+    @if(($like->user_id)!=Auth::user()->user_id)
+      <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
+      @break
+    @else
+      <button id="unlike" class="btn btn-primary">Unlike</button>
+    @endif
+
+    @endforeach
+  @endif
+@endif
 <script type="text/javascript">
-$('#like').click(function(){
+$(document).on('click','#like',function(){
   $.ajaxSetup({
     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
   });
@@ -15,10 +29,33 @@ $('#like').click(function(){
     type: "POST", //request type
     data: {movie_id: "{{$movie->id}}", user_id: "{{Auth::user()->user_id}}"},
     success:function(result){
-      $("#like").attr("disabled", true);
+      $('#like').html('Unlike');
+      $('#like').attr('id','unlike');
       alert(result);
     },
     error: function(jqXHR, textStatus, errorThrown) {
+<<<<<<< HEAD
+=======
+        console.log(JSON.stringify(jqXHR));
+        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+    }
+  });
+});
+$(document).on('click','#unlike', function(){
+  $.ajaxSetup({
+    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+  });
+  $.ajax({
+    url:'/unlike', //the page containing php script
+    type: "POST", //request type
+    data: {movie_id: "{{$movie->id}}", user_id: "{{Auth::user()->user_id}}"},
+    success:function(result){
+      $('#unlike').html('Like '+ {{count($movie->likes)}});
+      $('#unlike').attr('id','like');
+      alert(result);
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+>>>>>>> Lintestbranch
         console.log(JSON.stringify(jqXHR));
         console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
     }
