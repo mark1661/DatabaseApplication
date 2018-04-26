@@ -34,8 +34,6 @@ $(document).on('click','#like',function(){
       alert(result);
     },
     error: function(jqXHR, textStatus, errorThrown) {
-<<<<<<< HEAD
-=======
         console.log(JSON.stringify(jqXHR));
         console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
     }
@@ -55,7 +53,6 @@ $(document).on('click','#unlike', function(){
       alert(result);
     },
     error: function(jqXHR, textStatus, errorThrown) {
->>>>>>> Lintestbranch
         console.log(JSON.stringify(jqXHR));
         console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
     }
