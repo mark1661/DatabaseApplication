@@ -18,6 +18,7 @@ class CreateMoviesTable extends Migration
             $table->integer('poster')->nullable();
             $table->integer('actor_id');
             $table->integer('clip_id')->nullable();
+            $table->integer('like')->nullable();
             $table->string('name', 55);
             $table->text('overview');
             $table->date('release_date');
