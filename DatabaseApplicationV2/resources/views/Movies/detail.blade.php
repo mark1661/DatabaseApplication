@@ -9,11 +9,11 @@
     <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
   @else
     @foreach($movie->likes as $like)
-    @if(($like->user_id)!=Auth::user()->user_id)
-      <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
+    @if(($like->user_id)==Auth::user()->user_id)
+      <button id="unlike" class="btn btn-primary">Unlike</button>
       @break
     @else
-      <button id="unlike" class="btn btn-primary">Unlike</button>
+      <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
     @endif
     @endforeach
   @endif
