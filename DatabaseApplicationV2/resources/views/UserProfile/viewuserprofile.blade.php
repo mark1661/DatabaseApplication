@@ -44,7 +44,7 @@
                                   <!--
                                   <p><a href="/user/ToBeRemoved--PutIdHere/deleteuserprofile" class="btn btn-danger">Delete Profile</a></p>
                                   -->
-                                  <p><a href="/user/ToBeRemoved--PutIdHere/viewfriends" class="btn btn-success">View Friends</a></p>
+                                  <p><a href="/getFriends" class="btn btn-success">View Friends</a></p>
                                 @endif
                                     <!-- crap, check with lin for the post method of this button -->
                                     @if($userprofile->user_profile_id !== Auth::user()->user_id)

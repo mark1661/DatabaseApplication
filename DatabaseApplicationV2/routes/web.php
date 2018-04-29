@@ -63,6 +63,8 @@ Route::get('/createReview/{id}', 'ReviewController@create');
 Route::post('/newreview/{id}', 'ReviewController@submit');
 
 
+//friends
+Route::get('/getFriends', 'RelationshipController@getFriends');
 Route::post('/addFriend','RelationshipController@addFriend');
 Route::post('/unfriend','RelationshipController@deleteFriend');
 //Route::post('/contact/submit', 'MessagesController@submit');
