@@ -5,33 +5,43 @@
 <p>Add a new movie to the site!</p>
 <hr>
 <div class="form-group">
-  {!! Form::open(['url' => 'movies/store']) !!}
+  {!! Form::open(['url' => 'admin/addmoviesubmit', 'files' => true]) !!}
   <div class="form-group">
-    {{Form::label('name', 'Movie Name:')}}
-    {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter Movie Title'])}}
+    {{Form::label('moviename', 'Movie Name:')}}
+    {{Form::text('moviename', '', ['class' => 'form-control', 'placeholder' => 'Enter Movie Title'])}}
   </div>
   <div class="form-group">
-    {{Form::label('release_date', 'Movie Release Date:')}}
-    {{Form::date('release_date', '', ['class' => 'form-control'])}}
+    {{Form::label('moviereleasedate', 'Movie Release Date:')}}
+    {{Form::date('moviereleasedate', '', ['class' => 'form-control'])}}
   </div>
   <div class="form-group">
-    {{Form::label('genre', 'Movie Genre: ')}}
-    {{Form::select('genre', ['Action' => 'Action',
-                                         'Adventure' => 'Adventure',
-                                         'Comedy' => 'Comedy',
-                                         'Crime' => 'Crime',
-                                         'Drama' => 'Drama',
-                                         'Horror' => 'Horror'], null, ['class' => 'form-control', 'placeholder' => 'Choose the Movie Genre..'])}}
+    {{Form::label('moviedirector', 'Movie Name:')}}
+    {{Form::text('moviedirector', '', ['class' => 'form-control', 'placeholder' => 'Enter Movie Director'])}}
   </div>
   <div class="form-group">
-    {{Form::label('actor', 'Movie Actors:')}}
-    {{Form::text('actor', '', ['class' => 'form-control', 'placeholder' => 'Enter Movie Actors (comma separated if there is more than 1)'])}}
+    {{Form::label('movieposter', 'Movie Poster:')}}
+    {{Form::file('movieposter', ['accept' => '.jpg, .png'])}}
   </div>
   <div class="form-group">
-    {{Form::label('overview', 'Plot Summary:')}}
-    {{Form::textarea('overview', '', ['class' => 'form-control', 'placeholder' => 'Enter a short summary of the movie plot...'])}}
+    {{Form::label('movieactors', 'Movie Actors:')}}
+    {{Form::text('movieactors', '', ['class' => 'form-control', 'placeholder' => 'Enter Movie Actors (comma separated if there is more than 1)'])}}
   </div>
-  {{Form::submit('Add Movie', ['class' => 'btn btn-primary'])}}
+  <div class="form-group">
+    {{Form::label('moviedescription', 'Plot Summary:')}}
+    {{Form::textarea('moviedescription', '', ['class' => 'form-control', 'placeholder' => 'Enter a short summary of the movie plot...'])}}
+  </div>
+  <div class="form-group">
+    {{Form::label('movielength','Movie Length: ')}}
+    {{Form::text('movielength', '', ['class' => 'form-control', 'placeholder' => 'Enter the runtime following this format: (HH:MM:SS)'])}}
+  </div>
+  <div class="form-group">
+    {{Form::label('movielength','Movie Length: ')}}
+    {{Form::text('movielength', '', ['class' => 'form-control', 'placeholder' => 'Enter the runtime following this format: (HH:MM:SS)'])}}
+  </div>
+  <div class="form-group">
+    {{Form::label('moviestudio', 'Movie Studio: ')}}
+    {{Form::text('moviestudio', '', ['class' => 'form-control'])}}
+  </div>
   {!! Form::close() !!}
 </div>
 @endsection
