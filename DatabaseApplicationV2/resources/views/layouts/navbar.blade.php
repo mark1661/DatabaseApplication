@@ -49,6 +49,11 @@
           </ul>
           <form class="form-inline mt-2 mt-md-0">
             <input class="form-control mr-sm-2" type="text" id="search" placeholder="Search" aria-label="Search">
+            <select class="form-control" style="margin-right: 7px" placeholder="Select a search query..">
+              <option value="actor">Actor</option>
+              <option value="movie">Movie</option>
+              <option value="user">User</option>
+            </select>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>

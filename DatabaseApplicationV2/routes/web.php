@@ -29,11 +29,17 @@ Route::get('/about', function () {
 Route::get('/support', function () {
     return view('support');
 });
+Route::post('/support/submit', 'SupportController@create');
+Route::get('/support/submitSuccessful', 'SupportController@createSuccess');
+Route::get('/support/index', 'SupportController@index');
+Route::get('/support/show/{id}', 'SupportController@show');
+Route::get('/support/edit/{id}', 'SupportController@edit');
+Route::get('/support/delete/{id}', 'SupportController@delete');
+Route::post('/support/update/{id}','SupportController@update');
+Route::get('/support/deleteToPost/{id}', 'SupportController@deleteToPost');
 
-Route::post('/contact/submit', 'MessagesController@submit');
 Route::get('/admin/addmovie', 'AdminController@addmovie');
 Route::get('/admin/index','AdminController@index');
-Route::get('admin/supportindex', 'AdminController@supportindex');
 //Route::get('/logout', 'LoginController@logout');
 
 Route::get('/logout', function(){
