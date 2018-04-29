@@ -21,4 +21,9 @@ class AdminController extends Controller
   {
     return view("admin/supportindex");
   }
+
+  public function addmoviesubmit()
+  {
+    app('App\Http\Controllers\MovieController')->store();
+  }
 }
