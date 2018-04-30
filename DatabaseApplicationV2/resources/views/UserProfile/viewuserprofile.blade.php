@@ -16,7 +16,7 @@
                         </div>
                       </div>
                       <div class="col-md-9 col-xs-12 col-sm-6 col-lg-9">
-                          <div class="" style="border-bottom:1px solid black">
+                          <div class="" style="border-bottom: 1px solid black">
                             <h2 id="username">{{$name}}</h2>
                           </div>
                             <hr>
@@ -32,12 +32,12 @@
                             <br/>
                           </div>
                       </div>
-                    </div>
+                  </div>
                       <div class="form-group row">
                         <div class="col-md-12">
                           @if(Auth::check())
                               <div class="form-group"  style="border-bottom:1px solid black">
-                                  <h2>Options (only viewable to the user)</h2>
+                                  <h2>Options</h2>
                               </div>
                                 @if($userprofile->user_profile_id === Auth::user()->user_id)
                                   <p><a href="/edituserprofile/{{Auth::user()->user_id}}" class="btn btn-primary">Edit Profile</a></p>
@@ -71,7 +71,7 @@
                                                           });
                                                         });
                                               </script>
-                                            </div>
+                        </div>
                                       @endif
                                       @if(\App\Http\Controllers\RelationshipController::getRelationship($userprofile->user_profile_id) === 'FRIEND')
                                         <button id="unfriend" class="btn btn-primary">Unfriend</button>
@@ -94,11 +94,10 @@
                                             });
                                           });
                                           </script>
-                                        </div>
+                    </div>
                                         @endif
                                   @endif
                                 @endif
-                      </div>
                 </div>
             </div>
 @endsection
