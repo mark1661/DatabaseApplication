@@ -69,6 +69,11 @@ Route::get('/movies/clip/{id}','MovieClipController@show');
 Route::post('/movies/clip/{id}','MovieClipController@delete');
 
 Route::get('/movies/setTrailer/{id}','MovieClipController@setToTrailer');
-
+//User like
 Route::post('/like','UserLikeController@like');
 Route::post('/unlike','UserLikeController@unlike');
+//Movie list
+Route::get('/list/add/{id}','MovieListController@add');
+Route::get('/list/view','MovieListController@viewList');
+Route::get('/list/clear','MovieListController@clear');
+Route::get('/list/delete/{id}','MovieListController@delete');

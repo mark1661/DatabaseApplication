@@ -27,6 +27,9 @@
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/list/view">My Movie List</a>
+            </li>
             @if(Auth::user()->status != 'ADMIN')
             <li class="nav-item">
               <a class="nav-link" href="/support">Support</a>
