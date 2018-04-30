@@ -5,6 +5,22 @@
 <h1>{{$movie->name}}</h1>
 <hr/>
 @if(Auth::check()==true)
+  <!-- Add to my list -->
+  @if(Session::has('item'))
+    @if(Session::get('item')==NULL)
+        <button><a href="/list/add/{{$movie->id}}">Add to my list</a></button>
+    @endif
+    @foreach(Session::get('item') as $item)
+      @if($item->id==$movie->id)
+        <button disabled="true">In the list</button>
+      @else
+        <button><a href="/list/add/{{$movie->id}}">Add to my list</a></button>
+      @endif
+    @endforeach
+  @else
+    <button><a href="/list/add/{{$movie->id}}">Add to my list</a></button>
+  @endif
+
   @if($movie->likes->isEmpty())
     <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
   @else
