@@ -38,7 +38,7 @@ class User extends Authenticatable
 
     public function user_relationship(){
       return $this->hasMany('App\Relationship');
-
+    }
     public function support()
     {
       return $this->hasOne('App\support', 'user_id');
