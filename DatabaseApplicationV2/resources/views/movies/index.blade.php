@@ -13,7 +13,8 @@
     @foreach($movies as $movie)
     <tr>
       <td>
-        @if($movie->movie_poster)<img class="card-img-top" width="100" height="100"src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap">
+        @if($movie->movie_poster)
+        <img class="card-img-top" width="100" height="100"src="{{ public/Storage::url($movie->movie_poster->path)}}" alt="Card image cap">
       @endif</td>
       <td>{{$movie->name}}</td>
       <td>{{$movie->release_date}}</td>
