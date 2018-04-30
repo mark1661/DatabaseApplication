@@ -101,10 +101,15 @@ $(document).on('click','#unlike', function(){
   </table>
   @isset($reviews)
   @foreach($reviews as $review)
-
   <div class="form-group">
-    <label for="comment">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</label>
+    <a href="/viewuserprofile/{{$review->user_id}}">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</a>
     <textarea readonly class="form-control" rows="5" id="comment">{{$review->review_content}}</textarea>
+    @if(Auth::user()->user_id == $review->user_id)
+    <form method="POST" action="/deleteReview/{{$review->review_id}}" enctype="multipart/form-data">
+      {{ csrf_field() }}
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    @endif
   </div>
   @endforeach
   @endisset

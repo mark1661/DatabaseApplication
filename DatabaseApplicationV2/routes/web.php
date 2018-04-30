@@ -73,9 +73,12 @@ Route::post('/newreview/{id}', 'ReviewController@submit');
 Route::get('/getFriends', 'RelationshipController@getFriends');
 Route::post('/addFriend','RelationshipController@addFriend');
 Route::post('/unfriend','RelationshipController@deleteFriend');
+Route::get('/deleteFromList/{id}', 'RelationshipController@deleteFromList');
 //Route::post('/contact/submit', 'MessagesController@submit');
 
 Auth::routes();
+
+Route::post('/deleteReview/{id}','ReviewController@delete');
 
 //Routes for movies
 Route::get('/movies','MovieController@index');

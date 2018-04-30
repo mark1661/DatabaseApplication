@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 use App\Movie;
 use App\UserReview;
 use Illuminate\Support\Facades\Auth;
 
-class ReviewController extends Controller
+class CommentController extends Controller
 {
-
-
   public function create($id){
     $movie = Movie::find($id);
     return view('Review/review', compact('movie'));
