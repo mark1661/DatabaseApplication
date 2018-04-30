@@ -40,10 +40,7 @@ class User extends Authenticatable
     {
       return $this->hasMany('App\Relationship');
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> d119fba8150139a2eac90994dd94a35026d933bd
+    
     public function support()
     {
       return $this->hasOne('App\support', 'user_id');
