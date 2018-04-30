@@ -40,8 +40,6 @@
                               <li class="list-group-item"><a href="/" class="btn btn-primary">View User Reviews</a></li>
                             </ul>
                           </div>
-                          <div>
-                          </div>
                       </div>
                     </div>
                       <div class="form-group row">

@@ -22,7 +22,7 @@
               </li>
             @else
             <li class="nav-item">
-              <a class="nav-link" href="/user/{id}/viewuserprofile">Hello! {{Auth::user()->username }}</a>
+              <a class="nav-link">Hello! {{Auth::user()->username }}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
@@ -44,18 +44,31 @@
                 <a class="nav-link" href="/admin/index">Administrator</a>
               </li>
               @endif
-            </li>
             @endif
           </ul>
+
+          {!! Form::open(array('url' => url('search/results'), 'class' => 'form-inline mt-2 mt-md-0')) !!}
+          <div class="form-group">
+            {{Form::text('searchTextBox', '', ['class' => 'form-control mr-sm-2', 'placeholder' => 'Enter a Search Query..'])}}
+          </div>
+          <div class="form-group">
+            {{Form::select('searchSelect', ['actor' => 'Actor',
+                                      'movie' => 'Movie',
+                                      'user' => 'User'], null, ['class' => 'form-control', 'style' => 'margin-right: 7px'])}}
+            {{Form::submit('Search', ['class' => 'btn btn-outline-success my-2 my-sm-0'])}}
+          </div>
+          {!! Form::close() !!}
+          <!--
           <form class="form-inline mt-2 mt-md-0">
             <input class="form-control mr-sm-2" type="text" id="search" placeholder="Search" aria-label="Search">
-            <select class="form-control" style="margin-right: 7px" placeholder="Select a search query..">
+            <select class="form-control" style="margin-right: 7px" placeholder="Select a search query.." id="searchQueryValue">
               <option value="actor">Actor</option>
               <option value="movie">Movie</option>
               <option value="user">User</option>
             </select>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="/search/results" style="color: lime">Search</a>
           </form>
+        -->
         </div>
 </nav>
 <br/>
