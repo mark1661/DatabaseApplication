@@ -14,7 +14,6 @@ class MovieListController extends Controller{
     // Session::flush();
     // Session::push('item', get_object_vars($moive));
     $request->session()->push('item',$movie);
-    $items=Session::get('item');
     return redirect('/list/view');
   }
 

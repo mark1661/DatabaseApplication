@@ -6,20 +6,26 @@
 <hr/>
 @if(Auth::check()==true)
   <!-- Add to my list -->
-  @if(Session::has('item'))
-    @if(Session::get('item')==NULL)
-        <button><a href="/list/add/{{$movie->id}}">Add to my list</a></button>
-    @endif
-    @foreach(Session::get('item') as $item)
-      @if($item->id==$movie->id)
-        <button disabled="true">In the list</button>
-      @else
-        <button><a href="/list/add/{{$movie->id}}">Add to my list</a></button>
-      @endif
-    @endforeach
-  @else
-    <button><a href="/list/add/{{$movie->id}}">Add to my list</a></button>
-  @endif
+  <?php
+    $found=false;
+    if (Session::has('item')) {
+      $items = Session::get('item');
+      foreach ($items as $item) {
+        if ($item->id==$movie->id) {
+          $found=true;
+        }
+      }
+      if ($found==true) {
+        echo "<button><a>In my list!</a></button>";
+      }
+      else{
+        echo "<button><a href=\"/list/add/$movie->id\">Add to my list!</a></button>";
+      }
+    }
+    else {
+      echo "<button><a href=\"/list/add/$movie->id\">Add to my list!</a></button>";
+    }
+   ?>
 
   @if($movie->likes->isEmpty())
     <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
