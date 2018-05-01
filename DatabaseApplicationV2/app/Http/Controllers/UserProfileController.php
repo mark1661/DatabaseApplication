@@ -37,8 +37,6 @@ class UserProfileController extends Controller
 
   public function showeditUserProfile($id){
     $userprofile= User_profile::find($id);
-    //$user = User::find($id);
-    //$name =  User::find($id)['username'];
     //works
     return view('/UserProfile/edituserprofile', compact('userprofile'));
   }

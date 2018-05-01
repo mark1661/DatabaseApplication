@@ -52,6 +52,7 @@ Route::get('/admin/actor', 'AdminController@createactor');
 Route::get('/admin/login','AdminController@Login');
 
 Route::get('/viewuserprofile/{id}', 'UserProfileController@getUser');
+Route::get('/user/{id}/viewuserprofile', 'UserProfileController@getUser');
 //shouldn't show on user profile, should be deleted when user is deleted anyhoo
 Route::get('/user/{id}/deleteuserprofile', 'UserController@Delete');
 
@@ -68,6 +69,9 @@ Route::post('/submit/{id}', 'UserProfileController@edit');
 Route::get('/createReview/{id}', 'ReviewController@create');
 Route::post('/newreview/{id}', 'ReviewController@submit');
 
+//search
+Route::post('search/results', 'SearchController@processSearch');
+//Route::get('', '');
 
 //friends
 Route::get('/getFriends', 'RelationshipController@getFriends');
@@ -104,6 +108,11 @@ Route::get('/movies/clip/{id}','MovieClipController@show');
 Route::post('/movies/clip/{id}','MovieClipController@delete');
 
 Route::get('/movies/setTrailer/{id}','MovieClipController@setToTrailer');
-
+//User like
 Route::post('/like','UserLikeController@like');
 Route::post('/unlike','UserLikeController@unlike');
+//Movie list
+Route::get('/list/add/{id}','MovieListController@add');
+Route::get('/list/view','MovieListController@viewList');
+Route::get('/list/clear','MovieListController@clear');
+Route::get('/list/delete/{id}','MovieListController@delete');

@@ -5,15 +5,37 @@
 <h1>{{$movie->name}}</h1>
 <hr/>
 @if(Auth::check()==true)
+  <!-- Add to my list -->
+  <?php
+    $found=false;
+    if (Session::has('item')) {
+      $items = Session::get('item');
+      foreach ($items as $item) {
+        if ($item->id==$movie->id) {
+          $found=true;
+        }
+      }
+      if ($found==true) {
+        echo "<button><a>In my list!</a></button>";
+      }
+      else{
+        echo "<button><a href=\"/list/add/$movie->id\">Add to my list!</a></button>";
+      }
+    }
+    else {
+      echo "<button><a href=\"/list/add/$movie->id\">Add to my list!</a></button>";
+    }
+   ?>
+
   @if($movie->likes->isEmpty())
     <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
   @else
     @foreach($movie->likes as $like)
-    @if(($like->user_id)==Auth::user()->user_id)
-      <button id="unlike" class="btn btn-primary">Unlike</button>
+    @if(($like->user_id)!=Auth::user()->user_id)
+      <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
       @break
     @else
-      <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
+      <button id="unlike" class="btn btn-primary">Unlike</button>
     @endif
     @endforeach
   @endif
