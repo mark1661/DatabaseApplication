@@ -94,10 +94,31 @@
                                             });
                                           });
                                           </script>
-                    </div>
-                                        @endif
+                                          @endif
+                                    @endif
                                   @endif
-                                @endif
+                                  <div class="form-group"  style="border-bottom:1px solid black">
+                                      <h2>Comments</h2>
+                                  </div>
+                                  @isset($user_comments)
+                                  @foreach($user_comments as $user_comment)
+                                  <div class="form-group">
+                                    <a href="/viewuserprofile/{{$user_comment->user_id}}">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</a>
+                                    <textarea readonly class="form-control" rows="5" id="comment">{{$review->review_content}}</textarea>
+                                    @if(Auth::user()->user_id == $user_comment->user_id)
+                                    <!--
+                                    <form method="POST" action="/deleteReview/{{$review->review_id}}" enctype="multipart/form-data">
+                                      {{ csrf_field() }}
+                                      <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                    @endif
+                                  -->
+                                  </div>
+                                  @endforeach
+                                  @endisset
+                    </div>
+
+
                 </div>
             </div>
 @endsection

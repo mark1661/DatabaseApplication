@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Movie;
 use App\UserReview;
+use App\user_profile_comment;
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller

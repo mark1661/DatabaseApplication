@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\User_profile;
+use App\user_profile_comment;
 use App\Relationship;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input as Input;
@@ -31,8 +32,9 @@ class UserProfileController extends Controller
     $userprofile= User_profile::find($id);
     //$user = User::find($id);
     $name =  User::find($id)['username'];
+    $user_comments = user_profile_comment::where('user_id', $id)->get();
     //works
-    return view('/UserProfile/viewuserprofile', compact('userprofile', 'name'));
+    return view('/UserProfile/viewuserprofile', compact('userprofile', 'name', 'user_comments'));
   }
 
   public function showeditUserProfile($id){
