@@ -20,7 +20,14 @@ class MovieListController extends Controller{
 
   public function viewList(){
     $items=Session::get('item');
-    return view('/movies/movieList',compact('items'));
+    if(count($items) == 0)
+    {
+      return view('/movies/emptyMovieList');
+    }
+    else
+    {
+      return view('/movies/movieList',compact('items'));
+    }
   }
 
   public function delete($id){

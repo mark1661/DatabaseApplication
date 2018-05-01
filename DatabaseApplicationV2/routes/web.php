@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/success/{id}', 'UserProfileController@successRedirect');
 Route::get('/successDelete/{id}', 'UserProfileController@successDeleteRedirect');
@@ -42,12 +42,7 @@ Route::get('/admin/addmovie', 'AdminController@addmovie');
 Route::get('/admin/index','AdminController@index');
 //Route::get('/logout', 'LoginController@logout');
 
-Route::get('/logout', function(){
-    Session::flush();
-    Auth::logout();
-    return view('home');
-      //->with('message', array('type' => 'success', 'text' => 'You have successfully logged out'));
-});
+Route::get('/logout', 'HomeController@logout');
 Route::get('/admin/actor', 'AdminController@createactor');
 Route::get('/admin/login','AdminController@Login');
 
