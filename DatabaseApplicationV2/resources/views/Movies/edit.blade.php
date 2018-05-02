@@ -20,7 +20,29 @@
           var last_name=obj.last_name;
           console.log(obj);
           console.log(first_name);
-          $('#actorList').append('<option value=\"'+actor_id+'\">'+first_name+' '+last_name+'</option>');
+          $('#addActor').append('<option value=\"'+actor_id+'\">'+first_name+' '+last_name+'</option>');
+        }
+        console.log(result);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+          console.log(JSON.stringify(jqXHR));
+          console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+      }
+    });
+    $.ajax({
+      url:'/delete/actors', //the page containing php script
+      type: "GET", //request type
+      data: {movie_id: "{{$movie->id}}"},
+      success:function(result){
+        var actors=result.split(" ");
+        for(i=0;i<actors.length-1;i++){
+          var obj = jQuery.parseJSON(actors[i]);
+          var actor_id=obj.id;
+          var first_name=obj.first_name;
+          var last_name=obj.last_name;
+          console.log(obj);
+          console.log(first_name);
+          $('#deleteActor').append('<option value=\"'+actor_id+'\">'+first_name+' '+last_name+'</option>');
         }
         console.log(result);
       },
@@ -38,8 +60,13 @@
     <input type="text" class="form-control" id="name" name="name" placeholder="{{$movie->name}}" value="{{$movie->name}}">
   </div>
   <div class="form-group">
-    <label for="actor">Actor:</label>
-    <select multiple class="form-control" id="actorList" name="actors[]">
+    <label for="actor">Actor(To be Added):</label>
+    <select multiple class="form-control" id="addActor" name="addActors[]">
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="actor">Actor(To be Deleted):</label>
+    <select multiple class="form-control" id="deleteActor" name="deleteActors[]">
     </select>
   </div>
   <div class="form-group">

@@ -67,15 +67,20 @@ class MovieController extends Controller
 
     public function edit($id){
       $movie= Movie::find($id);
-      if (request('actors')!=NULL) {
-        $actors = request('actors');
+      if (request('addActors')!=NULL) {
+        $actors = request('addActors');
         foreach ($actors as $actor) {
           $newRecord=new MovieAndActor;
           $newRecord->movie_id=$id;
           $newRecord->actor_id=$actor;
           $newRecord->save();
         }
-        // $actors = implode(',', $actors);
+      }
+      if (request('deleteActors')!=NULL) {
+        $actors = request('deleteActors');
+        foreach ($actors as $actor) {
+          $deleteRecord=MovieAndActor::where([['actor_id','=',$actor],['movie_id','=',$id]])->first()->delete();
+        }
       }
       if (request()->hasFile('image')) {
         $movie_post=new Movie_poster;
