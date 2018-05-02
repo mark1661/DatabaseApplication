@@ -10,6 +10,7 @@ use App\Movie;
 use App\Movie_poster;
 use App\UserReview;
 use App\User;
+use App\MovieAndActor;
 use Illuminate\Support\Facades\Input as Input;
 
 class MovieController extends Controller
@@ -66,6 +67,16 @@ class MovieController extends Controller
 
     public function edit($id){
       $movie= Movie::find($id);
+      if (request('actors')!=NULL) {
+        $actors = request('actors');
+        foreach ($actors as $actor) {
+          $newRecord=new MovieAndActor;
+          $newRecord->movie_id=$id;
+          $newRecord->actor_id=$actor;
+          $newRecord->save();
+        }
+        // $actors = implode(',', $actors);
+      }
       if (request()->hasFile('image')) {
         $movie_post=new Movie_poster;
         $path=request()->file('image')->store('public/images');
@@ -77,8 +88,6 @@ class MovieController extends Controller
       }
       $movie->name=request('name');
       $movie->overview=request('overview');
-      $movie->actor_id=request('actor');
-      $movie->clip_id=request('clip');
       $movie->release_date=request('release_date');
       $movie->genre=request('genre');
       $movie->save();
