@@ -10,10 +10,27 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
-Route::get('/', function () {
+Route::get('/', function ()
+{
+  $user = Auth::user();
+  if(is_null($user))
+  {
     return view('home');
-});
+  }
+  else
+  {
+    if($user->verified == 0)
+    {
+      return view('layouts/verificationFailed');
+    }
+    else
+    {
+      return view('home');
+    }
+  }
+})->name('home');
 
 Route::get('/success/{id}', 'UserProfileController@successRedirect');
 Route::get('/successDelete/{id}', 'UserProfileController@successDeleteRedirect');
@@ -40,16 +57,11 @@ Route::get('/support/deleteToPost/{id}', 'SupportController@deleteToPost');
 
 Route::get('/admin/addmovie', 'AdminController@addmovie');
 Route::get('/admin/index','AdminController@index');
-//Route::get('/logout', 'LoginController@logout');
-
-Route::get('/logout', function(){
-    Session::flush();
-    Auth::logout();
-    return view('home');
-      //->with('message', array('type' => 'success', 'text' => 'You have successfully logged out'));
-});
 Route::get('/admin/actor', 'AdminController@createactor');
 Route::get('/admin/login','AdminController@Login');
+//Route::get('/logout', 'LoginController@logout');
+
+Route::get('/logout', 'HomeController@logout');
 
 Route::get('/viewuserprofile/{id}', 'UserProfileController@getUser');
 Route::get('/user/{id}/viewuserprofile', 'UserProfileController@getUser');

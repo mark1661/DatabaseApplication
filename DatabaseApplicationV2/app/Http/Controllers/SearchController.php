@@ -22,7 +22,7 @@ class SearchController extends Controller
       {
         if($searchQueryType == 'actor')
         {
-
+          echo 'NOT AVAILABLE YET!';
         }
         else if($searchQueryType == 'movie')
         {

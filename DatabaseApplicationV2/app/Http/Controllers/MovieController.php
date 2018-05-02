@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Input as Input;
 
 class MovieController extends Controller
 {
-    public function index(){
-      $movies= Movie::get();
+    public function index()
+    {
+      $movies = Movie::get();
       return view('movies/index', compact('movies'));
     }
 

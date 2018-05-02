@@ -40,7 +40,7 @@ class User extends Authenticatable
     {
       return $this->hasMany('App\Relationship');
     }
-    
+
     public function support()
     {
       return $this->hasOne('App\support', 'user_id');
@@ -56,7 +56,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username', 'email', 'password', 'email_token'
     ];
 
     /**
