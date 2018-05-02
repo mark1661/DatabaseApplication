@@ -113,3 +113,6 @@ Route::get('/list/add/{id}','MovieListController@add');
 Route::get('/list/view','MovieListController@viewList');
 Route::get('/list/clear','MovieListController@clear');
 Route::get('/list/delete/{id}','MovieListController@delete');
+//Actor
+Route::get('/add/actors','ActorController@showActorsToAdd');
+Route::get('/delete/actors','ActorController@showActorsToDelete');
