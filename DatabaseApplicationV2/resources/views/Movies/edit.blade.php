@@ -8,9 +8,9 @@
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
     });
     $.ajax({
-      url:'/actors', //the page containing php script
+      url:'/add/actors', //the page containing php script
       type: "GET", //request type
-      data: {},
+      data: {movie_id: "{{$movie->id}}"},
       success:function(result){
         var actors=result.split(" ");
         for(i=0;i<actors.length-1;i++){
