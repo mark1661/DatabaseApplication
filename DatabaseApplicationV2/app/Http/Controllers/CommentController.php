@@ -7,40 +7,68 @@ use App\Http\Controllers\Controller;
 use App\Movie;
 use App\UserReview;
 use App\user_profile_comment;
+use App\User_profile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class CommentController extends Controller
 {
+
   public function create($id){
-    $movie = Movie::find($id);
-    return view('Review/review', compact('movie'));
+    $userprofile = User_profile::find($id);
+    return view('/user_profile_comments_view', compact('userprofile'));
   }
 
   public function delete($id){
-    $review = UserReview::find($id);
-    $review->delete();
-    return redirect('/movies');
+    $comment = user_profile_comment::find($id);
+    $user_id = Auth::user()->user_id;
+    $comment->delete();
+    return redirect()->action(
+      'UserProfileController@successDeleteRedirect', ['id' => $comment->user_profile_id]);
+  }
+
+
+  public function showeditComment($id){
+    $comment = user_profile_comment::find($id);
+    //works
+    return view('/edit_profile_comment', compact('comment'));
+  }
+
+  public function edit(Request $request, $id)
+  {
+    $this->validate($request, [
+      'comment_string' => 'required',
+    ]);
+
+    $comment = user_profile_comment::find($id);
+    $comment->comment_string=request('comment_string');
+    $comment->save();
+
+    return redirect()->action(
+          'UserProfileController@getUser', ['id' => $comment->user_profile_id]);
   }
 
   public function submit(Request $request, $id)
   {
-    $movie = Movie::find($id);
+    $userprofile = User_profile::find($id);
 
     $this->validate($request, [
-      'review_content' => 'required',
+      'comment_string' => 'required',
     ]);
 
-    // Create New Message
-    $review = new UserReview;
-    $review->movie_id = $movie->id;
-    $review->user_id = Auth::user()->user_id;
-    $date = date('Y-m-d H:i:s');
-    $review->review_content = $request->input('review_content');
-    $review->date = $date;
+    // Create New Komment
+    $comment = new user_profile_comment;
+    $comment->user_profile_id = $userprofile->user_profile_id;
+    $comment->user_id = Auth::user()->user_id;
+    //$date = date('Y-m-d H:i:s');
+    $comment->comment_string = $request->input('comment_string');
+    //$review->date = $date;
     // Save Messages
-    $review->save();
+    $comment->save();
 
     // Redirect
-    return redirect('/movies');
+    //redirect to user profile ya lazy dick
+    return redirect()->action(
+      'UserProfileController@successRedirect', ['id' => $id]);
   }
 }
