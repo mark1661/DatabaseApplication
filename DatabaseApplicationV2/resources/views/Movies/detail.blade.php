@@ -86,7 +86,9 @@ $(document).on('click','#unlike', function(){
       </tr>
       <tr>
         <td style="background-color: navy; color: white">Movie poster: </td>
-        <td style="background-color: white" id="movieposter"><img class="card-img-top" width="200" height="300" src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></td>
+        @if(isset($movie->movie_poster))
+          <td style="background-color: white" id="movieposter"><img class="card-img-top" width="200" height="300" src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></td>
+        @endif
       </tr>
       <tr>
         <td style="background-color: navy; color: white">Movie Plot: </td>
