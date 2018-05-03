@@ -2,8 +2,6 @@
 @section('content')
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<h1>{{$movie->name}}</h1>
-<hr/>
 <script type="text/javascript">
 $(document).on('click','#like',function(){
   $.ajaxSetup({
@@ -82,6 +80,10 @@ $(document).on('click','#unlike', function(){
   @endif
   <table class="table">
     <tbody>
+      <tr>
+        <td style="background-color: navy; color: white">Movie Title: </td>
+        <td style="background-color: white" id="movieposter"><h2>{{$movie->name}}</h2></td>
+      </tr>
       <tr>
         <td style="background-color: navy; color: white">Movie poster: </td>
         <td style="background-color: white" id="movieposter"><img class="card-img-top" width="200" height="300" src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></td>
