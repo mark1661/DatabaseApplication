@@ -83,13 +83,12 @@ $(document).on('click','#unlike', function(){
     </tbody>
   </table>
   @isset($reviews)
-  @foreach($reviews as $review)
-
-  <div class="form-group">
-    <label for="comment">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</label>
-    <textarea readonly class="form-control" rows="5" id="comment">{{$review->review_content}}</textarea>
-  </div>
-  @endforeach
+    @foreach($reviews as $review)
+      <div class="form-group">
+        <label for="comment">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</label>
+        <textarea readonly class="form-control" rows="5" id="comment">{{$review->review_content}}</textarea>
+      </div>
+    @endforeach
   @endisset
   <form method="POST" action="/movies/detail/{{$movie->id}}" enctype="multipart/form-data">
     {{ csrf_field() }}
@@ -124,12 +123,12 @@ $(document).on('click','#unlike', function(){
         <button id="like" class="btn btn-success">Like {{count($movie->likes)}}</button>
       @else
         @foreach($movie->likes as $like)
-        @if(($like->user_id)!=Auth::user()->user_id)
-          <button id="like" class="btn btn-success">Like {{count($movie->likes)}}</button>
-          @break
-        @else
-          <button id="unlike" class="btn btn-danger">Unlike</button>
-        @endif
+          @if(($like->user_id)!=Auth::user()->user_id)
+            <button id="like" class="btn btn-success">Like {{count($movie->likes)}}</button>
+            @break
+          @else
+            <button id="unlike" class="btn btn-danger">Unlike</button>
+          @endif
         @endforeach
       @endif
     @endif
