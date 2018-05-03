@@ -26,7 +26,7 @@ Route::get('/about', function () {
     return view('./about');
 });
 
-Route::get('/support', function () {
+Route::get('/support',  function () {
     return view('support');
 });
 Route::post('/support/submit', 'SupportController@create');
@@ -51,12 +51,12 @@ Route::get('/logout', function(){
 Route::get('/admin/actor', 'AdminController@createactor');
 Route::get('/admin/login','AdminController@Login');
 
+//profile
 Route::get('/viewuserprofile/{id}', 'UserProfileController@getUser');
+Route::get('/user/{id}/viewuserprofile', 'UserProfileController@getUser');
 //shouldn't show on user profile, should be deleted when user is deleted anyhoo
 Route::get('/user/{id}/deleteuserprofile', 'UserController@Delete');
 
-Route::get('/user/{id}/viewfriends', 'UserController@ViewFriends');
-Route::get('/user/{id}/deletefriend', 'UserController@DeleteFriend');
 
 Route::post('/submit', 'TicketController@submit');
 
@@ -67,15 +67,35 @@ Route::post('/submit/{id}', 'UserProfileController@edit');
 //review
 Route::get('/createReview/{id}', 'ReviewController@create');
 Route::post('/newreview/{id}', 'ReviewController@submit');
+Route::post('/deleteReview/{id}','ReviewController@delete');
 
+//search
+Route::post('search/results', 'SearchController@processSearch');
+//Route::get('', '');
 
 //friends
 Route::get('/getFriends', 'RelationshipController@getFriends');
 Route::post('/addFriend','RelationshipController@addFriend');
 Route::post('/unfriend','RelationshipController@deleteFriend');
+Route::get('/deleteFromList/{id}', 'RelationshipController@deleteFromList');
+Route::get('/user/{id}/viewfriends', 'UserController@ViewFriends');
+Route::get('/user/{id}/deletefriend', 'UserController@DeleteFriend');
 //Route::post('/contact/submit', 'MessagesController@submit');
 
 Auth::routes();
+
+
+
+
+//komments
+Route::get('/createComment/{id}', 'CommentController@create');
+Route::post('/newComment/{id}', 'CommentController@submit');
+Route::post('/deleteComment/{id}','CommentController@delete');
+
+
+//edit user komment
+Route::get('/editComment/{id}', 'CommentController@showeditComment');
+Route::post('/submitComment/{id}', 'CommentController@edit');
 
 //Routes for movies
 Route::get('/movies','MovieController@index');
@@ -101,6 +121,11 @@ Route::get('/movies/clip/{id}','MovieClipController@show');
 Route::post('/movies/clip/{id}','MovieClipController@delete');
 
 Route::get('/movies/setTrailer/{id}','MovieClipController@setToTrailer');
-
+//User like
 Route::post('/like','UserLikeController@like');
 Route::post('/unlike','UserLikeController@unlike');
+//Movie list
+Route::get('/list/add/{id}','MovieListController@add');
+Route::get('/list/view','MovieListController@viewList');
+Route::get('/list/clear','MovieListController@clear');
+Route::get('/list/delete/{id}','MovieListController@delete');

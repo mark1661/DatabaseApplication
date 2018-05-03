@@ -17,6 +17,12 @@ class ReviewController extends Controller
     return view('Review/review', compact('movie'));
   }
 
+  public function delete($id){
+    $review = UserReview::find($id);
+    $review->delete();
+    return redirect('/movies');
+  }
+
   public function submit(Request $request, $id)
   {
     $movie = Movie::find($id);

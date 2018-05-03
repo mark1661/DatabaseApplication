@@ -16,7 +16,7 @@
                         </div>
                       </div>
                       <div class="col-md-9 col-xs-12 col-sm-6 col-lg-9">
-                          <div class="" style="border-bottom:1px solid black">
+                          <div class="" style="border-bottom: 1px solid black">
                             <h2 id="username">{{$name}}</h2>
                           </div>
                             <hr>
@@ -32,12 +32,12 @@
                             <br/>
                           </div>
                       </div>
-                    </div>
+                  </div>
                       <div class="form-group row">
                         <div class="col-md-12">
                           @if(Auth::check())
                               <div class="form-group"  style="border-bottom:1px solid black">
-                                  <h2>Options (only viewable to the user)</h2>
+                                  <h2>Options</h2>
                               </div>
                                 @if($userprofile->user_profile_id === Auth::user()->user_id)
                                   <p><a href="/edituserprofile/{{Auth::user()->user_id}}" class="btn btn-primary">Edit Profile</a></p>
@@ -46,7 +46,6 @@
                                   -->
                                   <p><a href="/getFriends" class="btn btn-success">View Friends</a></p>
                                 @endif
-                                    <!-- crap, check with lin for the post method of this button -->
                                     @if($userprofile->user_profile_id !== Auth::user()->user_id)
                                         @if(\App\Http\Controllers\RelationshipController::getRelationship($userprofile->user_profile_id) != 'FRIEND')
                                             <button id="addFriend" class="btn btn-primary">Add as Friend</button>
@@ -71,7 +70,7 @@
                                                           });
                                                         });
                                               </script>
-                                            </div>
+
                                       @endif
                                       @if(\App\Http\Controllers\RelationshipController::getRelationship($userprofile->user_profile_id) === 'FRIEND')
                                         <button id="unfriend" class="btn btn-primary">Unfriend</button>
@@ -94,11 +93,35 @@
                                             });
                                           });
                                           </script>
-                                        </div>
-                                        @endif
-                                  @endif
-                                @endif
-                      </div>
+                                          @endif
+                                    @endif
+
+                                  </div>
+                    </div>
+                    <div class="form-group"  style="border-bottom:1px solid black">
+                        <h2>Comments</h2>
+                        <a href="/createComment/{{$userprofile->user_profile_id}}">Add a new Comment!</a>
+                    </div>
+                    @isset($user_comments)
+                    @foreach($user_comments as $user_comment)
+                    <div class="form-group row">
+                      <a href="/viewuserprofile/{{$user_comment->user_id}}">{{\App\Http\Controllers\UserController::getUserName($user_comment->user_id)}}:</a>
+                      <textarea readonly class="form-control" rows="5" id="comment">{{$user_comment->comment_string}}</textarea>
+                      @if(Auth::user()->user_id == $user_comment->user_id)
+                      <a href="/editComment/{{$user_comment->user_profile_comment_id}}">Edit Comment</a>
+
+                      <form method="POST" action="/deleteComment/{{$user_comment->user_profile_comment_id}}" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                      </form>
+
+                      @endif
+                    </div>
+                    @endforeach
+                    @endisset
+                    @endif
+
+
                 </div>
             </div>
 @endsection

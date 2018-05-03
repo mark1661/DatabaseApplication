@@ -5,15 +5,37 @@
 <h1>{{$movie->name}}</h1>
 <hr/>
 @if(Auth::check()==true)
+  <!-- Add to my list -->
+  <?php
+    $found=false;
+    if (Session::has('item')) {
+      $items = Session::get('item');
+      foreach ($items as $item) {
+        if ($item->id==$movie->id) {
+          $found=true;
+        }
+      }
+      if ($found==true) {
+        echo "<button><a>In my list!</a></button>";
+      }
+      else{
+        echo "<button><a href=\"/list/add/$movie->id\">Add to my list!</a></button>";
+      }
+    }
+    else {
+      echo "<button><a href=\"/list/add/$movie->id\">Add to my list!</a></button>";
+    }
+   ?>
+
   @if($movie->likes->isEmpty())
     <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
   @else
     @foreach($movie->likes as $like)
-    @if(($like->user_id)==Auth::user()->user_id)
-      <button id="unlike" class="btn btn-primary">Unlike</button>
+    @if(($like->user_id)!=Auth::user()->user_id)
+      <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
       @break
     @else
-      <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
+      <button id="unlike" class="btn btn-primary">Unlike</button>
     @endif
     @endforeach
   @endif
@@ -101,10 +123,15 @@ $(document).on('click','#unlike', function(){
   </table>
   @isset($reviews)
   @foreach($reviews as $review)
-
   <div class="form-group">
-    <label for="comment">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</label>
+    <a href="/viewuserprofile/{{$review->user_id}}">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</a>
     <textarea readonly class="form-control" rows="5" id="comment">{{$review->review_content}}</textarea>
+    @if(Auth::user()->user_id == $review->user_id)
+    <form method="POST" action="/deleteReview/{{$review->review_id}}" enctype="multipart/form-data">
+      {{ csrf_field() }}
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    @endif
   </div>
   @endforeach
   @endisset

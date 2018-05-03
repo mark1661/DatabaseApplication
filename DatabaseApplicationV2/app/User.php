@@ -36,7 +36,8 @@ class User extends Authenticatable
       return $this->hasOne('App\User_profile');
     }
 
-    public function user_relationship(){
+    public function user_relationship()
+    {
       return $this->hasMany('App\Relationship');
     }
 

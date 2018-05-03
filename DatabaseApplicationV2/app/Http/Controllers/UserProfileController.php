@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\User_profile;
+use App\user_profile_comment;
 use App\Relationship;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input as Input;
@@ -16,14 +17,14 @@ class UserProfileController extends Controller
   public function successRedirect($id){
     return redirect()->action(
       'UserProfileController@getUser', ['id' => $id]
-    )->with('success', 'Added Friend!');
+    )->with('success', 'Added!');
     //return redirect('/viewuserprofile/')->with('success', 'Added Friend!');
   }
 
   public function successDeleteRedirect($id){
     return redirect()->action(
       'UserProfileController@getUser', ['id' => $id]
-    )->with('success', 'Deleted Friend!');
+    )->with('success', 'Deleted!');
     //return redirect('/viewuserprofile/')->with('success', 'Added Friend!');
   }
 
@@ -31,14 +32,14 @@ class UserProfileController extends Controller
     $userprofile= User_profile::find($id);
     //$user = User::find($id);
     $name =  User::find($id)['username'];
+    //get comments belonging to that profile
+    $user_comments = user_profile_comment::where('user_profile_id', $userprofile->user_profile_id)->get();
     //works
-    return view('/UserProfile/viewuserprofile', compact('userprofile', 'name'));
+    return view('/UserProfile/viewuserprofile', compact('userprofile', 'name', 'user_comments'));
   }
 
   public function showeditUserProfile($id){
     $userprofile= User_profile::find($id);
-    //$user = User::find($id);
-    //$name =  User::find($id)['username'];
     //works
     return view('/UserProfile/edituserprofile', compact('userprofile'));
   }
