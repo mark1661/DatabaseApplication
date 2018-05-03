@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>MyMovieList</title>
@@ -10,23 +10,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>
   <body>
-    @include('layouts.navbar')
-    <main role="main">
-      <div class="container">
-        @if(Request::is('/'))
-        @include('layouts.showcase')
-        @endif
-        <div class="row">
-          <div class="col-md-8 col-lg-8">
-            @include('layouts.messages')
-            @yield('content')
-          </div>
-          <div class="col-md-4 col-lg-4">
-            @include('layouts.sidebar')
-          </div>
-        </div>
-      </div>
-    </main>
-    @include('layouts.footer')
+    <h1>INVALID LOG IN!!</h1>
+    <p>You must verify your email in order to operate as a user!</p>
+    <a href="/logout" class="btn btn-success">Click Here to Log Out and Return to the Home Page</a>
   </body>
 </html>

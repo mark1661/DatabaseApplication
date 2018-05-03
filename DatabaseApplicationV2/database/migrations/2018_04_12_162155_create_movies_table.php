@@ -16,7 +16,6 @@ class CreateMoviesTable extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('poster')->nullable();
-            $table->integer('actor_id');
             $table->integer('clip_id')->nullable();
             $table->integer('like')->nullable();
             $table->string('name', 55);

@@ -4,42 +4,6 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <h1>{{$movie->name}}</h1>
 <hr/>
-@if(Auth::check()==true)
-  <!-- Add to my list -->
-  <?php
-    $found=false;
-    if (Session::has('item')) {
-      $items = Session::get('item');
-      foreach ($items as $item) {
-        if ($item->id==$movie->id) {
-          $found=true;
-        }
-      }
-      if ($found==true) {
-        echo "<button><a>In my list!</a></button>";
-      }
-      else{
-        echo "<button><a href=\"/list/add/$movie->id\">Add to my list!</a></button>";
-      }
-    }
-    else {
-      echo "<button><a href=\"/list/add/$movie->id\">Add to my list!</a></button>";
-    }
-   ?>
-
-  @if($movie->likes->isEmpty())
-    <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
-  @else
-    @foreach($movie->likes as $like)
-    @if(($like->user_id)!=Auth::user()->user_id)
-      <button id="like" class="btn btn-primary">Like {{count($movie->likes)}}</button>
-      @break
-    @else
-      <button id="unlike" class="btn btn-primary">Unlike</button>
-    @endif
-    @endforeach
-  @endif
-@endif
 <script type="text/javascript">
 $(document).on('click','#like',function(){
   $.ajaxSetup({
@@ -52,7 +16,6 @@ $(document).on('click','#like',function(){
     success:function(result){
       $('#like').html('Unlike');
       $('#like').attr('id','unlike');
-      alert(result);
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.log(JSON.stringify(jqXHR));
@@ -71,7 +34,6 @@ $(document).on('click','#unlike', function(){
     success:function(result){
       $('#unlike').html('Like '+ {{count($movie->likes)}});
       $('#unlike').attr('id','like');
-      alert(result);
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.log(JSON.stringify(jqXHR));
@@ -82,7 +44,6 @@ $(document).on('click','#unlike', function(){
 </script>
 <br/>
 <div class="jumbotron">
-  <a href="/createReview/{{$movie->id}}">Add a new review!</a>
   <table class="table">
     <tbody>
       <tr>
@@ -141,9 +102,48 @@ $(document).on('click','#unlike', function(){
       <label for="upload">Upload movie clips:</label>
       <input type="file" class="form-control-file" name="clip" id="upload">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    @if(Auth::check()==true)
+      <!-- Add to my list -->
+      <?php
+        $found=false;
+        if (Session::has('item')) {
+          $items = Session::get('item');
+          foreach ($items as $item) {
+            if ($item->id==$movie->id) {
+              $found=true;
+            }
+          }
+          if ($found==true) {
+            echo "<a class='btn btn-warning disabled'>Movie is already in your list!</a>";
+          }
+          else{
+            echo "<a class='btn btn-primary' href=\"/list/add/$movie->id\">Add this movie to my list!</a>";
+          }
+        }
+        else {
+          echo "<a class='btn btn-primary' href=\"/list/add/$movie->id\">Add this movie to my list!</a>";
+        }
+       ?>
+
+      @if($movie->likes->isEmpty())
+        <button id="like" class="btn btn-success">Like {{count($movie->likes)}}</button>
+      @else
+        @foreach($movie->likes as $like)
+        @if(($like->user_id)!=Auth::user()->user_id)
+          <button id="like" class="btn btn-success">Like {{count($movie->likes)}}</button>
+          @break
+        @else
+          <button id="unlike" class="btn btn-danger">Unlike</button>
+        @endif
+        @endforeach
+      @endif
+    @endif
+    <br>
+    <br>
+    <a class="btn btn-info" href="/createReview/{{$movie->id}}">Add a new review!</a>
   </form>
   <hr/>
   <a class="btn btn-primary" href="/movies">< Back</a>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </div>
 @endsection

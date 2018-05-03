@@ -1,4 +1,4 @@
-@extends('layouts/master')
+@extends('layouts.master')
 @section('content')
 <table class="table">
   <thead class="thead-dark">

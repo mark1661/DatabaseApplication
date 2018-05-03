@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+@if(Auth::user()->status == 'ADMIN')
 <h1>Welcome to the Administrator Menu!</h1>
 <hr/>
 <div class="jumbotron" style="background-color: teal; color: white">
@@ -12,4 +13,11 @@
     <li style="margin-bottom: 10px"><a class="btn btn-warning">Recover a user's password</a></li>
   </ol>
 </div>
+@else
+<div class="jumbotron" style="background-color: red; color: white">
+<h1>You entered a prohibited section!</h1>
+<hr/>
+<a href="/" class="btn btn-warning">CLICK HERE TO GO BACK TO HOME!!</a>
+</div>
+@endif
 @endsection

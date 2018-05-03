@@ -34,10 +34,10 @@
               -->
               <a class="nav-link" href="/viewuserprofile/{{Auth::user()->user_id}}">Profile</a>
             </li>
+            @if(Auth::user()->status != 'ADMIN')
             <li>
               <a class="nav-link" href="/list/view">My Movie List</a>
             </li>
-            @if(Auth::user()->status != 'ADMIN')
             <li class="nav-item">
               <a class="nav-link" href="/support">Support</a>
             </li>
