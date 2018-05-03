@@ -64,7 +64,7 @@ Route::get('/admin/login','AdminController@Login');
 Route::get('/logout', 'HomeController@logout');
 
 //profile
-Route::get('/viewuserprofile/{id}', 'UserProfileController@getUser');
+Route::get('/viewuserprofile/{id}', 'UserProfileController@getUser')->middleware('profileCheck');
 Route::get('/user/{id}/viewuserprofile', 'UserProfileController@getUser');
 //shouldn't show on user profile, should be deleted when user is deleted anyhoo
 Route::get('/user/{id}/deleteuserprofile', 'UserController@Delete');
