@@ -47,13 +47,6 @@ class RelationshipController extends Controller
     where user_id in (
       select B.related_user_id from relationships B where B.status = ? AND B.relating_user_id = ?)',['FRIEND', $login_user_id]);
 
-      foreach ($userprofiles as $userprofile) {
-        foreach ($relationshipids as $relationship){}
-         $user->name;
-}
-
-
-
 
     return view('UserProfile/viewfriends', compact('userprofiles'));
   }
