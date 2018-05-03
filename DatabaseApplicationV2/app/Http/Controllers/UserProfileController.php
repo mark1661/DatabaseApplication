@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Input as Input;
 class UserProfileController extends Controller
 {
 
+  public function __construct(){
+    $this->middleware('profileCheck');
+  }
+
   public function successRedirect($id){
     return redirect()->action(
       'UserProfileController@getUser', ['id' => $id]

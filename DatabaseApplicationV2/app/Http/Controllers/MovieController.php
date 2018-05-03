@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Input as Input;
 
 class MovieController extends Controller
 {
+
+  public function __construct(){
+    $this->middleware('refuseNoAuth');
+  }
+
+
     public function index()
     {
       $movies = Movie::get();

@@ -91,6 +91,7 @@ $(document).on('click','#unlike', function(){
     <form method="POST" action="/deleteReview/{{$review->review_id}}" enctype="multipart/form-data">
       {{ csrf_field() }}
       <button type="submit" class="btn btn-danger">Delete</button>
+      <a href="/editReview/{{$review->review_id}}">Edit Review</a>
     </form>
     @endif
   </div>

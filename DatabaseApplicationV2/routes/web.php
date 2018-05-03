@@ -45,6 +45,11 @@ Route::get('/about', function () {
 
 Route::get('/support',  function () {
     return view('support');
+})->middleware('refuseNoAuth');
+
+
+Route::get('/error',  function () {
+    return view('error_page');
 });
 Route::post('/support/submit', 'SupportController@create');
 Route::get('/support/submitSuccessful', 'SupportController@createSuccess');
@@ -64,10 +69,10 @@ Route::get('/admin/login','AdminController@Login');
 Route::get('/logout', 'HomeController@logout');
 
 //profile
-Route::get('/viewuserprofile/{id}', 'UserProfileController@getUser')->middleware('profileCheck');
+Route::get('/viewuserprofile/{id}', 'UserProfileController@getUser');
 Route::get('/user/{id}/viewuserprofile', 'UserProfileController@getUser');
 //shouldn't show on user profile, should be deleted when user is deleted anyhoo
-Route::get('/user/{id}/deleteuserprofile', 'UserController@Delete');
+//Route::get('/user/{id}/deleteuserprofile', 'UserController@Delete');
 
 
 Route::post('/submit', 'TicketController@submit');
@@ -77,9 +82,13 @@ Route::get('/edituserprofile/{id}', 'UserProfileController@showeditUserProfile')
 Route::post('/submit/{id}', 'UserProfileController@edit');
 
 //review
-Route::get('/createReview/{id}', 'ReviewController@create');
+Route::get('/createReview/{id}', 'ReviewController@create')->middleware('refuseNoAuth');
 Route::post('/newreview/{id}', 'ReviewController@submit');
 Route::post('/deleteReview/{id}','ReviewController@delete');
+
+//edit reviews
+Route::get('/editReview/{id}', 'ReviewController@showeditReview');
+Route::post('/submitEditReview/{id}', 'ReviewController@edit');
 
 //search
 Route::post('search/results', 'SearchController@processSearch');
