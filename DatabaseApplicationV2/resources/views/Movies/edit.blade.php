@@ -85,7 +85,7 @@
     <label>Posters:</label>
     @if($movie->movie_poster)
       <ul>
-        <li><img class="card-img-top" width="100" height="100"src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></li>
+        <li><img class="card-img-top" width="300" height="400" src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></li>
       </ul>
     @endif
   </div>

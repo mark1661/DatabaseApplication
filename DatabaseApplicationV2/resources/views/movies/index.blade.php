@@ -14,7 +14,7 @@
     <tr>
       <td>
         @if($movie->movie_poster)
-        <img class="card-img-top" width="100" height="100"src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap">
+        <img class="card-img-top" style="width:200px;height:300px;" src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap">
       @endif</td>
       <td>{{$movie->name}}</td>
       <td>{{$movie->release_date}}</td>

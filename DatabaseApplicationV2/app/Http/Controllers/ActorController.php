@@ -9,12 +9,6 @@ use App\MovieAndActor;
 
 class ActorController extends Controller
 {
-    public function store(){
-      
-    }
-    public function delete($id){
-
-    }
     public function showActorsToAdd(){
       $addedActors=MovieAndActor::select('actor_id')->where('movie_id',$_GET['movie_id'])->get();
       $temp=array();
