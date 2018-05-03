@@ -18,14 +18,11 @@ public function add(Request $request, $id){
  }
  public function viewList(){
    $items=Session::get('item');
-   if(count($items) == 0)
-   {
-     return view('/movies/emptyMovieList');
+   if (isset($items)) {
+     if(count($items) != 0)
+       return view('/movies/movieList',compact('items'));
    }
-   else
-   {
-     return view('/movies/movieList',compact('items'));
-   }
+   return view('/movies/movieList');
  }
  public function delete($id){
    $items=Session::get('item');
