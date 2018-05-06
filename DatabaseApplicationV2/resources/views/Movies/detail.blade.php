@@ -77,25 +77,42 @@ $(document).on('click','#unlike', function(){
       <tr>
         <td style="background-color: navy; color: white">Movie Genre: </td>
         <td style="background-color: white" id="moviegenre">{{$movie->genre}}</td>
+      </tr>
+      <tr>
+        <td style="background-color: navy; color: white">Movie Trailer: </td>
+        <td style="background-color: white" id="moviereleasedate">
+            @if(isset($movie->movie_clip))
+              <video width="320" height="240" controls>
+              <source src="{{Storage::url($movie->movie_clip->path)}}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            @endif
+        </td>
+      </tr>
         @if(Auth::check()==true)
           @if(Auth::user()->status == 'ADMIN')
             <tr>
-              <td style="background-color: navy; color: white">Movie Clips: </td>
+              <td style="background-color: navy; color: white">Manage Movie Clips: </td>
               <td style="background-color: white" id="Movie_clip">
                 <ul>
                   @foreach($movie->movie_clips as $movie_clip)
-                    <li>{{ $movie_clip->file_name }}
-                    Belongs to: {{ $movie_clip->user->username }}
-                    <a href="/movies/setTrailer/{{$movie_clip->id}}">Set it to trailer</a>
-                    <a href="/movies/clip/{{$movie_clip->id}}">Delete</a>
-                  </li>
+                    <li>
+                      Belongs to: {{ $movie_clip->user->username }}
+                      <br>
+                      <video width="320" height="240" controls>
+                        <source src="{{Storage::url($movie->movie_clip->path)}}" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      <br>
+                      <a href="/movies/setTrailer/{{$movie_clip->id}}">Set it to trailer</a> |
+                      <a href="/movies/clip/{{$movie_clip->id}}">Delete</a>
+                    </li>
                   @endforeach
                 </ul>
               </td>
             </tr>
           @endif
         @endif
-      </tr>
     </tbody>
   </table>
   @if(isset($reviews))

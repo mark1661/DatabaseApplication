@@ -1,15 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 Route::get('/resetPassword/{token}', 'UserController@resetPassword');
 Route::post('/user/passwordSuccess/{id}', 'UserController@passwordSuccess');
@@ -95,14 +84,14 @@ Route::post('/unfriend','RelationshipController@deleteFriend');
 
 Auth::routes();
 
-//Routes for movies
-Route::get('/movies','MovieController@index');
 
 //For admin purposes to view/delete users
 Route::get('/users','UserController@index');
 Route::get('/users/delete/{id}','UserController@deleteConfirmation');
 Route::post('/delete/{id}','UserController@delete');
 
+//Routes for movies
+Route::get('/movies','MovieController@index');
 Route::get('/movies/create','MovieController@create');
 Route::post('/movies/store','MovieController@store');
 

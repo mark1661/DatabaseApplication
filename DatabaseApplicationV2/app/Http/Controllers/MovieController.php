@@ -11,6 +11,7 @@ use App\Movie_poster;
 use App\UserReview;
 use App\User;
 use App\MovieAndActor;
+use App\Movie_clip;
 use Illuminate\Support\Facades\Input as Input;
 
 class MovieController extends Controller
@@ -104,12 +105,17 @@ class MovieController extends Controller
     }
 
     public function delete($id){
-      $movie= Movie::find($id);
+      $movie= Movie::find($id)->first();
       $posters=Movie_poster::where('movie_id', $id)->get();
       foreach($posters as $poster){
         Storage::delete('public/images/' . $poster->file_name);
       }
+      $clips=Movie_clip::where('movie_id', $id)->get();
+      foreach($clips as $clip){
+        Storage::delete('public/clips/' . $clip->file_name);
+      }
       $deletedPosters=Movie_poster::where('movie_id',$id)->delete();
+      $deletedClips=Movie_clip::where('movie_id',$id)->delete();
       $movie->delete();
       return redirect('/movies');
     }

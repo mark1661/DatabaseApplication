@@ -36,6 +36,6 @@ class ReviewController extends Controller
     $review->save();
 
     // Redirect
-    return redirect('/movies');
+    return redirect()->action('MovieController@detail',['id'=>$id]);
   }
 }
