@@ -36,7 +36,6 @@ class MovieController extends Controller
       $movie->name=request('name');
       $movie->overview=request('overview');
       $movie->poster=request('poster');
-      $movie->actor_id=request('actor');
       $movie->clip_id=request('clip');
       $movie->release_date=request('release_date');
       $movie->genre=request('genre');

@@ -2,8 +2,13 @@
 @section('content')
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
+@if($movie->movie_poster != null)
+<h1 style="color: white">{{$movie->name}}</h1>
+@else
 <h1>{{$movie->name}}</h1>
+@endif
 <hr/>
+@if(Auth::check() == true)
 <script type="text/javascript">
 $(document).on('click','#like',function(){
   $.ajaxSetup({
@@ -42,17 +47,28 @@ $(document).on('click','#unlike', function(){
   });
 });
 </script>
+@endif
 <br/>
 <div class="jumbotron">
-  <table class="table">
+  <table class="table" onload="">
     <tbody>
       <tr>
-        <td style="background-color: navy; color: white">Movie poster: </td>
-        <td style="background-color: white" id="movieposter">{{$movie->poster}}</td>
+        <td style="background-color: navy; color: white; width: 15%; height: auto">Movie poster: </td>
+        @if($movie->movie_poster != null)
+        <td style="background-color: white; width: 30%; height: auto" id="movieposter"><img class="card-img-top" id="imgElement" src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></td>
+        @else
+        <td style="background-color: white; width: 30%; height: auto" id="movieposter"><img class="card-img-top" id="imgElement" src="https://vignette.wikia.nocookie.net/pandorahearts/images/a/ad/Not_available.jpg/revision/latest?cb=20141028171337" alt="Card image cap"></td>
+        @endif
       </tr>
       <tr>
         <td style="background-color: navy; color: white">Movie Plot: </td>
         <td style="background-color: white" id="movieoverview">{{$movie->overview}}</td>
+      </tr>
+      <tr>
+        <td style="background-color: navy; color: white">Movie Actors: </td>
+        <td style="background-color: white">
+            {{\App\Http\Controllers\ActorController::getActorName($movie->id)}}
+        </td>
       </tr>
       <tr>
         <td style="background-color: navy; color: white">Movie release date: </td>
@@ -82,21 +98,29 @@ $(document).on('click','#unlike', function(){
       </tr>
     </tbody>
   </table>
-  @isset($reviews)
+  @if(isset($reviews))
   @foreach($reviews as $review)
-
   <div class="form-group">
     <label for="comment">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</label>
     <textarea readonly class="form-control" rows="5" id="comment">{{$review->review_content}}</textarea>
   </div>
+  @if(Auth::check() == true)
+  <a class="btn btn-info" href="/createReview/{{$movie->id}}">Add a new review!</a>
+  @endif
   @endforeach
-  @endisset
-  <form method="POST" action="/movies/detail/{{$movie->id}}" enctype="multipart/form-data">
+  @endif
     {{ csrf_field() }}
+    @if(Auth::check() == true)
+    <hr/>
+    <form method="POST" action="/movies/detail/{{$movie->id}}" enctype="multipart/form-data">
     <div class="form-group">
       <label for="upload">Upload movie clips:</label>
       <input type="file" class="form-control-file" name="clip" id="upload">
+      <button type="submit" class="btn btn-primary" style="margin-top: 5px; margin-left: 580px">Submit</button>
     </div>
+    </form>
+    <hr/>
+    @endif
     @if(Auth::check()==true)
       <!-- Add to my list -->
       <?php
@@ -133,12 +157,13 @@ $(document).on('click','#unlike', function(){
         @endforeach
       @endif
     @endif
-    <br>
-    <br>
-    <a class="btn btn-info" href="/createReview/{{$movie->id}}">Add a new review!</a>
-  </form>
   <hr/>
   <a class="btn btn-primary" href="/movies">< Back</a>
-  <button type="submit" class="btn btn-primary">Submit</button>
 </div>
+<script>
+var srcOfPoster = document.getElementById("imgElement").src;
+document.getElementById("container").style.backgroundImage = "url(\"" + srcOfPoster + "\")";
+document.getElementById("container").style.backgroundRepeat = "no-repeat";
+document.getElementById("container").style.backgroundSize = "cover";
+</script>
 @endsection

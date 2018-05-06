@@ -10,23 +10,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>
   <body>
-    @include('layouts.navbar')
-    <main role="main">
-      <div class="container">
-        @if(Request::is('/'))
-        @include('layouts.showcase')
-        @endif
-        <div class="row">
-          <div class="col-md-8 col-lg-8">
-            @include('layouts.messages')
-            @yield('content')
-          </div>
-          <div class="col-md-4 col-lg-4">
-            @include('layouts.sidebar')
+  <div id="container">
+      @include('layouts.navbar')
+      <main role="main">
+        <div class="container">
+          @if(Request::is('/'))
+          @include('layouts.showcase')
+          @endif
+          <div class="row">
+            <div class="col-md-8 col-lg-8">
+              @include('layouts.messages')
+              @yield('content')
+            </div>
+            <div class="col-md-4 col-lg-4">
+              @include('layouts.sidebar')
+            </div>
           </div>
         </div>
-      </div>
-    </main>
-    @include('layouts.footer')
-  </body>
+      </main>
+      @include('layouts.footer')
+    </body>
+  </div>
 </html>

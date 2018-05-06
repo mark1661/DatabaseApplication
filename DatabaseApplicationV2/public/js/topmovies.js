@@ -75,6 +75,7 @@ function GetViaAjax()
     htmlElement += "<b style='color: white'>Average Vote: </b>" + "<p style='color: white' id='averageVote'>" + resultsArray_20172018[0].vote_average + "</p>"
     htmlElement += "<b style='color: white'>Movie Title: </b>" + "<p style='color: white' id='movieTitle'>" + resultsArray_20172018[0].title + "</p>" + "</div>";
 
+    document.getElementById("container").style.backgroundImage ="url(\"" + imgBaseUrl + backgroundImageUrl + "\")";
     document.getElementById("jumbotronBackGround").style.backgroundImage = "url(\"" + imgBaseUrl + backgroundImageUrl + "\")";
     document.getElementById("jumbotronBackGround").style.backgroundSize = "cover";
     document.getElementById("showResults").innerHTML = htmlElement;
@@ -115,9 +116,11 @@ function changeJumbotron()
   var releaseDateElement = document.getElementById("releaseDate");
   var averageVoteElement = document.getElementById("averageVote");
   var movieTitleElement = document.getElementById("movieTitle");
+  var container = document.getElementById("container");
 
   imgElement.src = imgBaseUrl + resultsArray_20172018[resultsArrayCounterForNav_20172018].poster_path;
   backgroundImageElement.style.backgroundImage = "url(\"" + imgBaseUrl + resultsArray_20172018[resultsArrayCounterForNav_20172018].backdrop_path + "\")";
+  container.style.backgroundImage = "url(\"" + imgBaseUrl + resultsArray_20172018[resultsArrayCounterForNav_20172018].backdrop_path + "\")";
   releaseDateElement.innerHTML = resultsArray_20172018[resultsArrayCounterForNav_20172018].release_date;
   averageVoteElement.innerHTML = resultsArray_20172018[resultsArrayCounterForNav_20172018].vote_average;
   movieTitleElement.innerHTML = resultsArray_20172018[resultsArrayCounterForNav_20172018].title;

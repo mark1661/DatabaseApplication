@@ -11,7 +11,8 @@
 |
 */
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
-
+Route::get('/resetPassword/{token}', 'UserController@resetPassword');
+Route::post('/user/passwordSuccess/{id}', 'UserController@passwordSuccess');
 Route::get('/', function ()
 {
   $user = Auth::user();
@@ -59,14 +60,15 @@ Route::get('/admin/addmovie', 'AdminController@addmovie');
 Route::get('/admin/index','AdminController@index');
 Route::get('/admin/actor', 'AdminController@createactor');
 Route::get('/admin/login','AdminController@Login');
+Route::get('/admin/listOfUsers', 'AdminController@showListOfUsers');
+Route::get('/admin/sendEmail/{id}', 'AdminController@sendEmail');
 //Route::get('/logout', 'LoginController@logout');
 
 Route::get('/logout', 'HomeController@logout');
 
 Route::get('/viewuserprofile/{id}', 'UserProfileController@getUser');
 Route::get('/user/{id}/viewuserprofile', 'UserProfileController@getUser');
-//shouldn't show on user profile, should be deleted when user is deleted anyhoo
-Route::get('/user/{id}/deleteuserprofile', 'UserController@Delete');
+Route::get('/user/{id}/deleteuserprofile', 'UserController@deleteConfirmation');
 
 Route::get('/user/{id}/viewfriends', 'UserController@ViewFriends');
 Route::get('/user/{id}/deletefriend', 'UserController@DeleteFriend');
@@ -128,3 +130,10 @@ Route::get('/list/delete/{id}','MovieListController@delete');
 //Actor
 Route::get('/add/actors','ActorController@showActorsToAdd');
 Route::get('/delete/actors','ActorController@showActorsToDelete');
+Route::get('/actor/create', 'ActorController@create');
+Route::post('/actor/store', 'ActorController@store');
+Route::get('/actor/index', 'ActorController@index');
+Route::get('/actor/edit/{id}','ActorController@edit');
+Route::post('/actor/update/{id}', 'ActorController@update');
+Route::get('/actor/delete/{id}', 'ActorController@delete');
+Route::get('/actor/remove/{id}', 'ActorController@remove');

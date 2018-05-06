@@ -81,11 +81,11 @@
     <label for="overview">Overview</label>
     <textarea class="form-control" id="overview" rows="3" name="overview">{{$movie->overview}}</textarea>
   </div>
-  <div class="form-group">
+  <div>
     <label>Posters:</label>
     @if($movie->movie_poster)
       <ul>
-        <li><img class="card-img-top" width="100" height="100"src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></li>
+        <li><img class="card-img-top" width="10" height="500"src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></li>
       </ul>
     @endif
   </div>

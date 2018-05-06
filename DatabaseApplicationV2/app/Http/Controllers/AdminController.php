@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Jobs\SendPasswordResetEmail;
 
 class AdminController extends Controller
 {
@@ -26,4 +28,18 @@ class AdminController extends Controller
   {
     app('App\Http\Controllers\MovieController')->store();
   }
+
+  public function showListOfUsers()
+  {
+    $users = User::get();
+    return view('admin/listOfUsers', compact('users'));
+  }
+
+  public function sendEmail($id)
+  {
+    $user = User::find($id);
+    dispatch(new SendPasswordResetEmail($user));
+    return view('admin/emailSent');
+  }
+
 }

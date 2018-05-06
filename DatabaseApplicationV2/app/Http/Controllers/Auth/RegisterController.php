@@ -6,6 +6,7 @@ use App\User;
 use App\User_profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -88,7 +89,7 @@ class RegisterController extends Controller
         $user = User::create([
             'username' => $data['username'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => Hash::make($data['password']),
             'email_token' => base64_encode($data['email'])
         ]);
 

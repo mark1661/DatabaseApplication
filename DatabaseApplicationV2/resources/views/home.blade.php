@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
   <script src="/js/topmovies.js" type="text/javascript"></script>
-  <section class="jumbotron text-center" id="jumbotronBackGround" style="min-height: 700px">
+  <section class="jumbotron text-center" id="jumbotronBackGround" style="min-height: 700px; border: 3px solid white">
     <div class="container" style="width: 800px">
       <h1 class="jumbotron-heading" style="color: white; margin-right: 100px">Top Movies of 2017-2018</h1>
       <hr/>

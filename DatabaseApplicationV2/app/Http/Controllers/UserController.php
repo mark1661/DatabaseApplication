@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\User_profile;
+use Session;
+use Auth;
 
 class UserController extends Controller
 {
@@ -20,16 +24,45 @@ class UserController extends Controller
   }
 
   public function delete($id){
+
     $user= User::find($id);
-    $user->delete();
-    return redirect('/users');
+    $userProfile=User_profile::find($id);
+    $enteredPassword = request('userpassword');
+    if(Hash::check($enteredPassword, $user->password))
+    {
+      $user->delete();
+      $userProfile->delete();
+      Session::flush();
+      Auth::logout();
+      return redirect('/');
+    }
+    else
+    {
+      return view('Users/invalidDelete', compact('user'));
+    }
+
+    //$user->delete();
+    //return redirect('/users');
   }
 
   public function deleteConfirmation($id){
     $user= User::find($id);
-    return view('/Users/delete', compact('user'));
+    $userProfile = User_profile::find($id);
+    return view('/Users/delete', compact('user'), compact('userProfile'));
   }
 
+  public function resetPassword($token)
+  {
+    $user = User::where('email_token', $token)->first();
+    return view('Users/emailReceived', compact('user'));
+  }
 
+  public function passwordSuccess($id)
+  {
+    $user = User::find($id);
+    $user->password = Hash::make(request('userpassword'));
+    $user->save();
+    return redirect('/');
+  }
 
 }

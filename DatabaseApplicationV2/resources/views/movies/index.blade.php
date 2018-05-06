@@ -12,10 +12,13 @@
   <tbody>
     @foreach($movies as $movie)
     <tr>
-      <td>
-        @if($movie->movie_poster)
-        <img class="card-img-top" width="100" height="100"src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap">
-      @endif</td>
+      <td style="width: 20%; height: auto">
+        @if($movie->movie_poster != null)
+        <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap">
+        @else
+        <img class="card-img-top" style="width: 100%; height: auto" src="https://vignette.wikia.nocookie.net/pandorahearts/images/a/ad/Not_available.jpg/revision/latest?cb=20141028171337" alt="Card image cap">
+        @endif
+    </td>
       <td>{{$movie->name}}</td>
       <td>{{$movie->release_date}}</td>
       <td><a href="/movies/detail/{{$movie->id}}" class="btn btn-primary">View</a></td>
