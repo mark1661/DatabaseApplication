@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Illuminate\Support\Facades\Auth;
 class RedirectIfNotAdmin
 {
     /**
@@ -15,6 +15,17 @@ class RedirectIfNotAdmin
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+      if (Auth::check()) {
+        if (is_null(Auth::user()->status)) {
+          return redirect('/error');
+        }
+        if (Auth::user()->status !== 'ADMIN') {
+          return redirect('/error');
+        }
+        else {
+          return $next($request);
+        }
+      }
+      return redirect('/error');
     }
 }

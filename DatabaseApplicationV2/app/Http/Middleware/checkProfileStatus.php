@@ -21,28 +21,42 @@ class checkProfileStatus
       $userprofile = User_profile::find($id);
 
       $privacy = $userprofile->profile_privacy;
+      //echo $privacy;
+      $bool = $privacy === 'Friends';
 
-      if (Auth::user()->user_id === $userprofile->user_profile_id) {
-        return $next($request);
-      }
+      if (Auth::check()) {
 
-      if ($privacy === 'Only Me' && Auth::user()->user_id === $userprofile->user_profile_id) {
+        if (Auth::user()->user_id === $userprofile->user_profile_id) {
+          return $next($request);
+        }
+
+        if ($privacy === 'Only Me' && Auth::user()->user_id === $userprofile->user_profile_id) {
+          echo 'wat';
+          return $next($request);
+        }
+        elseif ($privacy === 'Only Me' && Auth::user()->user_id !== $userprofile->user_profile_id) {
+          return redirect('/error');
+        }
+
+        if ($privacy === 'Friends'){
+          echo $privacy == 'Friends';
+          $friend = app('App\Http\Controllers\RelationshipController')->getRelationship($id);
+          if ($friend === 'FRIEND') {
+            return $next($request);
+          }
+          else {
+            return redirect('/error');
+          }
+        }
+        echo 'uhh';
         return $next($request);
-      }
-      elseif ($privacy === 'Only Me' && Auth::user()->user_id !== $userprofile->user_profile_id) {
+      }elseif (!Auth::check() AND $privacy === 'public') {
+        return $next($request);
+      }else {
         return redirect('/error');
       }
 
-      if ($privacy === 'Friends'){
-        $friend = app('App\Http\Controllers\RelationshipController')->getRelationship($id);
-        if ($friend === 'FRIEND') {
-          return $next($request);
-        }
-        else {
-          return redirect('/error');
-        }
-      }
-        return $next($request);
+
     }
 
   }

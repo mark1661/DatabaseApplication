@@ -11,6 +11,7 @@ use App\User;
 use App\User_profile;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class RelationshipController extends Controller
 {
@@ -24,14 +25,16 @@ class RelationshipController extends Controller
         ['status', '=', 'FRIEND'],
     ])->first();
 
+    //$statusF;
+
     if (empty($relationship->status)) {
-      $statusF = null;
+      return redirect('/error');
     }
     else {
-      $statusF = $relationship->status;
+      //$statusF = $relationship->status;
     }
-
-    return $statusF;
+    //echo $relationship->status;
+    return $relationship->status;
   }
 
 
