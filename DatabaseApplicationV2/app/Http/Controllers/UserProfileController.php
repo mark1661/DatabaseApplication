@@ -35,8 +35,10 @@ class UserProfileController extends Controller
     return view('/UserProfile/viewuserprofile', compact('userprofile', 'name'));
   }
 
-  public function showeditUserProfile($id){
+  public function showeditUserProfile($id)
+  {
     $userprofile= User_profile::find($id);
+
     //works
     return view('/UserProfile/edituserprofile', compact('userprofile'));
   }
@@ -58,6 +60,7 @@ class UserProfileController extends Controller
       $file_name =request()->file('image')->hashName();
       $userprofile->file_path=$path;
       $userprofile->file_name=$file_name;
+
       $userprofile->save();
     }
 

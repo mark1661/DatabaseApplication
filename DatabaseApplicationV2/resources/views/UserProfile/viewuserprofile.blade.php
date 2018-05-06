@@ -12,12 +12,12 @@
                           @if(empty($userprofile->file_path))
                           <img src="http://selectoinc.com/images/image_not_available.png" alt="stack photo" class="img" height="150" width="120">
                           @else
-                          <img src='{{ Storage::url($userprofile->file_path) }}' alt="profile pic" class="img" height="150" width="150">
+                          <img src='{{ Storage::url($userprofile->file_path)}}' alt="profile pic" class="img" style="width: 100%; height: auto">
                           @endif
                         </div>
                       </div>
                       <div class="col-md-9 col-xs-12 col-sm-6 col-lg-9">
-                          <div class="" style="border-bottom: 1px solid black">
+                          <div style="border-bottom: 1px solid black">
                             <h2 id="username">{{$name}}</h2>
                           </div>
                             <hr>

@@ -121,10 +121,10 @@ $(document).on('click','#unlike', function(){
     <label for="comment">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</label>
     <textarea readonly class="form-control" rows="5" id="comment">{{$review->review_content}}</textarea>
   </div>
+  @endforeach
+  @endif
   @if(Auth::check() == true)
   <a class="btn btn-info" href="/createReview/{{$movie->id}}">Add a new review!</a>
-  @endif
-  @endforeach
   @endif
     {{ csrf_field() }}
     @if(Auth::check() == true)
