@@ -20,6 +20,12 @@ class ActorController extends Controller
       return view('actor/index', compact('actors'));
     }
 
+    public function view($id)
+    {
+      $actor = Actor::find($id);
+      return view('actor/details', compact('actor'));
+    }
+
     public static function getActorName($movieId)
     {
       $actorName = "";

@@ -164,6 +164,7 @@ Route::get('/delete/actors','ActorController@showActorsToDelete');
 Route::get('/actor/create', 'ActorController@create');
 Route::post('/actor/store', 'ActorController@store');
 Route::get('/actor/index', 'ActorController@index');
+Route::get('/actor/view/{id}', 'ActorController@view');
 Route::get('/actor/edit/{id}','ActorController@edit');
 Route::post('/actor/update/{id}', 'ActorController@update');
 Route::get('/actor/delete/{id}', 'ActorController@delete');
