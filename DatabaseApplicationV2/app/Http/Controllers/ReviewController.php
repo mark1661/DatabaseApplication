@@ -57,8 +57,6 @@ class ReviewController extends Controller
     $date = date('Y-m-d H:i:s');
     $review->review_content = $request->input('review_content');
     $review->date = $date;
-    $review->score = request('scores');
-
     // Save Messages
     $review->save();
 
