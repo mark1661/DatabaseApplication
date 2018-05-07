@@ -130,6 +130,7 @@ $(document).on('click','#unlike', function(){
     @if(Auth::check() == true)
     <hr/>
     <form method="POST" action="/movies/detail/{{$movie->id}}" enctype="multipart/form-data">
+      {{ csrf_field() }}
     <div class="form-group">
       <label for="upload">Upload movie clips:</label>
       <input type="file" class="form-control-file" name="clip" id="upload">
