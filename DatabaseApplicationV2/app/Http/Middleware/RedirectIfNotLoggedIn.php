@@ -22,7 +22,7 @@ class RedirectIfNotLoggedIn
         return $next($request);
       }
       else {
-        return redirect('/error');
+        return redirect('/error/ProhibitedURL');
       }
   }
 }

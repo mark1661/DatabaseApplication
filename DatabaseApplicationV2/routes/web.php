@@ -38,8 +38,25 @@ Route::get('/support',  function () {
 })->middleware('refuseNoAuth');
 
 
-Route::get('/error',  function () {
+Route::get('/error',  function ()
+{
     return view('error_page');
+});
+
+Route::get('/error/ProhibitedURL', function()
+{
+  return view('errorProhibitedURL');
+});
+
+
+Route::get('/user/privateProfile', function()
+{
+    return view('privateProfilePage');
+});
+
+Route::get('/user/friendsOnlyProfile', function()
+{
+    return view('friendsOnlyProfilePage');
 });
 Route::post('/support/submit', 'SupportController@create');
 Route::get('/support/submitSuccessful', 'SupportController@createSuccess');

@@ -17,15 +17,15 @@ class RedirectIfNotAdmin
     {
       if (Auth::check()) {
         if (is_null(Auth::user()->status)) {
-          return redirect('/error');
+          return redirect('/error/ProhibitedURL');
         }
         if (Auth::user()->status !== 'ADMIN') {
-          return redirect('/error');
+          return redirect('/error/ProhibitedURL');
         }
         else {
           return $next($request);
         }
       }
-      return redirect('/error');
+      return redirect('/error/ProhibitedURL');
     }
 }

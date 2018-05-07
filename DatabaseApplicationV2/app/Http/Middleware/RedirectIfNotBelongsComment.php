@@ -23,7 +23,7 @@ class RedirectIfNotBelongsComment
 
 
       if (Auth::user()->user_id !== $comment->user_id) {
-        return redirect('/error');
+        return redirect('/error/ProhibitedURL');
       }
       else {
         return $next($request);

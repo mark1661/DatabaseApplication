@@ -31,29 +31,28 @@ class checkProfileStatus
         }
 
         if ($privacy === 'Only Me' && Auth::user()->user_id === $userprofile->user_profile_id) {
-          echo 'wat';
           return $next($request);
         }
         elseif ($privacy === 'Only Me' && Auth::user()->user_id !== $userprofile->user_profile_id) {
-          return redirect('/error');
+          return redirect('/user/privateProfile');
         }
 
         if ($privacy === 'Friends'){
-          echo $privacy == 'Friends';
           $friend = app('App\Http\Controllers\RelationshipController')->getRelationship($id);
           if ($friend === 'FRIEND') {
             return $next($request);
           }
           else {
-            return redirect('/error');
+            return redirect('/user/friendsOnlyProfile');
           }
         }
-        //echo 'uhh';
         return $next($request);
-      }elseif (!Auth::check() AND $privacy === 'public') {
+      }
+      elseif (!Auth::check() AND $privacy === 'public')
+      {
         return $next($request);
       }else {
-        return redirect('/error');
+        return redirect('/user/privateProfile');
       }
 
 

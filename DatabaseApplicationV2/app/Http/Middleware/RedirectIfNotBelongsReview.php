@@ -23,7 +23,7 @@ class RedirectIfNotBelongsReview
 
 
       if (Auth::user()->user_id !== $review->user_id) {
-        return redirect('/error');
+        return redirect('/error/ProhibitedURL');
       }
       else {
         return $next($request);
