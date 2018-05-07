@@ -27,8 +27,9 @@ class CreateUserProfilesTable extends Migration
             $table->string('file_path', 155)->nullable();
             $table->string('file_description')->nullable();
 
-//if a user is deleted, it's associated profile should be deleted too.
-// no sense in deleting a profile that still has a user.
+            //if a user is deleted, it's associated profile should be deleted too.
+            // no sense in deleting a profile that still has a user.
+
             $table->foreign('user_profile_id')
                   ->references('user_id')->on('users')
                   ->onDelete('cascade');
