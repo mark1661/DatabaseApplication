@@ -48,7 +48,7 @@ class checkProfileStatus
             return redirect('/error');
           }
         }
-        echo 'uhh';
+        //echo 'uhh';
         return $next($request);
       }elseif (!Auth::check() AND $privacy === 'public') {
         return $next($request);
