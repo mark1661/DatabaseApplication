@@ -55,9 +55,9 @@ $(document).on('click','#unlike', function(){
       <tr>
         <td style="background-color: navy; color: white; width: 15%; height: auto">Movie poster: </td>
         @if($movie->movie_poster != null)
-        <td style="background-color: white; width: 30%; height: auto" id="movieposter"><img class="card-img-top" id="imgElement" src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></td>
+        <td style="background-color: white; width: 20%; height: auto" id="movieposter"><img class="card-img-top" id="imgElement" src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></td>
         @else
-        <td style="background-color: white; width: 30%; height: auto" id="movieposter"><img class="card-img-top" id="imgElement" src="https://vignette.wikia.nocookie.net/pandorahearts/images/a/ad/Not_available.jpg/revision/latest?cb=20141028171337" alt="Card image cap"></td>
+        <td style="background-color: white; width: 20%; height: auto" id="movieposter"><img class="card-img-top" id="imgElement" src="https://vignette.wikia.nocookie.net/pandorahearts/images/a/ad/Not_available.jpg/revision/latest?cb=20141028171337" alt="Card image cap"></td>
         @endif
       </tr>
       <tr>
@@ -82,7 +82,7 @@ $(document).on('click','#unlike', function(){
         <td style="background-color: navy; color: white">Movie Trailer: </td>
         <td style="background-color: white" id="moviereleasedate">
             @if(isset($movie->movie_clip))
-              <video width="320" height="240" controls>
+              <video width="200" height="200" controls autoplay>
               <source src="{{Storage::url($movie->movie_clip->path)}}" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
