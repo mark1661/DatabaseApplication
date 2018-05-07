@@ -10,11 +10,36 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
-
-
   public function create($id){
     $movie = Movie::find($id);
-    return view('Review/review', compact('movie'));
+    $review = UserReview::find($id);
+    return view('Review/review', compact('movie'), compact('review'));
+  }
+
+  public function delete($id){
+    $review = UserReview::find($id);
+    $review->delete();
+    return redirect('/movies');
+  }
+
+  public function showeditReview($id){
+    $review = UserReview::find($id);
+    //works
+    return view('Review/edit_review', compact('review'));
+  }
+
+  public function edit(Request $request, $id)
+  {
+    $this->validate($request, [
+      'review_content' => 'required',
+    ]);
+
+    $review = UserReview::find($id);
+    $review->review_content=request('review_content');
+    $review->save();
+
+    return redirect('/movies');//->action(
+          //'UserProfileController@getUser', ['id' => $comment->user_profile_id]);
   }
 
   public function submit(Request $request, $id)
