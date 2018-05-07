@@ -127,7 +127,6 @@ $(document).on('click','#unlike', function(){
   <a class="btn btn-info" href="/createReview/{{$movie->id}}">Add a new review!</a>
   @endif
     {{ csrf_field() }}
-=======
     @if(Auth::check() == true)
     <hr/>
     <form method="POST" action="/movies/detail/{{$movie->id}}" enctype="multipart/form-data">
