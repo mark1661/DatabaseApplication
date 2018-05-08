@@ -33,13 +33,8 @@ Route::get('/about', function () {
     return view('./about');
 });
 
-Route::get('/support',  function () {
+Route::get('/support', function () {
     return view('support');
-})->middleware('refuseNoAuth');
-
-
-Route::get('/error',  function () {
-    return view('error_page');
 });
 Route::post('/support/submit', 'SupportController@create');
 Route::get('/support/submitSuccessful', 'SupportController@createSuccess');
@@ -60,79 +55,59 @@ Route::get('/admin/sendEmail/{id}', 'AdminController@sendEmail');
 
 Route::get('/logout', 'HomeController@logout');
 
-//profile
 Route::get('/viewuserprofile/{id}', 'UserProfileController@getUser');
 Route::get('/user/{id}/viewuserprofile', 'UserProfileController@getUser');
 Route::get('/user/{id}/deleteuserprofile', 'UserController@deleteConfirmation');
 
+Route::get('/user/{id}/viewfriends', 'UserController@ViewFriends');
+Route::get('/user/{id}/deletefriend', 'UserController@DeleteFriend');
 
 Route::post('/submit', 'TicketController@submit');
 
 //edit user profile
-Route::get('/edituserprofile/{id}', 'UserProfileController@showeditUserProfile')->middleware('checkIfActualUser');
+Route::get('/edituserprofile/{id}', 'UserProfileController@showeditUserProfile');
 Route::post('/submit/{id}', 'UserProfileController@edit');
 
 //review
-Route::get('/createReview/{id}', 'ReviewController@create')->middleware('refuseNoAuth');
+Route::get('/createReview/{id}', 'ReviewController@create');
 Route::post('/newreview/{id}', 'ReviewController@submit');
-Route::post('/deleteReview/{id}','ReviewController@delete');
-
-//edit reviews
-Route::get('/editReview/{id}', 'ReviewController@showeditReview')->middleware('redirectNotLoggedIn', 'RedirectIfNotBelongsReview');
-Route::post('/submitEditReview/{id}', 'ReviewController@edit');
 
 //search
 Route::post('search/results', 'SearchController@processSearch');
 //Route::get('', '');
 
 //friends
-Route::get('/getFriends', 'RelationshipController@getFriends')->middleware('redirectNotLoggedIn');
+Route::get('/getFriends', 'RelationshipController@getFriends');
 Route::post('/addFriend','RelationshipController@addFriend');
 Route::post('/unfriend','RelationshipController@deleteFriend');
-Route::get('/deleteFromList/{id}', 'RelationshipController@deleteFromList');
-Route::get('/user/{id}/viewfriends', 'UserController@ViewFriends');
-Route::get('/user/{id}/deletefriend', 'UserController@DeleteFriend');
 //Route::post('/contact/submit', 'MessagesController@submit');
 
 Auth::routes();
 
 
-//komments
-Route::get('/createComment/{id}', 'CommentController@create')->middleware('redirectNotLoggedIn');
-Route::post('/newComment/{id}', 'CommentController@submit');
-Route::post('/deleteComment/{id}','CommentController@delete');
-
-
-//edit user komment
-Route::get('/editComment/{id}', 'CommentController@showeditComment')->middleware('redirectNotLoggedIn', 'RedirectIfNotBelongsComment');
-Route::post('/submitComment/{id}', 'CommentController@edit');
-
-//Routes for movies
-Route::get('/movies','MovieController@index');
-
 //For admin purposes to view/delete users
-Route::get('/users','UserController@index')->middleware('RedirectIfNotAdmin');
-Route::get('/users/delete/{id}','UserController@deleteConfirmation')->middleware('RedirectIfNotAdmin');
+Route::get('/users','UserController@index');
+Route::get('/users/delete/{id}','UserController@deleteConfirmation');
 Route::post('/delete/{id}','UserController@delete');
 
 //Routes for movies
 Route::get('/movies','MovieController@index');
-Route::get('/movies/create','MovieController@create')->middleware('RedirectIfNotAdmin');
+Route::get('/movies/create','MovieController@create');
 Route::post('/movies/store','MovieController@store');
 
 Route::get('/movies/detail/{id}','MovieController@detail')->  name('movie_detail');
 Route::post('/movies/detail/{id}','MovieClipController@store');
 
-Route::get('/movies/show/{id}','MovieController@show')->middleware('RedirectIfNotAdmin');
+Route::get('/movies/show/{id}','MovieController@show');
 Route::post('/movies/edit/{id}','MovieController@edit');
 
-Route::get('/movies/delete/{id}','MovieController@deleteConfirmation')->middleware('RedirectIfNotAdmin');
+Route::get('/movies/delete/{id}','MovieController@deleteConfirmation');
 Route::post('/movies/delete/{id}','MovieController@delete');
 
 Route::get('/movies/clip/{id}','MovieClipController@show');
 Route::post('/movies/clip/{id}','MovieClipController@delete');
 
-Route::get('/movies/setTrailer/{id}','MovieClipController@setToTrailer')->middleware('RedirectIfNotAdmin');
+Route::get('/movies/setTrailer/{id}','MovieClipController@setToTrailer');
 //User like
 Route::post('/like','UserLikeController@like');
 Route::post('/unlike','UserLikeController@unlike');

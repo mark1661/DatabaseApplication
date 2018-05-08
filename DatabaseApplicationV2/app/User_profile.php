@@ -22,10 +22,6 @@ class User_profile extends Model
       return $this->hasMany('App\Relationship');
     }
 
-    public function user_profile_comment_relationship(){
-      return $this->hasMany('App\User_profile');
-    }
-
 
     /**
      * The attributes that are mass assignable.

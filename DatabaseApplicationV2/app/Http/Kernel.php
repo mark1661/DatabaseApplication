@@ -56,12 +56,5 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'profileCheck' => \App\Http\Middleware\checkProfileStatus::class,
-        'refuseNoAuth' => \App\Http\Middleware\RedirectIfNotLoggedIn::class,
-        'RedirectIfNotAdmin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
-        'redirectNotLoggedIn' => \App\Http\Middleware\RedirectIfNotLoggedIn::class,
-        'checkIfActualUser' => \App\Http\Middleware\RedirectIfNotUser::class,
-        'RedirectIfNotBelongsReview' => \App\Http\Middleware\RedirectIfNotBelongsReview::class,
-        'RedirectIfNotBelongsComment' => \App\Http\Middleware\RedirectIfNotBelongsComment::class,
     ];
 }

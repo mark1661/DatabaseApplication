@@ -44,6 +44,7 @@ class User extends Authenticatable
     public function support()
     {
       return $this->hasOne('App\support', 'user_id');
+
     }
 
     public function clips(){

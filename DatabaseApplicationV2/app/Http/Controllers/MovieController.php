@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Input as Input;
 
 class MovieController extends Controller
 {
-
-
-
     public function index()
     {
       $movies = Movie::get();

@@ -17,9 +17,8 @@ class CreateUserProfileCommentsTable extends Migration
     {
         Schema::create('user_profile_comments', function (Blueprint $table) {
           $table->increments('user_profile_comment_id');
-          $table->integer('user_id'); //who made the comment
-          $table->integer('user_profile_id'); //which user profile the komment is on
-          $table->mediumText('comment_string');
+          $table->integer('user_id');
+          $table->string('comment_string');
           $table->timestamps();
         });
     }

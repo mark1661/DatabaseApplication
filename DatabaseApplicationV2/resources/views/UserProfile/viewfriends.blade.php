@@ -17,8 +17,13 @@
         <ul>
           <li style="list-style-type: none" id="userfriendname">{{$userprofile->username}}</li>
           <a href="/viewuserprofile/{{$userprofile->user_id}}" class="btn btn-primary" style="margin-right: 15px">View Profile</a>
-          <a href="/deleteFromList/{{\App\Http\Controllers\RelationshipController::getId($userprofile->user_id)}}" class="btn btn-primary" style="margin-right: 15px">Delete</a>
+          <li style="list-style-type: none">
           <br/>
+            <div class="row">
+              <a href="/viewuserprofile/{{$userprofile->user_id}}" class="btn btn-primary" style="margin-right: 15px">gasgsa</a>
+
+            </div>
+          </li>
         </ul>
       </div>
   </div>

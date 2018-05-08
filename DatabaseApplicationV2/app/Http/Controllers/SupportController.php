@@ -10,11 +10,6 @@ use Auth;
 
 class SupportController extends Controller
 {
-
-  public function __construct(){
-    $this->middleware('refuseNoAuth');
-  }
-
     /**
      * Display a listing of the resource.
      *
