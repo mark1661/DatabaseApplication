@@ -130,11 +130,12 @@ $(document).on('click','#unlike', function(){
   @if(isset($reviews))
   @foreach($reviews as $review)
   <div class="form-group">
-    <label for="comment">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</label>
+    <a href="/viewuserprofile/{{$review->user_id}}">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</a>
     <textarea readonly class="form-control" rows="5" id="comment" style="margin-bottom: 10px">{{$review->review_content}}</textarea>
+    <p>The score is: {{$review->score}}</p>
     @if(Auth::user()->user_id == $review->user_id)
-    <a href="/editReview/{{$review->user_id}}" class="btn btn-info">Edit Review</a>
-    <a href="/deleteReview/{{$review->user_id}}" class="btn btn-danger">Delete Review</a>
+    <a href="/editReview/{{$review->review_id}}" class="btn btn-info">Edit Review</a>
+    <a href="/deleteReview/{{$review->review_id}}" class="btn btn-danger">Delete Review</a>
     @endif
   </div>
   @endforeach
