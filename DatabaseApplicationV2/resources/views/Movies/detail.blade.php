@@ -21,7 +21,6 @@ $(document).on('click','#like',function(){
     success:function(result){
       $('#like').html('Unlike');
       $('#like').attr('id','unlike');
-      location.reload();
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.log(JSON.stringify(jqXHR));
@@ -40,7 +39,6 @@ $(document).on('click','#unlike', function(){
     success:function(result){
       $('#unlike').html('Like '+ {{count($movie->likes)}});
       $('#unlike').attr('id','like');
-      location.reload();
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.log(JSON.stringify(jqXHR));
@@ -130,11 +128,13 @@ $(document).on('click','#unlike', function(){
   @if(isset($reviews))
   @foreach($reviews as $review)
   <div class="form-group">
-    <label for="comment">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</label>
+    <a href="/viewuserprofile/{{$review->user_id}}">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</a>
     <textarea readonly class="form-control" rows="5" id="comment" style="margin-bottom: 10px">{{$review->review_content}}</textarea>
     @if(Auth::user()->user_id == $review->user_id)
-    <a href="/editReview/{{$review->user_id}}" class="btn btn-info">Edit Review</a>
-    <a href="/deleteReview/{{$review->user_id}}" class="btn btn-danger">Delete Review</a>
+    <label>The User has Rated: {{$review->score}}</label>
+    <br>
+    <a href="/editReview/{{$review->review_id}}" class="btn btn-info">Edit Review</a>
+    <a href="/deleteReview/{{$review->review_id}}" class="btn btn-danger">Delete Review</a>
     @endif
   </div>
   @endforeach

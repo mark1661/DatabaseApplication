@@ -12,6 +12,7 @@
       type: "GET", //request type
       data: {movie_id: "{{$movie->id}}"},
       success:function(result){
+        console.log(result);
         var actors=result.split(" ");
         for(i=0;i<actors.length-1;i++){
           var obj = jQuery.parseJSON(actors[i]);
