@@ -92,6 +92,7 @@ class ActorController extends Controller
       foreach ($actors as $actor) {
         echo $actor.' ';
       }
+
     }
     public function showActorsToDelete(){
       $addedActors=MovieAndActor::select('actor_id')->where('movie_id',$_GET['movie_id'])->get();

@@ -21,6 +21,7 @@ $(document).on('click','#like',function(){
     success:function(result){
       $('#like').html('Unlike');
       $('#like').attr('id','unlike');
+      location.reload();
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.log(JSON.stringify(jqXHR));
@@ -39,6 +40,7 @@ $(document).on('click','#unlike', function(){
     success:function(result){
       $('#unlike').html('Like '+ {{count($movie->likes)}});
       $('#unlike').attr('id','like');
+      location.reload();
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.log(JSON.stringify(jqXHR));
@@ -82,12 +84,22 @@ $(document).on('click','#unlike', function(){
         <td style="background-color: navy; color: white">Movie Trailer: </td>
         <td style="background-color: white" id="moviereleasedate">
             @if(isset($movie->movie_clip))
-              <video width="200" height="200" controls autoplay>
+              <video style="width: 90%; height: auto" controls autoplay>
               <source src="{{Storage::url($movie->movie_clip->path)}}" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             @endif
         </td>
+      @if(isset($reviewsWithAverageScore))
+      <tr>
+        <td style="background-color: navy; color: white">Average Score by Users: </td>
+        @if($reviewsWithAverageScore->score != NULL)
+        <td style="background-color: white" id="moviegenre">{{$reviewsWithAverageScore->score}} / 100</td>
+        @else
+        <td style="background-color: white" id="moviegenre">No rating yet</td>
+        @endif
+      </tr>
+      @endif
       </tr>
         @if(Auth::check()==true)
           @if(Auth::user()->status == 'ADMIN')
@@ -119,10 +131,15 @@ $(document).on('click','#unlike', function(){
   @foreach($reviews as $review)
   <div class="form-group">
     <label for="comment">{{\App\Http\Controllers\UserController::getUserName($review->user_id)}}:</label>
-    <textarea readonly class="form-control" rows="5" id="comment">{{$review->review_content}}</textarea>
+    <textarea readonly class="form-control" rows="5" id="comment" style="margin-bottom: 10px">{{$review->review_content}}</textarea>
+    @if(Auth::user()->user_id == $review->user_id)
+    <a href="/editReview/{{$review->user_id}}" class="btn btn-info">Edit Review</a>
+    <a href="/deleteReview/{{$review->user_id}}" class="btn btn-danger">Delete Review</a>
+    @endif
   </div>
   @endforeach
   @endif
+  <hr style="display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0;padding: 0">
   @if(Auth::check() == true)
   <a class="btn btn-info" href="/createReview/{{$movie->id}}">Add a new review!</a>
   @endif

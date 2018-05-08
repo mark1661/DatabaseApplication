@@ -1,13 +1,15 @@
 @extends('layouts.master')
 @section('content')
 <h1>Review</h1>
+<hr>
+<div class="jumbotron">
   {!! Form::open(['url' => 'newreview/' .$movie->id]) !!}
   <div class="form-group">
     {{Form::label('review', 'Review')}}
     {{Form::textarea('review_content', '', ['class' => 'form-control', 'placeholder' => 'Type away...'])}}
   </div>
   <div class="form-group">
-    {{Form::label('userprofileprivacy', 'Score:')}}
+    {{Form::label('userprofileprivacy', 'Enter your rating for this movie:')}}
     {{Form::select('scores', ['1' => 1,
                               '2' => 2,
                               '3' => 3,
@@ -24,4 +26,5 @@
     {{Form::submit('Create!', ['class' => 'btn btn-success'])}}
   </div>
   {!! Form::close() !!}
-  @endsection
+</div>
+@endsection

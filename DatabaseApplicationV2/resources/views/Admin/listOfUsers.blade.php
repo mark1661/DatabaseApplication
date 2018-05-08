@@ -24,11 +24,12 @@
         <td>Admin</td>
         @endif
         <td>{{$user->created_at}}</td>
-        <td><a class="btn btn-success" href="/admin/sendEmail/{{$user->user_id}}">Send Email</a></td>
+        <td><a class="btn btn-success" href="/admin/sendEmail/{{$user->user_id}}" style="margin-bottom: 10px">Send Email</a>
         @if(Auth::user()->user_id !== $user->user_id)
-        <td><a class="btn btn-danger" href="/users/delete/{{$user->user_id}}">Delete this User</a></td>
+        <a class="btn btn-danger" href="/users/delete/{{$user->user_id}}">Delete this User</a>
+        </td>
         @else
-        <td></td>
+        </td>
         @endif
       </tr>
       @endforeach

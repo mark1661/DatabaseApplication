@@ -61,7 +61,24 @@ class MovieController extends Controller
     {
       $movie = Movie::find($id);
       $reviews = UserReview::where('movie_id', $id)->get();
-      return view('movies/detail', compact('movie'), compact('reviews'));
+      $averageRating = UserReview::where('movie_id', $id)->get();
+      $totalOfRatings = count($averageRating) * 10;
+      $totalOfUserRatings = 0;
+      for($counter = 0; $counter < count($averageRating); $counter++)
+      {
+        $totalOfUserRatings += $averageRating[$counter]->score;
+      }
+      if($totalOfRatings != 0)
+      {
+        $averageRatingIn100 = ($totalOfUserRatings / $totalOfRatings) * 100;
+      }
+      else
+      {
+        $averageRatingIn100 = 0;
+      }
+      $reviewsWithAverageScore = new UserReview;
+      $reviewsWithAverageScore->score = $averageRatingIn100;
+      return view('movies/detail', compact('movie'), compact('reviews', 'reviewsWithAverageScore'));
     }
 
     public function show($id){

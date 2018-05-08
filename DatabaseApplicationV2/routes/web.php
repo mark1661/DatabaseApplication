@@ -92,7 +92,7 @@ Route::post('/submit/{id}', 'UserProfileController@edit');
 //review
 Route::get('/createReview/{id}', 'ReviewController@create')->middleware('refuseNoAuth');
 Route::post('/newreview/{id}', 'ReviewController@submit');
-Route::post('/deleteReview/{id}','ReviewController@delete');
+Route::get('/deleteReview/{id}','ReviewController@delete');
 
 //edit reviews
 Route::get('/editReview/{id}', 'ReviewController@showeditReview')->middleware('redirectNotLoggedIn', 'RedirectIfNotBelongsReview');

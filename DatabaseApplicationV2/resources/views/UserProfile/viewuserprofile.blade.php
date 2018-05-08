@@ -104,11 +104,9 @@
                     <div class="form-group"  style="border-bottom:1px solid black">
                         <h2>Comments</h2>
                     </div>
-                    @if(Auth::user()->user_id != $userprofile->user_profile_id)
                     <div class="form-group row">
                       <a href="/createComment/{{$userprofile->user_profile_id}}" class="btn btn-success" style="margin-left: 15px">Add a new Comment!</a>
                     </div>
-                    @endif
                     @isset($user_comments)
                     @foreach($user_comments as $user_comment)
                     <div class="form-group row" style="margin-left: 4px; margin-right: 4px">
