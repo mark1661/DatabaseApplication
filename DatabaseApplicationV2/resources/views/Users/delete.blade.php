@@ -40,10 +40,12 @@
     @endif
     <div class="form-group">
       {!! Form::open(['url' => '/delete/' . $user->user_id]) !!}
+      @if(Auth::user()->status !== 'ADMIN')
       <div class="form-group">
         {{Form::label('userpassword', 'Enter your password to delete your profile')}}
         {{Form::password('userpassword', array('class' => 'form-control', 'placeholder' => 'Enter your password'))}}
       </div>
+      @endif
       {{Form::submit('Delete your Profile', ['class' => 'btn btn-danger'])}}
       {!! Form::close() !!}
     </div>

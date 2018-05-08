@@ -14,51 +14,49 @@ class SearchController extends Controller
       $searchQueryType = $request->input('searchSelect');
       $searchResults = null;
 
-      if($searchQuery == null)
+      $this->validate($request,
+      [
+        'searchTextBox' => 'required',
+      ]);
+
+      if($searchQueryType == 'actor')
       {
-        return view('search/searchFailed');
+        $searchResults = DB::table('actors')->where('first_name', 'LIKE', $searchQuery . '%')
+                                            ->orWhere('last_name', 'LIKE', $searchQuery . '%')->get();
+        if(count($searchResults) == 0)
+        {
+          return view('search/searchFailed');
+        }
+        else
+        {
+          return view('search/searchSuccessActor', compact('searchResults'));
+        }
       }
-      else
+      else if($searchQueryType == 'movie')
       {
-        if($searchQueryType == 'actor')
+        $searchResults = DB::table('movies')->where('name', 'LIKE', $searchQuery . '%')
+                                            ->orWhere('genre', 'LIKE', $searchQuery . '%')
+                                            ->orWhere('release_date', 'LIKE', $searchQuery . '%')->get();
+        if(count($searchResults) == 0)
         {
-          $searchResults = DB::table('actors')->where('first_name', 'LIKE', $searchQuery . '%')
-                                              ->orWhere('last_name', 'LIKE', $searchQuery . '%')->get();
-          if(count($searchResults) == 0)
-          {
-            return view('search/searchFailed');
-          }
-          else
-          {
-            return view('search/searchSuccessActor', compact('searchResults'));
-          }
+          return view('search/searchFailed');
         }
-        else if($searchQueryType == 'movie')
+        else
         {
-          $searchResults = DB::table('movies')->where('name', 'LIKE', $searchQuery . '%')
-                                              ->orWhere('genre', 'LIKE', $searchQuery . '%')
-                                              ->orWhere('release_date', 'LIKE', $searchQuery . '%')->get();
-          if(count($searchResults) == 0)
-          {
-            return view('search/searchFailed');
-          }
-          else
-          {
-            return view('search/searchSuccessMovie', compact('searchResults'));
-          }
+          return view('search/searchSuccessMovie', compact('searchResults'));
         }
-        else if($searchQueryType == 'user')
+      }
+      else if($searchQueryType == 'user')
+      {
+        $searchResults = DB::table('users')->where('username', 'LIKE', $searchQuery . '%')
+                                           ->orWhere('email', 'LIKE', $searchQuery . '%')->get();
+        if(count($searchResults) == 0)
         {
-          $searchResults = DB::table('users')->where('username', 'LIKE', $searchQuery . '%')
-                                             ->orWhere('email', 'LIKE', $searchQuery . '%')->get();
-          if(count($searchResults) == 0)
-          {
-            return view('search/searchFailed');
-          }
-          else
-          {
-            return view('search/searchSuccessUser', compact('searchResults'));
-          }
+          return view('search/searchFailed');
+        }
+        else
+        {
+          return view('search/searchSuccessUser', compact('searchResults'));
         }
       }
    }

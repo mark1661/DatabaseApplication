@@ -10,7 +10,7 @@
         <th>E-mail</th>
         <th>Status</th>
         <th>Account Creation Date</th>
-        <th>Options</th>
+        <th colspan="2">Options</th>
       </tr>
     </thead>
     <tbody style="background-color: white">
@@ -24,7 +24,13 @@
         <td>Admin</td>
         @endif
         <td>{{$user->created_at}}</td>
-        <td><a class="btn btn-success" href="/admin/sendEmail/{{$user->user_id}}">Send Email</a></td>
+        <td><a class="btn btn-success" href="/admin/sendEmail/{{$user->user_id}}" style="margin-bottom: 10px">Send Email</a>
+        @if(Auth::user()->user_id !== $user->user_id)
+        <a class="btn btn-danger" href="/users/delete/{{$user->user_id}}">Delete this User</a>
+        </td>
+        @else
+        </td>
+        @endif
       </tr>
       @endforeach
     </tbody>

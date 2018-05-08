@@ -1,4 +1,4 @@
-@extends('layouts/master')
+@extends('layouts.master')
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -60,12 +60,12 @@
     <input type="text" class="form-control" id="name" name="name" placeholder="{{$movie->name}}" value="{{$movie->name}}">
   </div>
   <div class="form-group">
-    <label for="actor">Actor(To be Added):</label>
+    <label for="actor">Add Actors:</label>
     <select multiple class="form-control" id="addActor" name="addActors[]">
     </select>
   </div>
   <div class="form-group">
-    <label for="actor">Actor(To be Deleted):</label>
+    <label for="actor">Remove Actors:</label>
     <select multiple class="form-control" id="deleteActor" name="deleteActors[]">
     </select>
   </div>
@@ -75,6 +75,8 @@
   </div>
   <div class="form-group">
     <label for="genre">Genre:</label>
+    <select id="genre" name="genre">
+    </select>
     <input type="text" class="form-control" id="genre" name="genre" placeholder="{{$movie->genre}}" value="{{$movie->genre}}">
   </div>
   <div class="form-group">

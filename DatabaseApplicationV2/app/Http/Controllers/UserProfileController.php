@@ -52,8 +52,9 @@ class UserProfileController extends Controller
 
 
 
-  public function edit($id)
+  public function edit(Request $request, $id)
   {
+
     $userprofile= User_profile::find($id);
     $userprofile->first_name=request('userfirstname');
     $userprofile->last_name=request('userlastname');
@@ -68,7 +69,6 @@ class UserProfileController extends Controller
       $userprofile->file_path=$path;
       $userprofile->file_name=$file_name;
 
-      $userprofile->save();
     }
 
     $userprofile->save();

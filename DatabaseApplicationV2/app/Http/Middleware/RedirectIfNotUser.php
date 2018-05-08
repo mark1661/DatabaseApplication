@@ -20,12 +20,18 @@ class RedirectIfNotUser
       $id = $request->id;
       $userprofile = User::find($id);
 
-
-      if (Auth::user()->user_id !== $userprofile->user_id) {
-        return redirect('/error');
+      if(Auth::check())
+      {
+        if (Auth::user()->user_id !== $userprofile->user_id) {
+          return redirect('/error/ProhibitedURL');
+        }
+        else {
+          return $next($request);
+        }
       }
-      else {
-        return $next($request);
+      else
+      {
+        return redirect('/error/ProhibitedURL');
       }
     }
 }

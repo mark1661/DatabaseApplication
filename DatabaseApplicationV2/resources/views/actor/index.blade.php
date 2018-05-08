@@ -18,6 +18,7 @@
         <td>{{$actor->first_name}}</td>
         <td>{{$actor->last_name}}</td>
         <td>
+          <a class="btn btn-primary" href="/actor/view/{{$actor->id}}">View</a>
           <a class="btn btn-info" href="/actor/edit/{{$actor->id}}">Edit</a>
           <a class="btn btn-danger" href="/actor/delete/{{$actor->id}}">Delete</a>
         </td>

@@ -38,8 +38,25 @@ Route::get('/support',  function () {
 })->middleware('refuseNoAuth');
 
 
-Route::get('/error',  function () {
+Route::get('/error',  function ()
+{
     return view('error_page');
+});
+
+Route::get('/error/ProhibitedURL', function()
+{
+  return view('errorProhibitedURL');
+});
+
+
+Route::get('/user/privateProfile', function()
+{
+    return view('privateProfilePage');
+});
+
+Route::get('/user/friendsOnlyProfile', function()
+{
+    return view('friendsOnlyProfilePage');
 });
 Route::post('/support/submit', 'SupportController@create');
 Route::get('/support/submitSuccessful', 'SupportController@createSuccess');
@@ -75,7 +92,7 @@ Route::post('/submit/{id}', 'UserProfileController@edit');
 //review
 Route::get('/createReview/{id}', 'ReviewController@create')->middleware('refuseNoAuth');
 Route::post('/newreview/{id}', 'ReviewController@submit');
-Route::post('/deleteReview/{id}','ReviewController@delete');
+Route::get('/deleteReview/{id}','ReviewController@delete');
 
 //edit reviews
 Route::get('/editReview/{id}', 'ReviewController@showeditReview')->middleware('redirectNotLoggedIn', 'RedirectIfNotBelongsReview');
@@ -147,6 +164,7 @@ Route::get('/delete/actors','ActorController@showActorsToDelete');
 Route::get('/actor/create', 'ActorController@create');
 Route::post('/actor/store', 'ActorController@store');
 Route::get('/actor/index', 'ActorController@index');
+Route::get('/actor/view/{id}', 'ActorController@view');
 Route::get('/actor/edit/{id}','ActorController@edit');
 Route::post('/actor/update/{id}', 'ActorController@update');
 Route::get('/actor/delete/{id}', 'ActorController@delete');

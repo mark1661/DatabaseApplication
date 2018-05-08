@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\User_profile;
+use App\UserReview;
+use App\user_profile_comment;
+use App\Relationship;
 use Session;
 use Auth;
 
@@ -30,6 +33,19 @@ class UserController extends Controller
     $enteredPassword = request('userpassword');
     if(Hash::check($enteredPassword, $user->password))
     {
+      $profile_comments=user_profile_comment::where('user_id', $id)->delete();
+      $user_reviews=UserReview::where('user_id', $id)->delete();
+      $relationships=Relationship::where('relating_user_id', $id)->delete();
+      $user->delete();
+      $userProfile->delete();
+      Session::flush();
+      Auth::logout();
+      return redirect('/');
+    }
+    elseif (Auth::user()->status === 'ADMIN') {
+      $profile_comments=user_profile_comment::where('user_id', $id)->delete();
+      $user_reviews=UserReview::where('user_id', $id)->delete();
+      $relationships=Relationship::where('relating_user_id', $id)->delete();
       $user->delete();
       $userProfile->delete();
       Session::flush();
