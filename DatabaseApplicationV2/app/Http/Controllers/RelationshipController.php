@@ -11,6 +11,7 @@ use App\User;
 use App\User_profile;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class RelationshipController extends Controller
 {
@@ -24,36 +25,40 @@ class RelationshipController extends Controller
         ['status', '=', 'FRIEND'],
     ])->first();
 
+    //$statusF;
+
     if (empty($relationship->status)) {
-      $statusF = null;
+      return redirect('/error');
     }
     else {
-      $statusF = $relationship->status;
+      //$statusF = $relationship->status;
     }
+    //echo $relationship->status;
+    return $relationship->status;
+  }
 
-    return $statusF;
+
+  public static function getId($id){
+    $login_user_id = Auth::id();
+    $relationship = DB::table('relationships')->where([
+        ['relating_user_id', '=', $login_user_id],
+        ['related_user_id', '=', $id],
+        ['status', '=', 'FRIEND'],
+    ])->first();
+
+    return $relationship->relationship_id;
   }
 
   public function getFriends(){
     //$user = User::find($id);
     $login_user_id = Auth::id();
 
-    $userprofiles = DB::select('select DISTINCT username, file_path, user_id from users, user_profiles
+    $userprofiles = DB::select('select username, file_path, user_id from users, user_profiles
     where user_id in (
-      select B.related_user_id from relationships B where B.status = ? AND B.relating_user_id = ?)', ['FRIEND', $login_user_id]);
+      select B.related_user_id from relationships B where B.status = ? AND B.relating_user_id = ?)
+      AND user_id = user_profile_id', ['FRIEND', $login_user_id]);
 
-//stupid sql, couldn't get rid of duplicate relationship ids in above query
-      $relationshipids = DB::select('select DISTINCT relationship_id from users, relationships
-    where user_id in (
-      select B.related_user_id from relationships B where B.status = ? AND B.relating_user_id = ?)',['FRIEND', $login_user_id]);
-
-      foreach ($userprofiles as $userprofile) {
-        foreach ($relationshipids as $relationship){}
-         $user->name;
-}
-
-
-
+  //stupid sql, couldn't get rid of duplicate relationship ids in above query
 
     return view('UserProfile/viewfriends', compact('userprofiles'));
   }
@@ -68,15 +73,10 @@ class RelationshipController extends Controller
     $relationship->save();
   }
 
-  public function delete($id){
-    $movie= Movie::find($id);
-    $posters=Movie_poster::where('movie_id', $id)->get();
-    foreach($posters as $poster){
-      Storage::delete('public/images/' . $poster->file_name);
-    }
-    $deletedPosters=Movie_poster::where('movie_id',$id)->delete();
-    $movie->delete();
-    return redirect('/movies');
+  public function deleteFromList($id){
+    $relationship= Relationship::find($id);
+    $relationship->delete();
+    return redirect('/');
   }
 
   public function deleteFriend(){
