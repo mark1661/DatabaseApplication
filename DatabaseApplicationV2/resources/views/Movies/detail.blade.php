@@ -54,7 +54,7 @@ $(document).on('click','#unlike', function(){
     <tbody>
       <tr>
         <td style="background-color: navy; color: white; width: 15%; height: auto">Movie poster: </td>
-        @if($movie->movie_poster != null)
+        @if($movie->movie_poster)
         <td style="background-color: white; width: 30%; height: auto" id="movieposter"><img class="card-img-top" id="imgElement" src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></td>
         @else
         <td style="background-color: white; width: 30%; height: auto" id="movieposter"><img class="card-img-top" id="imgElement" src="https://vignette.wikia.nocookie.net/pandorahearts/images/a/ad/Not_available.jpg/revision/latest?cb=20141028171337" alt="Card image cap"></td>
@@ -95,19 +95,19 @@ $(document).on('click','#unlike', function(){
               <td style="background-color: navy; color: white">Manage Movie Clips: </td>
               <td style="background-color: white" id="Movie_clip">
                 <ul>
-                  @foreach($movie->movie_clips as $movie_clip)
+                    @foreach($movie->movie_clips as $movie_clip)
                     <li>
                       Belongs to: {{ $movie_clip->user->username }}
                       <br>
                       <video width="320" height="240" controls>
-                        <source src="{{Storage::url($movie->movie_clip->path)}}" type="video/mp4">
-                        Your browser does not support the video tag.
-                      </video>
-                      <br>
-                      <a href="/movies/setTrailer/{{$movie_clip->id}}">Set it to trailer</a> |
-                      <a href="/movies/clip/{{$movie_clip->id}}">Delete</a>
-                    </li>
-                  @endforeach
+                        <source src="{{Storage::url($movie_clip->path)}}" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                        <br>
+                        <a href="/movies/setTrailer/{{$movie_clip->id}}">Set it to trailer</a> |
+                        <a href="/movies/clip/{{$movie_clip->id}}">Delete</a>
+                      </li>
+                      @endforeach
                 </ul>
               </td>
             </tr>
@@ -131,11 +131,11 @@ $(document).on('click','#unlike', function(){
     <hr/>
     <form method="POST" action="/movies/detail/{{$movie->id}}" enctype="multipart/form-data">
       {{ csrf_field() }}
-    <div class="form-group">
-      <label for="upload">Upload movie clips:</label>
-      <input type="file" class="form-control-file" name="clip" id="upload">
-      <button type="submit" class="btn btn-primary" style="margin-top: 5px; margin-left: 580px">Submit</button>
-    </div>
+      <div class="form-group">
+        <label for="upload">Upload movie clips:</label>
+        <input type="file" class="form-control-file" name="clip" id="upload">
+        <button type="submit" class="btn btn-primary" style="margin-top: 5px; margin-left: 580px">Submit</button>
+      </div>
     </form>
     <hr/>
     @endif
