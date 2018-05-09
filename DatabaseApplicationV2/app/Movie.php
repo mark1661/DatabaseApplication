@@ -12,7 +12,7 @@ use App\User_like;
 class Movie extends Model
 {
     public function movie_poster(){
-      return $this->hasOne(Movie_poster::class);
+      return $this->hasOne(Movie_poster::class,'id','poster');
     }
     public function movie_posters(){
       return $this->hasMany(Movie_poster::class);
@@ -22,7 +22,7 @@ class Movie extends Model
     }
 
     public function movie_clip(){
-      return $this->hasOne(Movie_clip::class);
+      return $this->hasOne(Movie_clip::class,'id','clip_id');
     }
     public function movie_clips(){
       return $this->hasMany(Movie_clip::class);

@@ -150,6 +150,8 @@ Route::get('/movies/clip/{id}','MovieClipController@show');
 Route::post('/movies/clip/{id}','MovieClipController@delete');
 
 Route::get('/movies/setTrailer/{id}','MovieClipController@setToTrailer')->middleware('RedirectIfNotAdmin');
+Route::get('/movies/setPoster/{id}','MoviePosterController@setToPoster');
+Route::get('/movies/poster/{id}','MoviePosterController@delete')->middleware('RedirectIfNotAdmin');
 //User like
 Route::post('/like','UserLikeController@like');
 Route::post('/unlike','UserLikeController@unlike');

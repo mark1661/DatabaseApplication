@@ -8,6 +8,7 @@
     {{Form::label('review', 'Review')}}
     {{Form::textarea('review_content', '', ['class' => 'form-control', 'placeholder' => 'Type away...'])}}
   </div>
+<<<<<<< HEAD
   <div class="form-group">
     {{Form::label('userprofileprivacy', 'Enter your rating for this movie:')}}
     {{Form::select('scores', ['1' => 1,
@@ -22,6 +23,8 @@
                               '10' => 10,
                               ], '1', ['class' => 'form-control'])}}
   </div>
+=======
+>>>>>>> Lintestbranch
   <div>
     {{Form::submit('Create!', ['class' => 'btn btn-success'])}}
   </div>

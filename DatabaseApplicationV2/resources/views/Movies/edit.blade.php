@@ -86,9 +86,13 @@
   </div>
   <div>
     <label>Posters:</label>
-    @if($movie->movie_poster)
+    @if($movie->movie_posters)
       <ul>
-        <li><img class="card-img-top" width="10" height="500"src="{{ Storage::url($movie->movie_poster->path)}}" alt="Card image cap"></li>
+      @foreach($movie->movie_posters as $poster)
+        <li><img class="card-img-top" width="10" height="500"src="{{ Storage::url($poster->path)}}" alt="Card image cap">
+        <a href="/movies/setPoster/{{$poster->id}}">Set it to poster</a> |
+        <a href="/movies/poster/{{$poster->id}}">Delete</a></li>
+      @endforeach
       </ul>
     @endif
   </div>
