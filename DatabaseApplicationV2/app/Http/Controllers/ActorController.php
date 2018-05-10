@@ -77,7 +77,10 @@ class ActorController extends Controller
     {
       $actor = Actor::find($id);
       $actorInMovie = MovieAndActor::where('actor_id', $id)->first();
-      $actorInMovie->delete();
+      if($actorInMovie != NULL)
+      {
+        $actorInMovie->delete();  
+      }
       $actor->delete();
       return redirect('/actor/index');
     }

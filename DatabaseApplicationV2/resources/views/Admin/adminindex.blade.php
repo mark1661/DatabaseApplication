@@ -10,7 +10,7 @@
     <li style="margin-bottom: 10px"><a class="btn btn-success" href="/admin/addmovie">Add a movie to the database</a></li>
     <li style="margin-bottom: 10px"><a class="btn btn-primary" href="/support/index">Check Support Tickets</a></li>
     <li style="margin-bottom: 10px"><a class="btn btn-info" href="/actor/index">View List of Actors</a></li>
-    <li style="margin-bottom: 10px"><a class="btn btn-warning" href="/admin/listOfUsers">Reset a user's password</a></li>
+    <li style="margin-bottom: 10px"><a class="btn btn-warning" href="/admin/listOfUsers">View List of Users</a></li>
   </ol>
 </div>
 @else

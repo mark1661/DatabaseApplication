@@ -15,9 +15,9 @@
   <tbody>
   @foreach($searchResults as $result)
   <tr style="background-color: white; color: black">
-      @if($result->poster)
+    @if($result->poster)
     <td>
-      <img class="card-img-top" width="100" height="100"src="{{ Storage::url($result->poster->path)}}" alt="Card image cap">
+      <img class="card-img-top" style="width: 30%; height: auto" src="{{ Storage::url($result->movie_poster->path)}}" alt="Card image cap">
     </td>
     @else
     <td width="100">

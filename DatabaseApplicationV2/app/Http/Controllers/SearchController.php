@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Movie;
 
 class SearchController extends Controller
 {
@@ -34,7 +35,7 @@ class SearchController extends Controller
       }
       else if($searchQueryType == 'movie')
       {
-        $searchResults = DB::table('movies')->where('name', 'LIKE', $searchQuery . '%')
+        $searchResults = Movie::where('name', 'LIKE', $searchQuery . '%')
                                             ->orWhere('genre', 'LIKE', $searchQuery . '%')
                                             ->orWhere('release_date', 'LIKE', $searchQuery . '%')->get();
         if(count($searchResults) == 0)
@@ -43,6 +44,7 @@ class SearchController extends Controller
         }
         else
         {
+          //echo $searchResults;
           return view('search/searchSuccessMovie', compact('searchResults'));
         }
       }

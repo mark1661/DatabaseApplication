@@ -79,6 +79,7 @@ class MovieController extends Controller
       $reviewsWithAverageScore = new UserReview;
       $reviewsWithAverageScore->score = $averageRatingIn100;
       return view('movies/detail', compact('movie'), compact('reviews', 'reviewsWithAverageScore'));
+
     }
 
     public function show($id){
@@ -125,7 +126,8 @@ class MovieController extends Controller
     }
 
     public function delete($id){
-      $movie= Movie::find($id)->first();
+      $movie= Movie::find($id);
+
       //Find movie poster
       $posters=Movie_poster::where('movie_id', $id)->get();
       foreach($posters as $poster){

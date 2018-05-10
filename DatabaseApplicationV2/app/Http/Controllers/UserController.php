@@ -9,6 +9,7 @@ use App\User;
 use App\User_profile;
 use App\UserReview;
 use App\user_profile_comment;
+use App\Movie_clip;
 use App\Relationship;
 use Session;
 use Auth;
@@ -45,11 +46,10 @@ class UserController extends Controller
     elseif (Auth::user()->status === 'ADMIN') {
       $profile_comments=user_profile_comment::where('user_id', $id)->delete();
       $user_reviews=UserReview::where('user_id', $id)->delete();
+      $movie_clip=Movie_Clip::where('user_id', $id)->delete();
       $relationships=Relationship::where('relating_user_id', $id)->delete();
       $user->delete();
       $userProfile->delete();
-      Session::flush();
-      Auth::logout();
       return redirect('/');
     }
     else
@@ -69,6 +69,11 @@ class UserController extends Controller
 
   public function resetPassword($token)
   {
+    if(Auth::check() == true)
+    {
+      Session::flush();
+      Auth::logout();
+    }
     $user = User::where('email_token', $token)->first();
     return view('Users/emailReceived', compact('user'));
   }

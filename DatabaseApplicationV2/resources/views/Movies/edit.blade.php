@@ -76,9 +76,14 @@
   </div>
   <div class="form-group">
     <label for="genre">Genre:</label>
-    <select id="genre" name="genre">
+    <select id="genre" name="genre" class="form-control" value="{{$movie->genre}}">
+      <option value="Adventure">Adventure</option>
+      <option value="Comedy">Comedy</option>
+      <option value="Action">Action</option>
+      <option value="Crime">Crime</option>
+      <option value="Drama">Drama</option>
+      <option value="Horror">Horror</option>
     </select>
-    <input type="text" class="form-control" id="genre" name="genre" placeholder="{{$movie->genre}}" value="{{$movie->genre}}">
   </div>
   <div class="form-group">
     <label for="overview">Overview</label>
@@ -89,7 +94,8 @@
     @if($movie->movie_posters)
       <ul>
       @foreach($movie->movie_posters as $poster)
-        <li><img class="card-img-top" width="10" height="500"src="{{ Storage::url($poster->path)}}" alt="Card image cap">
+        <li><img class="card-img-top" style="width: 30%; height: auto" src="{{ Storage::url($poster->path)}}" alt="Card image cap">
+        <br>
         <a href="/movies/setPoster/{{$poster->id}}">Set it to poster</a> |
         <a href="/movies/poster/{{$poster->id}}">Delete</a></li>
       @endforeach

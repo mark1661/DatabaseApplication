@@ -137,7 +137,7 @@ Route::get('/movies','MovieController@index');
 Route::get('/movies/create','MovieController@create')->middleware('RedirectIfNotAdmin');
 Route::post('/movies/store','MovieController@store');
 
-Route::get('/movies/detail/{id}','MovieController@detail')->  name('movie_detail');
+Route::get('/movies/detail/{id}','MovieController@detail')->name('movie_detail');
 Route::post('/movies/detail/{id}','MovieClipController@store');
 
 Route::get('/movies/show/{id}','MovieController@show')->middleware('RedirectIfNotAdmin');
