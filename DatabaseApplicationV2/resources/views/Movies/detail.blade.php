@@ -110,7 +110,7 @@ $(document).on('click','#unlike', function(){
                       Belongs to: {{ $movie_clip->user->username }}
                       <br>
                       <video width="320" height="240" controls>
-                        <source src="{{Storage::url($movie->movie_clip->path)}}" type="video/mp4">
+                        <source src="{{Storage::url($movie_clip->path)}}" type="video/mp4">
                         Your browser does not support the video tag.
                       </video>
                       <br>
